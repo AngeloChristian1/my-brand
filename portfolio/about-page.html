@@ -6,9 +6,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
-<link rel="stylesheet" href="./css/style.css" />
-<link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
-    <title>My Brand</title>
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href=".../assets/images/logo.png" type="image/x-icon">
+    <title>About me</title>
   </head>
   <body>
     <div class="main-container" >
@@ -17,13 +17,13 @@
           <div class="links-container">
             <div class="links">
                 <ul>
-                    <li id="active"><a href="">Home</a></li>
-                    <li><a href="./portfolio/about-page.html">About</a></li>
+                    <li><a href="">Home</a></li>
+                    <li><a href="#about-section" id="active">About</a></li>
                 </ul>
             </div>
-            <a href="./index.html" class="logo">
-                <img src="./assets/images/logo.png" alt="logo"/>
-            </a>
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="logo"/>
+            </div>
             <div class="links">
                 <ul>
                     <li><a href="#skills-section">Skills</a></li>
@@ -39,7 +39,7 @@
         <div class="mobile-nav">
           <div class="menu-bar">
             <div class="logo">
-              <img src="./assets/images/logo.png" alt="logo"/>
+              <img src="../assets/images/logo.png" alt="logo"/>
           </div>
             <div class="burger">
              <div class="burger-line burger-line1"></div>
@@ -51,7 +51,7 @@
           <div class="mobile-links">
             <ul>
               <li><a href="">Home</a></li>
-              <li><a href="./portfolio/about-page.html">About</a></li>
+              <li><a href="#about-section">About</a></li>
               <li><a href="#skills-section">Skills</a></li>
               <li><a href="#projects-section">Projects</a></li>
               <li><a href="./blog/blog-homepage.html" target="_blank" rel="noopener noreferrer" class="button-white button ">
@@ -64,56 +64,130 @@
 
       <!-- Main section -->
 
-      <div class="main-section" id="main-section">
+      <div class="main-section" id="main-section about-page">
         
-        <div class="main-section-content">
+        <div class="main-section-content about-page-content">
           <div class="rounded-text white-text"><p>Hello</p></div>
           <div class="main-section-content-container">
-            <div class="star-desorator">
-              <img src="./assets/images/star.svg" alt="">
-            </div>
+
             <div class="hero-section main-left">
-            
-              <p class="white-text">I'm</p>
-              <h3 class="big-text">Angelo Christian</h3>
+             <h3 class="big-text my-intro">Hi, I’m Angelo and I’m a designer & developer</h3>
               <p class="normal-text grey-text">A software developer with experience full stack development. With extensive ability in creating amazing UI and well tailored backend</p>
-            <div class="button-container">
-              <a href="" class="button button-border">Contact Me</a>
-              <a href="" class="button button-white">Read More</a>
-            </div>
+              <p class="normal-text grey-text">A software developer with experience full stack development. With extensive ability in creating amazing UI and well tailored backend</p>
+      
             </div>
             <div class="hero-section main-right">
               <div class="hero-container">
-                <img src="./assets/images/hero_image.svg" alt="hero image" class="hero-image"/>
+                <img src="../assets/images/hero_image.svg" alt="hero image" class="hero-image"/>
               </div>
             </div>
           </div>
          
         </div>
 
-        <!-- about-section -->
 
-        <div class=" about-section" id="about-section">
-          <div class="rounded-text white-text"><p>Short Bio</p></div>
+      </div>
 
-          <div class="about-section-content">
-            <div class="about-section-content-section about-left">
-              <p class="normal-text grey-text">The name is Gatete Ishema Angelo Chrsitian, Call me Chris I'm a web developer from Kigali, Rwanda. I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</p>
-              <p class="normal-text grey-text">I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</p>
-              <p class="normal-text grey-text"> I work with organizations and individuals to create beautiful, responsive</p>
-         
-              <a href="" class="button button-white">Read More</a>
-           
+      <!-- my experience -->
+
+      <div class="about-page-experience-section">
+        <div class="rounded-text white-text"><p>My Experience</p></div>
+        <div class="about-page-experience-section-content">
+            <div class="experience-card no-detail-card">
+                <h3 class="big-text">My Career Journey so far</h3>
+           <p class="grey-text">My past experience that crafted me into a eligible bachelor for your next project</p>
             </div>
-            <div class="about-section-content-section about-right about-right">
-              <div class="about-section-image-container">
-                <img src="./assets/images/my-avatar.svg" alt="hero image"/>
-              </div>
+            <div class="experience-card">
+                <img src="../assets/images/company-logo.svg" alt="" class="company-logo">
+                <p class="grey-text small-text">Sept 2023 - Jan 2024</p>
+                <div>
+                <p class="white-text title small-text">K-Lab - Tech Up Skill</p>
+                <p class="grey-text small-text">Breve macchiato bar cortado dripper shot sweet robust qui. Et café whipped go white that espresso fair origin pot cream est cup.</p>
+                </div>
+                <div>
+                <p class="white-text title small-text">Skills acquired</p>
+                <p class="grey-text small-text">Mobile Development, Agile Methodology</p>
+                </div>
             </div>
-
-          </div>
-
+            <div class="experience-card">
+                <img src="../assets/images/company-logo.svg" alt="" class="company-logo">
+                <p class="grey-text small-text">Sept 2023 - Jan 2024</p>
+                <div>
+                <p class="white-text title small-text">K-Lab - Tech Up Skill</p>
+                <p class="grey-text small-text">Breve macchiato bar cortado dripper shot sweet robust qui. Et café whipped go white that espresso fair origin pot cream est cup.</p>
+                </div>
+                <div>
+                <p class="white-text title small-text">Skills acquired</p>
+                <p class="grey-text small-text">Mobile Development, Agile Methodology</p>
+                </div>
+            </div>
+            <div class="experience-card">
+                <img src="../assets/images/company-logo.svg" alt="" class="company-logo">
+                <p class="grey-text small-text">Sept 2023 - Jan 2024</p>
+                <div>
+                <p class="white-text title small-text">K-Lab - Tech Up Skill</p>
+                <p class="grey-text small-text">Breve macchiato bar cortado dripper shot sweet robust qui. Et café whipped go white that espresso fair origin pot cream est cup.</p>
+                </div>
+                <div>
+                <p class="white-text title small-text">Skills acquired</p>
+                <p class="grey-text small-text">Mobile Development, Agile Methodology</p>
+                </div>
+            </div>
+            <div class="experience-card">
+                <img src="../assets/images/company-logo.svg" alt="" class="company-logo">
+                <p class="grey-text small-text">Sept 2023 - Jan 2024</p>
+                <div>
+                <p class="white-text title small-text">K-Lab - Tech Up Skill</p>
+                <p class="grey-text small-text">Breve macchiato bar cortado dripper shot sweet robust qui. Et café whipped go white that espresso fair origin pot cream est cup.</p>
+                </div>
+                <div>
+                <p class="white-text title small-text">Skills acquired</p>
+                <p class="grey-text small-text">Mobile Development, Agile Methodology</p>
+                </div>
+            </div>
+          
         </div>
+
+      </div>
+
+      <!-- my education -->
+
+      <div class="about-page-experience-section">
+        <div class="rounded-text white-text"><p>My Education</p></div>
+        <div class="about-page-experience-section-content">
+            <div class="experience-card no-detail-card">
+                <h3 class="big-text">My Education  Background</h3>
+           <p class="grey-text">My past experience that crafted me into a eligible bachelor for your next project</p>
+            </div>
+            <div class="experience-card">
+                <img src="../assets/images/company-logo.svg" alt="" class="company-logo">
+                <p class="grey-text small-text">Sept 2023 - Jan 2024</p>
+                <div>
+                <p class="white-text title small-text">K-Lab - Tech Up Skill</p>
+                <p class="grey-text small-text">Breve macchiato bar cortado dripper shot sweet robust qui. Et café whipped go white that espresso fair origin pot cream est cup.</p>
+                </div>
+                <div>
+                <p class="white-text title small-text">Skills acquired</p>
+                <p class="grey-text small-text">Mobile Development, Agile Methodology</p>
+                </div>
+            </div>
+
+
+            <div class="experience-card">
+                <img src="../assets/images/company-logo.svg" alt="" class="company-logo">
+                <p class="grey-text small-text">Sept 2023 - Jan 2024</p>
+                <div>
+                <p class="white-text title small-text">K-Lab - Tech Up Skill</p>
+                <p class="grey-text small-text">Breve macchiato bar cortado dripper shot sweet robust qui. Et café whipped go white that espresso fair origin pot cream est cup.</p>
+                </div>
+                <div>
+                <p class="white-text title small-text">Skills acquired</p>
+                <p class="grey-text small-text">Mobile Development, Agile Methodology</p>
+                </div>
+            </div>
+          
+        </div>
+
       </div>
 
       <!-- my skills -->
@@ -126,7 +200,7 @@
 
   <div class="skills-section-card">
     <div class="skills-section-card-left">
-      <img src="./assets/images/ui-ux.svg" alt="image"/>
+      <img src="../assets/images/ui-ux.svg" alt="image"/>
     </div>
     <div class="skills-section-card-right">
       <p class="white-text title">UI/UX Design</p>
@@ -134,8 +208,8 @@
       <div>
         <p class="white-text title">Tools I use</p>
         <div class="tools-logos">
-          <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
-      <img src="./assets/images/adobe-3d.svg" alt="image"/>
+          <img src="../assets/images/figma-icon.svg" class="" alt="image"/>
+      <img src="../assets/images/adobe-3d.svg" alt="image"/>
 
         </div>
       </div>
@@ -143,7 +217,7 @@
   </div>
   <div class="skills-section-card">
     <div class="skills-section-card-left">
-      <img src="./assets/images/web-dev.svg" alt="image"/>
+      <img src="../assets/images/web-dev.svg" alt="image"/>
     </div>
     <div class="skills-section-card-right">
       <p class="white-text title">Web Development</p>
@@ -151,11 +225,11 @@
       <div>
         <p class="white-text title">Tools I use</p>
         <div class="tools-logos">
-          <img src="./assets/images/javascript-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/html-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/css-3d2.svg" class="" alt="image"/>
-          <img src="./assets/images/react-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/taiwind-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/javascript-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/html-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/css-3d2.svg" class="" alt="image"/>
+          <img src="../assets/images/react-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/taiwind-3d.svg" class="" alt="image"/>
 
         </div>
       </div>
@@ -165,7 +239,7 @@
   
   <div class="skills-section-card">
     <div class="skills-section-card-left">
-      <img src="./assets/images/mobile.svg" alt="image"/>
+      <img src="../assets/images/mobile.svg" alt="image"/>
     </div>
     <div class="skills-section-card-right">
       <p class="white-text title">Mobile Development</p>
@@ -173,9 +247,9 @@
       <div>
         <p class="white-text title">Tools I use</p>
         <div class="tools-logos">
-          <img src="./assets/images/flutter-2-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/flutter-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/react-native.svg" class="" alt="image"/>
+          <img src="../assets/images/flutter-2-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/flutter-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/react-native.svg" class="" alt="image"/>
         </div>
       </div>
     </div>
@@ -183,7 +257,7 @@
   </div>
   <div class="skills-section-card">
     <div class="skills-section-card-left">
-      <img src="./assets/images/server.svg" alt="image"/>
+      <img src="../assets/images/server.svg" alt="image"/>
     </div>
     <div class="skills-section-card-right">
       <p class="white-text title">Sever-side Development</p>
@@ -191,9 +265,9 @@
       <div>
         <p class="white-text title">Tools I use</p>
         <div class="tools-logos">
-          <img src="./assets/images/nodejs-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/sql.svg" class="" alt="image"/>
-          <img src="./assets/images/python-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/nodejs-3d.svg" class="" alt="image"/>
+          <img src="../assets/images/sql.svg" class="" alt="image"/>
+          <img src="../assets/images/python-3d.svg" class="" alt="image"/>
         </div>
       </div>
     </div>
@@ -217,7 +291,7 @@
           
               <div class="projects-section-card">
                 <div class="projects-section-card-image">
-                  <img src="./assets/images/deepmind.webp" alt="">
+                  <img src="../assets/images/deepmind.webp" alt="">
                 </div>
                 <div class="projects-section-card-details">
                     <p class="white-text title">Sever-side Development</p>
@@ -225,7 +299,7 @@
                     <div>
                       <p class="white-text title">Tools used</p>
                       <div class="tools-logos">
-                        <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
+                        <img src="../assets/images/figma-icon.svg" class="" alt="image"/>
                       </div>
              
                   </div>
@@ -234,7 +308,7 @@
               </div>
               <div class="projects-section-card">
                 <div class="projects-section-card-image">
-                  <img src="./assets/images/deepmind.webp" alt="">
+                  <img src="../assets/images/deepmind.webp" alt="">
                 </div>
                 <div class="projects-section-card-details">
                     <p class="white-text title">Sever-side Development</p>
@@ -242,7 +316,7 @@
                     <div>
                       <p class="white-text title">Tools used</p>
                       <div class="tools-logos">
-                        <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
+                        <img src="../assets/images/figma-icon.svg" class="" alt="image"/>
                       </div>
              
                   </div>
@@ -251,7 +325,7 @@
               </div>
               <div class="projects-section-card">
                 <div class="projects-section-card-image">
-                  <img src="./assets/images/deepmind.webp" alt="">
+                  <img src="../assets/images/deepmind.webp" alt="">
                 </div>
                 <div class="projects-section-card-details">
                     <p class="white-text title">Sever-side Development</p>
@@ -259,7 +333,7 @@
                     <div>
                       <p class="white-text title">Tools used</p>
                       <div class="tools-logos">
-                        <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
+                        <img src="../assets/images/figma-icon.svg" class="" alt="image"/>
                       </div>
                   </div>
                
@@ -307,11 +381,11 @@
           </div>
           <div class="testimonial-section-content-section testimonial-section-content-right">
             <div class="testimonial-section-card">
-              <img src="./assets/images/quotations.svg" alt="" class="testimonial-section-card-quotations">
+              <img src="../assets/images/quotations.svg" alt="" class="testimonial-section-card-quotations">
               <p class="grey-text small-text message">Working with Angelo was a game-changer. His creative vision truly amplified our brand's potential.</p>
               <div class="testimonial-section-card-details">
                 
-                  <img src="./assets/./images/avatar.webp" alt="">
+                  <img src="../assets/./images/avatar.webp" alt="">
                 <div>
                   <p class="white-text  small-text">Mukunzi Enock</p>
                   <p class="grey-text  small-text">Product Manager, Crift Tech</p>
@@ -319,11 +393,11 @@
               </div>
             </div>
             <div class="testimonial-section-card" >
-              <img src="./assets/images/quotations.svg" alt="" class="testimonial-section-card-quotations">
+              <img src="../assets/images/quotations.svg" alt="" class="testimonial-section-card-quotations">
               <p class="grey-text small-text message">Working with Angelo was a game-changer. His creative vision truly amplified our brand's potential.</p>
               <div class="testimonial-section-card-details">
                 
-                <img src="./assets/./images/avatar.webp" alt="">
+                <img src="../assets/./images/avatar.webp" alt="">
                 <div>
                   <p class="white-text title small-text">Mukunzi Enock</p>
                   <p class="grey-text title small-text">Product Manager, Crift Tech</p>
@@ -371,10 +445,10 @@
               <p class="title white-text small-text">Social Links</p>
               <div class="icons">
                <div class="socials">
-               <img src="./assets/images/linkedin.png" alt=""/>
+               <img src="../assets/images/linkedin.png" alt=""/>
               </div>
               <div class="socials">
-               <img src="./assets/images/twitter.png" alt=""/>
+               <img src="../assets/images/twitter.png" alt=""/>
               </div>
               </div>
             </div>
