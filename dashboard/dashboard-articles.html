@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+    <title>My Brand</title>
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <div class="dashboard-container " >
+    <aside class="dashboard-sidebar">
+        <div class="dashboard-image-logo">
+            <img src="../assets/images/logo.png" alt="logo"/>
+        </div>
+
+        <div class="dashboard-links-container">
+            <a href="./dashboard.html" class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
+                <p>Dashboard</p>
+            </a>
+            <a href=""  class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
+                <img src="../assets//images//dashboard-icons/articles.svg" alt="">
+                <p>Articles</p>
+            </a>
+            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/messages.svg" alt="">
+                <p>Messages</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/users.svg" alt="">
+                <p>Users</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/projects.svg" alt="">
+                <p>Projects</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/testimonial.svg" alt="">
+                <p>Testimonials</p>
+            </a>
+        </div>
+        <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+            <p>Logout</p>
+            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+
+        </div>
+    </aside>
+
+    <div class="dashboard-content-container">
+
+        <div class="dashboard-header">
+            <div class="input-for search-form">
+                <input type="search" name="email" id="email" placeholder="Enter Your Email"/>
+                <span class="material-symbols-outlined">
+                    search
+                    </span>
+              </div>
+            <div class="dashboard-user-info">
+                <img src="../assets/images/my-avatar.svg" alt="avatar" class="avatar">
+                <div>
+                    <p class="white-text small-text title">Angelo Christian</p>
+                    <p class="grey-text small-text">Admin</p>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-content">
+        <div class="dashboard-tags-container">
+            <div class="dashboard-tag">
+                <img src="../assets/images/dashboard-icons/comment.svg" alt="">
+                <div>
+                    <p class="title white-text">Total Comments</p>
+                    <p class="title grey-text big-text">20</p>
+                </div>
+            </div>
+            <div class="dashboard-tag">
+                <img src="../assets/images/dashboard-icons/eye.svg" alt="">
+                <div>
+                    <p class="title white-text">Total Views</p>
+                    <p class="title grey-text big-text">20</p>
+                </div>
+            </div>
+
+            <div class="dashboard-tag">
+                <img src="../assets/images/dashboard-icons/articles.svg" alt="">
+                <div>
+                    <p class="title white-text">Total Articles</p>
+                    <p class="title grey-text big-text">20</p>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-data-container">
+            <div class="dashboard-blog-container dashboard-all-blogs">
+                <div class="dashboard-blog-container-upper ">
+                    <div>
+                        <p class="title white-text small-text"> Recent Articles</p>
+                    <div>
+                        <p class="small-text title">Category:</p>
+                    <p class=" white-text rounded-text category-tag small-text">All Categories</p>
+                    </div>
+                    </div>
+                    <p class=" white-text rounded-text category-tag small-text">+ Add New</p>
+                </div>
+                <div class="dashboard-blog-container-map">
+
+                    <table class="dashboard-blog-table">
+                        <thead>
+                            <tr className='bg-dark'>
+                                <th className="small-text text-white">Poster</th>
+                                <th className="small-text text-white">Title</th>
+                                <th className="small-text text-white">Category</th>
+                                <th className="small-text text-white">Views</th>
+                                <th className="small-text text-white ">Comments</th>
+                                <th className="small-text text-white ">Likes</th>
+                                <th className="small-text text-white ">Created At</th>
+                                <th className="small-text text-white "></th>
+                                <th className="small-text text-white "></th>
+                              </tr>
+                        </thead>
+                            
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="../assets/images/company-logo.png" alt="">
+                                </td>
+    
+                                <td>
+                                    <p class="small-text">ChatGPT : A Developer's Best Friend or Worst Enemy?</p>
+                                </td>
+                                <td>
+                                    <p class="small-text">Technology</p>
+                                </td>
+                                <td>
+                                    <div class="like">
+                                      <img src="../assets//images//dashboard-icons/eye.svg" alt="" >
+                                    <p class="light-text smaller-text">12 views</p>  
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <div class="like">
+                                       <img src="../assets//images//dashboard-icons/heart.svg" alt="">
+                                    <p class="light-text smaller-text">12 likes</p>  
+                                    </div>
+                                   
+                                </td>
+                                <td>
+                                    <div class="like">
+                                        <img src="../assets//images//dashboard-icons/comment.svg" alt="">
+                                    <p class="light-text smaller-text">12 comments</p> 
+                                    </div>
+                                   
+                                </td>
+                                <td>
+                                    <p class="small-text">04/February/2024</p>
+                                </td>
+                                <td>
+                                    <p class="small-text rounded-text text-blue title category-tag">View</p>
+                                </td>
+                                <td>
+                                    <p class="small-text rounded-text text-green title category-tag">Edit</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="../assets/images/company-logo.png" alt="">
+                                </td>
+    
+                                <td>
+                                    <p class="small-text">ChatGPT : A Developer's Best Friend or Worst Enemy?</p>
+                                </td>
+                                <td>
+                                    <p class="small-text">Technology</p>
+                                </td>
+                                <td>
+                                    <div class="like">
+                                      <img src="../assets//images//dashboard-icons/eye.svg" alt="" >
+                                    <p class="light-text smaller-text">12 views</p>  
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <div class="like">
+                                       <img src="../assets//images//dashboard-icons/heart.svg" alt="">
+                                    <p class="light-text smaller-text">12 likes</p>  
+                                    </div>
+                                   
+                                </td>
+                                <td>
+                                    <div class="like">
+                                        <img src="../assets//images//dashboard-icons/comment.svg" alt="">
+                                    <p class="light-text smaller-text">12 comments</p> 
+                                    </div>
+                                   
+                                </td>
+                                <td>
+                                    <p class="small-text">04/February/2024</p>
+                                </td>
+                                <td>
+                                    <p class="small-text rounded-text text-blue title category-tag">View</p>
+                                </td>
+                                <td>
+                                    <p class="small-text rounded-text text-green title category-tag">Edit</p>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

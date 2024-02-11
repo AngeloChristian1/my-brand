@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+    <title>My Brand</title>
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <div class="dashboard-container " >
+    <aside class="dashboard-sidebar">
+        <div class="dashboard-image-logo">
+            <img src="../assets/images/logo.png" alt="logo"/>
+        </div>
+
+        <div class="dashboard-links-container">
+            <a href="./dashboard.html" class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
+                <p>Dashboard</p>
+            </a>
+            <a href=""  class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/articles.svg" alt="">
+                <p>Articles</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
+                <img src="../assets//images//dashboard-icons/messages.svg" alt="">
+                <p>Messages</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/users.svg" alt="">
+                <p>Users</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/projects.svg" alt="">
+                <p>Projects</p>
+            </a>
+            <a href="" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/testimonial.svg" alt="">
+                <p>Testimonials</p>
+            </a>
+        </div>
+        <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+            <p>Logout</p>
+            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+
+        </div>
+    </aside>
+
+    <div class="dashboard-content-container">
+
+        <div class="dashboard-header">
+            <div class="input-for search-form">
+                <input type="search" name="email" id="email" placeholder="Enter Your Email"/>
+                <span class="material-symbols-outlined">
+                    search
+                    </span>
+              </div>
+            <div class="dashboard-user-info">
+                <img src="../assets/images/my-avatar.svg" alt="avatar" class="avatar">
+                <div>
+                    <p class="white-text small-text title">Angelo Christian</p>
+                    <p class="grey-text small-text">Admin</p>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-content">
+        <div class="dashboard-tags-container">
+            <div class="dashboard-tag">
+                <img src="../assets/images/dashboard-icons/comment.svg" alt="">
+                <div>
+                    <p class="title white-text">Total Comments</p>
+                    <p class="title grey-text big-text">20</p>
+                </div>
+            </div>
+            <div class="dashboard-tag">
+                <img src="../assets/images/dashboard-icons/eye.svg" alt="">
+                <div>
+                    <p class="title white-text">Total Views</p>
+                    <p class="title grey-text big-text">20</p>
+                </div>
+            </div>
+
+            <div class="dashboard-tag">
+                <img src="../assets/images/dashboard-icons/articles.svg" alt="">
+                <div>
+                    <p class="title white-text">Total Articles</p>
+                    <p class="title grey-text big-text">20</p>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-data-container">
+            <div class="dashboard-blog-container dashboard-all-blogs">
+                <div class="dashboard-blog-container-upper ">
+                    <div>
+                        <p class="title white-text small-text"> Recent Messages</p>
+             
+                    </div>
+                </div>
+                <div class="dashboard-blog-container-map">
+
+                    <table class="dashboard-blog-table">
+                        <thead>
+                            <tr className='bg-dark'>
+                                <th className="small-text text-white">Name</th>
+                                <th className="small-text text-white">Email</th>
+                                <th className="small-text text-white">Telephone</th>
+                                <th className="small-text text-white">Date</th>
+                                <th className="small-text text-white ">Time</th>
+                                <th className="small-text text-white "></th>
+                                <th className="small-text text-white "></th>
+                              </tr>
+                        </thead>
+                            
+                        <tbody>
+                            <tr>  
+                                <td>
+                                    <p class="small-text">Ngezi Peter</p>
+                                </td>
+                                <td>
+                                    <p class="small-text">ngenzipeter10@gmail.com</p>
+                                </td>
+                                <td>
+                                    <p class="small-text">078554672</p>
+
+                                </td>
+                                <td>
+                                    <p class="small-text">08/February/2024</p>
+
+                                </td>
+                                <td>
+                                    <p class="small-text">14:20 AM</p>
+
+                                </td>
+                            
+                                <td>
+                                    <p class="small-text rounded-text text-blue title category-tag">View Message</p>
+                                </td>
+                                <td>
+                                    <p class="small-text rounded-text text-yellow title category-tag">Reply</p>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
