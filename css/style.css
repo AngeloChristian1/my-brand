@@ -235,7 +235,8 @@ nav {
 
 .mobile-links {
   position: absolute;
-  width: 100%;
+  width: 97%;
+  margin: 10px auto;
   background: #000;
   display: none;
   flex-direction: column;
@@ -249,7 +250,7 @@ nav {
 
 .burger:hover .mobile-links {
   display: flex;
-  background-color: red;
+  
 }
 
 .mobile-links ul {
@@ -1448,6 +1449,120 @@ color: var(--grey);
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* dashboard-single-message */
+.dashboard-message-information .message-information-container{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+flex-wrap: wrap;
+gap: var(--p-2);
+}
+ .dashboard-message-information{
+  width: 100%;
+  gap: var(--p-3);
+
+}
+
+.message-information-section{
+display: flex;
+flex-direction: column;
+gap: var(--p-5);
+}
+
+.message-information-section .text-container{
+display: flex;
+flex-direction: column;
+gap: var(--p-1);
+}
+.message-information-right .text-container{
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: var(--p-3);
+
+}
+
+.message-information-section .text-container .grey-text, .message-information-section .text-container .white-text{
+font-size: 14px;
+}
+
+.dashboard-message-information .message-container{
+  margin-top: var(--p-3);
+  margin-bottom: var(--p-3);
+}
+.dashboard-message-information .message-container .text-container{
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-2);
+}
+.dashboard-message-information .message-container .text-container .category-tag{
+font-size: var(--text-base);
+width: 70%;
+padding: var(--p-5);
+}
+
+.button-dark{
+  background-color: var(--dark);
+}
+
+/* dashboard profile */
+.dashboard-profile{
+ 
+}
+
+.dashboard-profile-container{
+  background-color: var(--darkest);
+  border-radius: var(--rounded-10);
+  padding: var(--p-5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dashboard-change-profile{
+  background-color: var(--dark);
+  border-radius: var(--rounded-10);
+}
+
+.dashboard-profile-information{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.dashboard-profile-information .profile-section-left{
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-3);
+  width: 45%;
+}
+.dashboard-profile-information .profile-section-left .input-form input{
+ background-color: var(--dark);
+ width: 100%;
+}
+.dashboard-profile-information .profile-section-left .input-form textarea{
+  background-color: var(--dark);
+  width: 100%;
+  min-height: 150px;
+  font-size: var(--text-sm);
+}
+
+
+.dashboard-profile-information .profile-section-right{
+  background-color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-3);
+  width: 45%;
+  padding: var(--p-5);
+  border-radius: var(--rounded-20);
+}
+.dashboard-profile-information .profile-section-right .input-form input{
+  background-color: var(--darkest);
+  width: 100%;
+ }
+/* ------------------------------------ */
 @media screen and (max-width: 850px) {
   .desktop-nav {
     display: none;
@@ -1516,6 +1631,22 @@ color: var(--grey);
     padding-top: var(--p-6);
     padding-bottom: var(--p-6);
   }
+
+  .dashboard-message-information .message-container .text-container .category-tag{
+    font-size: var(--text-sm);
+    width: 100%;
+    padding: var(--p-3);
+    }
+    .dashboard-profile-information{
+      flex-direction: column;
+    }
+
+    .dashboard-profile-information .profile-section-left{
+      width: 100%;
+    }
+    .dashboard-profile-information .profile-section-right{
+    width: 100%;
+    }
 }
 
 /* srceen  and (max-width: 450px) */
@@ -1896,6 +2027,12 @@ display: none;
   .dashboard-tag img{
     width: 25px;
     height: 25px;
-    
   }
+
+  .mobile-links{
+    display: flex;
+    margin: 0;
+    border-radius: var(--rounded-10);
+  }
+ 
 }

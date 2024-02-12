@@ -41,14 +41,14 @@
             <div class="logo">
               <img src="./assets/images/logo.png" alt="logo"/>
           </div>
-            <div class="burger">
-             <div class="burger-line burger-line1"></div>
-             <div class="burger-line burger-line2" ></div>
-             <div class="burger-line burger-line3"></div>
+            <div class="burger" id="burger">
+             <div class="burger-line burger-line1" id="burger-line1"></div>
+             <div class="burger-line burger-line2" id="burger-line2"></div>
+             <div class="burger-line burger-line3" id="burger-line3"></div>
           </div>
           </div>
 
-          <div class="mobile-links">
+          <div class="mobile-links" id="mobile-links">
             <ul>
               <li><a href="">Home</a></li>
               <li><a href="./portfolio/about-page.html">About</a></li>
@@ -61,6 +61,32 @@
           
         </div>
       </nav>
+<!-- 
+      <script>
+        let burger = document.getElementById('burger');
+        let mobileLinks = document.getElementById('mobile-links');
+        let burgerLine1 = document.getElementById('burger-line1');
+        let burgerLine2 = document.getElementById('burger-line2');
+        let burgerLine3 = document.getElementById('burger-line3');
+        let filter4 = document.getElementById('filter4');
+        burger.addEventListener('click', ()=>{
+          
+          if(mobileLinks.style.display == 'none'){
+          mobileLinks.style.display = 'flex';
+          // burgerLine2.style.opacity = '0%';
+          // burgerLine1.style.rotate='45deg';
+          // burgerLine3.style.rotate = '-45deg';
+          // burgerLine1.style.transform = 'translate(50%)';
+          // burgerLine3.style.transform = 'translate(50%)';
+         }
+         else {
+          mobileLinks.style.display = 'none';
+          burgerLine2.style.opacity = '100%';
+          burgerLine1.style.rotate = '180%';
+          burgerLine3.style.rotate = '180%';
+         }
+        })
+      </script> -->
 
       <!-- Main section -->
 
@@ -408,5 +434,7 @@
         <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
       </div>
     </div>
+  <script src="./Js/index.js"></script>
+   
   </body>
 </html>

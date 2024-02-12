@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+    <title>My Brand</title>
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <div class="dashboard-container " >
+    <aside class="dashboard-sidebar">
+        <a href="./dashboard.html" class="dashboard-image-logo">
+            <img src="../assets/images/logo.png" alt="logo"/>
+        </a>
+
+        <div class="dashboard-links-container">
+            <a href="./dashboard.html" class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
+                <p>Dashboard</p>
+            </a>
+            <a href="./dashboard-articles.html"  class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/articles.svg" alt="">
+                <p>Articles</p>
+            </a>
+            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
+                <img src="../assets//images//dashboard-icons/messages.svg" alt="">
+                <p>Messages</p>
+            </a>
+            <a href="./dashboard-users.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/users.svg" alt="">
+                <p>Users</p>
+            </a>
+            <a href="./dashboard-projects.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/projects.svg" alt="">
+                <p>Projects</p>
+            </a>
+            <a href="./dashboard-tesimonial.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/testimonial.svg" alt="">
+                <p>Testimonials</p>
+            </a>
+        </div>
+        <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+            <p>Logout</p>
+            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+
+        </div>
+    </aside>
+
+    <div class="dashboard-content-container">
+
+        <div class="dashboard-header">
+            <div class="input-for search-form">
+                <input type="search" name="email" id="email" placeholder="Enter Your Email"/>
+                <span class="material-symbols-outlined">
+                    search
+                    </span>
+              </div>
+            <a href="./dashboard-profile.html" class="dashboard-user-info">
+                <img src="../assets/images/my-avatar.svg" alt="avatar" class="avatar">
+                <div>
+                    <p class="white-text small-text title">Angelo Christian</p>
+                    <p class="grey-text small-text">Admin</p>
+                </div>
+            </a>
+        </div>
+        <div class="dashboard-content dashboard-single-message">
+        <div class="dashboard-data-container">
+            <div class="dashboard-blog-container dashboard-message-information">
+               <div class="message-information-container">
+
+                <div class="message-information-section message-information-left">
+                    <div class="text-container">
+                        <p class="title white-text"> Sender Name</p>
+                        <p class="grey-text">Mugisha Samuel</p>
+                    </div>
+                    <div class="text-container">
+                        <p class="title white-text"> Sender Email</p>
+                        <p class="grey-text">sammugisha@gmail.com</p>
+                    </div>
+                    <div class="text-container">
+                        <p class="title white-text"> Sender Phone Number</p>
+                        <p class="grey-text">0785467832l</p>
+                    </div>
+                 
+                </div>                            
+                <div class="message-information-section message-information-right">
+                    <div class="text-container">
+                        <p class="title white-text"> Date sent</p>
+                        <p class="grey-text">02/02/2024</p>
+                    </div>
+                    <div class="text-container">
+                        <p class="title white-text"> Time Sent sent</p>
+                        <p class="grey-text">4:00 PM</p>
+                    </div>
+                </div>                    
+            </div>
+
+            <div class="message-container">
+                <div class="text-container">
+                    <p class="title white-text"> Message</p>
+                    <p class="grey-text rounded-text category-tag">Accelerating Development Tasks - ChatGPT can help developers by automating repetitive tasks, such as writing boilerplate code, generating code snippets, or even producing complete code for simple tasks. This accelerates the development process, allowing programmers to focus on more complex and creative aspects of their projects.</p>
+                </div>
+            </div>
+
+            <button class="button button-dark text-yellow">Reply</button>
+           
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

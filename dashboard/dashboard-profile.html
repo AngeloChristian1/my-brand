@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+    <title>My Brand</title>
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <div class="dashboard-container " >
+    <aside class="dashboard-sidebar">
+        <div class="dashboard-image-logo">
+            <img src="../assets/images/logo.png" alt="logo"/>
+        </div>
+
+        <div class="dashboard-links-container">
+            <a href="./dashboard.html" class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
+                <p>Dashboard</p>
+            </a>
+            <a href="./dashboard-articles.html"  class="rounded-text grey-text category-tag dashboard-link" >
+                <img src="../assets//images//dashboard-icons/articles.svg" alt="">
+                <p>Articles</p>
+            </a>
+            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
+                <img src="../assets//images//dashboard-icons/messages.svg" alt="">
+                <p>Messages</p>
+            </a>
+            <a href="./dashboard-users.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/users.svg" alt="">
+                <p>Users</p>
+            </a>
+            <a href="./dashboard-projects.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/projects.svg" alt="">
+                <p>Projects</p>
+            </a>
+            <a href="./dashboard-tesimonial.html" class="rounded-text grey-text category-tag dashboard-link">
+                <img src="../assets//images//dashboard-icons/testimonial.svg" alt="">
+                <p>Testimonials</p>
+            </a>
+        </div>
+        <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+            <p>Logout</p>
+            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+
+        </div>
+    </aside>
+
+    <div class="dashboard-content-container">
+
+        <div class="dashboard-header">
+            <div class="input-for search-form">
+                <input type="search" name="email" id="email" placeholder="Enter Your Email"/>
+                <span class="material-symbols-outlined">
+                    search
+                    </span>
+              </div>
+            <div class="dashboard-user-info">
+                <img src="../assets/images/my-avatar.svg" alt="avatar" class="avatar">
+                <div>
+                    <p class="white-text small-text title">Angelo Christian</p>
+                    <p class="grey-text small-text">Admin</p>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-content dashboard-profile">
+            <div class=" dashboard-profile-container">
+                <div class="dashboard-change-profile">
+                    <img src="../assets/images/my-avatar.svg" width="100px" alt="">
+                    <input type="file" >
+                   </div>
+
+                <div class="dashboard-profile-information">
+                    <div class="profile-section-left">
+                        <div class="input-form">
+                            <p class="white-text title small-text">Name: </p>
+                            <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                          </div>
+                        <div class="input-form">
+                            <p class="white-text title small-text">Name: </p>
+                            <label for="message"></label>
+                            <textarea name="message" id='message' rows="3" aria-valuemin="fff">The name is Gatete Ishema Angelo Chrsitian, Call me Chris I'm a web developer from Kigali, Rwanda. I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</textarea>
+                          </div>
+
+                          <button class="button button-dark text-yellow">Change Profile</button>
+                    </div>
+                    <div class="profile-section-right">
+                        <p class="text-white text-center title">Change Password</p>
+                        <form action="">
+                            <div class="input-form">
+                                <p class="white-text title small-text">Name: </p>
+                                <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                              </div>
+                              <div class="input-form">
+                                <p class="white-text title small-text">Name: </p>
+                                <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                              </div>
+
+                              <button type="submit" class="button"> Change Password</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+ 
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
