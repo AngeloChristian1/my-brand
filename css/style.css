@@ -145,6 +145,7 @@ img {
 .button-white {
   background-color: var(--white);
   color: var(--darkest);
+  cursor: pointer;
 }
 
 html,
