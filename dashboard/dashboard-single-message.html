@@ -14,20 +14,20 @@
   <body>
     <div class="dashboard-container " >
     <aside class="dashboard-sidebar">
-        <div class="dashboard-image-logo">
+        <a href="./dashboard.html" class="dashboard-image-logo">
             <img src="../assets/images/logo.png" alt="logo"/>
-        </div>
+        </a>
 
         <div class="dashboard-links-container">
             <a href="./dashboard.html" class="rounded-text grey-text category-tag dashboard-link" >
                 <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
                 <p>Dashboard</p>
             </a>
-            <a href="./dashboard-articles.html"  class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
+            <a href="./dashboard-articles.html"  class="rounded-text grey-text category-tag dashboard-link" >
                 <img src="../assets//images//dashboard-icons/articles.svg" alt="">
                 <p>Articles</p>
             </a>
-            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link">
+            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
                 <img src="../assets//images//dashboard-icons/messages.svg" alt="">
                 <p>Messages</p>
             </a>
@@ -60,57 +60,59 @@
                     search
                     </span>
               </div>
-            <div class="dashboard-user-info">
+            <a href="./dashboard-profile.html" class="dashboard-user-info">
                 <img src="../assets/images/my-avatar.svg" alt="avatar" class="avatar">
                 <div>
                     <p class="white-text small-text title">Angelo Christian</p>
                     <p class="grey-text small-text">Admin</p>
                 </div>
-            </div>
+            </a>
         </div>
-        <div class="dashboard-content">
+        <div class="dashboard-content dashboard-single-message">
         <div class="dashboard-data-container">
-            <div class="dashboard-blog-container dashboard-input-information">
-                <div class="dashboard-input-information-upper-section">
-                    <p class="title white-text small-text"> Fill in Information</p>
-                    <a class="title text-yellow rounded-text category-tag small-text cursor-pointer">Preview</a>
+            <div class="dashboard-blog-container dashboard-message-information">
+               <div class="message-information-container">
 
-                </div>
-                <form action="" class="dashboard-input-information-form" id="dashboard-input-information-form">
-                    <div class="input-form">
-                        <p class="white-text title small-text">Add Image</p>
-                        <input type="file" name="poster" id="poster" placeholder="Enter Your Image"/>
-                      </div>
-    
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Title</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Category</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Time To read</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Content</p>
-                        <label for="message">.</label>
-                        <textarea name="message" id='message' rows="3" ></textarea>
-                      </div>
-
-                      <div class="input-form">
-                        <button type="submit"  value="" class="button">Upload Blog </button>
-                            </div>
-                </form>
-                
+                <div class="message-information-section message-information-left">
+                    <div class="text-container">
+                        <p class="title white-text"> Sender Name</p>
+                        <p class="grey-text">Mugisha Samuel</p>
+                    </div>
+                    <div class="text-container">
+                        <p class="title white-text"> Sender Email</p>
+                        <p class="grey-text">sammugisha@gmail.com</p>
+                    </div>
+                    <div class="text-container">
+                        <p class="title white-text"> Sender Phone Number</p>
+                        <p class="grey-text">0785467832l</p>
+                    </div>
+                 
+                </div>                            
+                <div class="message-information-section message-information-right">
+                    <div class="text-container">
+                        <p class="title white-text"> Date sent</p>
+                        <p class="grey-text">02/02/2024</p>
+                    </div>
+                    <div class="text-container">
+                        <p class="title white-text"> Time Sent sent</p>
+                        <p class="grey-text">4:00 PM</p>
+                    </div>
+                </div>                    
             </div>
+
+            <div class="message-container">
+                <div class="text-container">
+                    <p class="title white-text"> Message</p>
+                    <p class="grey-text rounded-text category-tag">Accelerating Development Tasks - ChatGPT can help developers by automating repetitive tasks, such as writing boilerplate code, generating code snippets, or even producing complete code for simple tasks. This accelerates the development process, allowing programmers to focus on more complex and creative aspects of their projects.</p>
+                </div>
+            </div>
+
+            <button class="button button-dark text-yellow">Reply</button>
            
         </div>
     </div>
     </div>
     </div>
-    <script src="../Js/index.js"></script>
+    </div>
   </body>
 </html>

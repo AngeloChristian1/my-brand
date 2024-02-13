@@ -23,11 +23,11 @@
                 <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
                 <p>Dashboard</p>
             </a>
-            <a href="./dashboard-articles.html"  class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
+            <a href="./dashboard-articles.html"  class="rounded-text grey-text category-tag dashboard-link" >
                 <img src="../assets//images//dashboard-icons/articles.svg" alt="">
                 <p>Articles</p>
             </a>
-            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link">
+            <a href="./dashboard-messages.html" class="rounded-text grey-text category-tag dashboard-link" id="active-dashboard-link">
                 <img src="../assets//images//dashboard-icons/messages.svg" alt="">
                 <p>Messages</p>
             </a>
@@ -68,49 +68,48 @@
                 </div>
             </div>
         </div>
-        <div class="dashboard-content">
-        <div class="dashboard-data-container">
-            <div class="dashboard-blog-container dashboard-input-information">
-                <div class="dashboard-input-information-upper-section">
-                    <p class="title white-text small-text"> Fill in Information</p>
-                    <a class="title text-yellow rounded-text category-tag small-text cursor-pointer">Preview</a>
+        <div class="dashboard-content dashboard-profile">
+            <div class=" dashboard-profile-container">
+                <div class="dashboard-change-profile">
+                    <img src="../assets/images/my-avatar.svg" width="100px" alt="">
+                    <input type="file" >
+                   </div>
+
+                <div class="dashboard-profile-information">
+                    <div class="profile-section-left">
+                        <div class="input-form">
+                            <p class="white-text title small-text">Name: </p>
+                            <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                          </div>
+                        <div class="input-form">
+                            <p class="white-text title small-text">Name: </p>
+                            <label for="message"></label>
+                            <textarea name="message" id='message' rows="3" aria-valuemin="fff">The name is Gatete Ishema Angelo Chrsitian, Call me Chris I'm a web developer from Kigali, Rwanda. I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</textarea>
+                          </div>
+
+                          <button class="button button-dark text-yellow">Change Profile</button>
+                    </div>
+                    <div class="profile-section-right">
+                        <p class="text-white text-center title">Change Password</p>
+                        <form action="">
+                            <div class="input-form">
+                                <p class="white-text title small-text">Name: </p>
+                                <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                              </div>
+                              <div class="input-form">
+                                <p class="white-text title small-text">Name: </p>
+                                <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                              </div>
+
+                              <button type="submit" class="button"> Change Password</button>
+                        </form>
+                    </div>
 
                 </div>
-                <form action="" class="dashboard-input-information-form" id="dashboard-input-information-form">
-                    <div class="input-form">
-                        <p class="white-text title small-text">Add Image</p>
-                        <input type="file" name="poster" id="poster" placeholder="Enter Your Image"/>
-                      </div>
-    
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Title</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Category</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Time To read</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
-                      <div class="input-form">
-                        <p class="hite-text title small-text">Content</p>
-                        <label for="message">.</label>
-                        <textarea name="message" id='message' rows="3" ></textarea>
-                      </div>
-
-                      <div class="input-form">
-                        <button type="submit"  value="" class="button">Upload Blog </button>
-                            </div>
-                </form>
-                
             </div>
-           
-        </div>
+ 
     </div>
     </div>
     </div>
-    <script src="../Js/index.js"></script>
   </body>
 </html>

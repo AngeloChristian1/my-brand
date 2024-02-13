@@ -9,6 +9,15 @@
 <link rel="stylesheet" href="./css/style.css" />
 <link rel="shortcut icon" href="./assets/images/logo-color.svg" type="image/x-icon">
     <title>My Brand</title>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+  emailjs.init("15uvCbWBezx9UHs3k");
+})();
+</script>
+
   </head>
   <body>
     <div class="main-container" >
@@ -41,14 +50,14 @@
             <div class="logo">
               <img src="./assets/images/logo.png" alt="logo"/>
           </div>
-            <div class="burger">
-             <div class="burger-line burger-line1"></div>
-             <div class="burger-line burger-line2" ></div>
-             <div class="burger-line burger-line3"></div>
+            <div class="burger" id="burger">
+             <div class="burger-line burger-line1" id="burger-line1"></div>
+             <div class="burger-line burger-line2" id="burger-line2"></div>
+             <div class="burger-line burger-line3" id="burger-line3"></div>
           </div>
           </div>
 
-          <div class="mobile-links">
+          <div class="mobile-links" id="mobile-links">
             <ul>
               <li><a href="">Home</a></li>
               <li><a href="./portfolio/about-page.html">About</a></li>
@@ -61,6 +70,32 @@
           
         </div>
       </nav>
+<!-- 
+      <script>
+        let burger = document.getElementById('burger');
+        let mobileLinks = document.getElementById('mobile-links');
+        let burgerLine1 = document.getElementById('burger-line1');
+        let burgerLine2 = document.getElementById('burger-line2');
+        let burgerLine3 = document.getElementById('burger-line3');
+        let filter4 = document.getElementById('filter4');
+        burger.addEventListener('click', ()=>{
+          
+          if(mobileLinks.style.display == 'none'){
+          mobileLinks.style.display = 'flex';
+          // burgerLine2.style.opacity = '0%';
+          // burgerLine1.style.rotate='45deg';
+          // burgerLine3.style.rotate = '-45deg';
+          // burgerLine1.style.transform = 'translate(50%)';
+          // burgerLine3.style.transform = 'translate(50%)';
+         }
+         else {
+          mobileLinks.style.display = 'none';
+          burgerLine2.style.opacity = '100%';
+          burgerLine1.style.rotate = '180%';
+          burgerLine3.style.rotate = '180%';
+         }
+        })
+      </script> -->
 
       <!-- Main section -->
 
@@ -380,33 +415,36 @@
             </div>
           </div>
           <div class="footer-section footer-right">
-            <form action="" class="contact-form">
+            <!-- <form action="" class="contact-form" id="contact-form" method=""> -->
               <div class="input-form">
                 <p class="white-text grey-text">Name</p>
-                <input type="text" name="name" id="name" placeholder="Enter Your Name"/>
+                <input type="text" name="name" id="contact-form-name" placeholder="Enter Your Name"/>
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Email </p>
-                <input type="text" name="email" id="email" placeholder="Enter Your Email"/>
+                <input type="text" name="email" id="contact-form-email" placeholder="Enter Your Email"/>
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Phone Number</p>
-                <input type="text" name="phone" id="phone" placeholder="Enter Your Name"/>
+                <input type="text" name="phone" id="contact-form-phone" placeholder="Enter Your Name"/>
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Message</p>
                 <label for="message"></label>
-                <textarea name="message" id='message' rows="3" ></textarea>
+                <textarea name="message" id='contact-form-message' rows="3" ></textarea>
               </div>
               <div class="input-form">
-          <button type="button" value="" class="button">Send Message </button>
+                <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
+          <button type="submit" value="" onclick="sendMail()" class="button" id="contact-form-submit-button">Send Message </button>
               </div>
-            </form>
+            <!-- </form> -->
           </div>
         </div>
 
         <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
       </div>
     </div>
+  <script src="./Js/index.js"></script>
+   
   </body>
 </html>
