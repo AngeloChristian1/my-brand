@@ -30,6 +30,8 @@
   --grey: #999cb4;
   --white: #ffffff;
   --black: black;
+  --dark-red:rgb(170, 10, 10);
+  --white-red:rgb(249, 27, 27);
   --dark-white: rgb(230, 228, 228);
 
   /* font-size */
@@ -148,6 +150,30 @@ img {
   cursor: pointer;
 }
 
+
+
+#error-container{
+  display: flex;
+  gap: var(--p-3);
+  align-items: center;
+  background-color: var(--dark-red);
+  padding: var(--p-5);
+  border-radius: var(--rounded-10);
+  position: fixed;
+  z-index: 10;
+  right: var(--p-5);
+  top: var(--p-5);
+  display: none;
+}
+
+.visible{
+  display: block;
+}
+
+.hidden{
+  display: none;
+}
+
 html,
 body {
   background-color: var(--darkest);
@@ -177,6 +203,20 @@ nav {
 
 .grey-text {
   color: var(--grey);
+}
+
+.red-text{
+  color: var(--white-red);
+  
+}
+
+.error{
+  font-size: 12px;
+  margin-left: var(--p-4);
+  /* opacity: 0; */
+  margin-top: -4px;
+  margin-bottom: -4px;
+  text-transform: capitalize;
 }
 
 .white-text {
@@ -476,10 +516,17 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 93vh;
+  height: 97vh;
   border-radius: var(--rounded-2xl);
   padding: 48px;
 }
+
+.footer-left{
+  gap: var(--p-6);
+}
+.footer-left .big-text{
+  width: 70%;
+} 
 
 .footer-details {
   display: flex;
@@ -542,6 +589,7 @@ textarea {
 
 .footer-right {
   padding: 32px;
+  
 }
 .footer-right button {
   padding: var(--p-3);
@@ -835,7 +883,7 @@ textarea {
   width: 80%;
 }
 .testimonial-section-card-details {
-  z-index: 10;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1064,10 +1112,6 @@ textarea {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.signup-form .footer-section {
-  height: auto;
 }
 
 .text-large {
@@ -1622,6 +1666,13 @@ padding: var(--p-5);
     width: 80%;
   }
 
+  .footer-left{
+    gap: var(--p-3);
+  }
+  .footer-left .big-text{
+    width: 100%;
+  } 
+
   .main-container {
     padding: 0px;
   }
@@ -2031,7 +2082,7 @@ display: none;
   }
 
   .mobile-links{
-    display: flex;
+    display: none;
     margin: 0;
     border-radius: var(--rounded-10);
   }

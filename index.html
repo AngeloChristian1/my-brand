@@ -3,58 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
-<link rel="stylesheet" href="./css/style.css" />
-<link rel="shortcut icon" href="./assets/images/logo-color.svg" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo-color.svg"
+      type="image/x-icon"
+    />
     <title>My Brand</title>
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-</script>
-<script type="text/javascript">
-(function(){
-  emailjs.init("15uvCbWBezx9UHs3k");
-})();
-</script>
-
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("15uvCbWBezx9UHs3k");
+      })();
+    </script>
   </head>
   <body>
-    <div class="main-container" >
+    <div class="main-container">
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
       <nav class="nav">
         <div class="desktop-nav">
           <div class="links-container">
             <div class="links">
-                <ul>
-                    <li id="active"><a href="">Home</a></li>
-                    <li><a href="./portfolio/about-page.html">About</a></li>
-                </ul>
+              <ul>
+                <li id="active"><a href="">Home</a></li>
+                <li><a href="./portfolio/about-page.html">About</a></li>
+              </ul>
             </div>
             <a href="./index.html" class="logo">
-                <img src="./assets/images/logo.png" alt="logo"/>
+              <img src="./assets/images/logo.png" alt="logo" />
             </a>
             <div class="links">
-                <ul>
-                    <li><a href="#skills-section">Skills</a></li>
-                    <li><a href="#projects-section">Projects</a></li>
-                </ul>
+              <ul>
+                <li><a href="#skills-section">Skills</a></li>
+                <li><a href="#projects-section">Projects</a></li>
+              </ul>
             </div>
           </div>
-          <a href="./blog/blog-homepage.html" target="_blank" rel="noopener noreferrer" class="button blog-button ">
-            <div class="blog-button-content"><p> BLOG</p> <span class="material-symbols-outlined">
-            chevron_right
-            </span></div></a>
+          <a
+            href="./blog/blog-homepage.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button blog-button"
+          >
+            <div class="blog-button-content">
+              <p>BLOG</p>
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </div></a
+          >
         </div>
         <div class="mobile-nav">
           <div class="menu-bar">
             <div class="logo">
-              <img src="./assets/images/logo.png" alt="logo"/>
-          </div>
+              <img src="./assets/images/logo.png" alt="logo" />
+            </div>
             <div class="burger" id="burger">
-             <div class="burger-line burger-line1" id="burger-line1"></div>
-             <div class="burger-line burger-line2" id="burger-line2"></div>
-             <div class="burger-line burger-line3" id="burger-line3"></div>
-          </div>
+              <div class="burger-line burger-line1" id="burger-line1"></div>
+              <div class="burger-line burger-line2" id="burger-line2"></div>
+              <div class="burger-line burger-line3" id="burger-line3"></div>
+            </div>
           </div>
 
           <div class="mobile-links" id="mobile-links">
@@ -63,14 +87,21 @@
               <li><a href="./portfolio/about-page.html">About</a></li>
               <li><a href="#skills-section">Skills</a></li>
               <li><a href="#projects-section">Projects</a></li>
-              <li><a href="./blog/blog-homepage.html" target="_blank" rel="noopener noreferrer" class="button-white button ">
-                 BLOG</a></li>
-          </ul>
+              <li>
+                <a
+                  href="./blog/blog-homepage.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="button-white button"
+                >
+                  BLOG</a
+                >
+              </li>
+            </ul>
           </div>
-          
         </div>
       </nav>
-<!-- 
+      <!-- 
       <script>
         let burger = document.getElementById('burger');
         let mobileLinks = document.getElementById('mobile-links');
@@ -100,227 +131,295 @@
       <!-- Main section -->
 
       <div class="main-section" id="main-section">
-        
         <div class="main-section-content">
           <div class="rounded-text white-text"><p>Hello</p></div>
           <div class="main-section-content-container">
             <div class="star-desorator">
-              <img src="./assets/images/star.svg" alt="">
+              <img src="./assets/images/star.svg" alt="" />
             </div>
             <div class="hero-section main-left">
-            
               <p class="white-text">I'm</p>
               <h3 class="big-text">Angelo Christian</h3>
-              <p class="normal-text grey-text">A software developer with experience full stack development. With extensive ability in creating amazing UI and well tailored backend</p>
-            <div class="button-container">
-              <a href="" class="button button-border">Contact Me</a>
-              <a href="" class="button button-white">Read More</a>
-            </div>
+              <p class="normal-text grey-text">
+                A software developer with experience full stack development.
+                With extensive ability in creating amazing UI and well tailored
+                backend
+              </p>
+              <div class="button-container">
+                <a href="" class="button button-border">Contact Me</a>
+                <a href="" class="button button-white">Read More</a>
+              </div>
             </div>
             <div class="hero-section main-right">
               <div class="hero-container">
-                <img src="./assets/images/hero_image.svg" alt="hero image" class="hero-image"/>
+                <img
+                  src="./assets/images/hero_image.svg"
+                  alt="hero image"
+                  class="hero-image"
+                />
               </div>
             </div>
           </div>
-         
         </div>
       </div>
-        <!-- about-section -->
+      <!-- about-section -->
 
-        <div class=" about-section" id="about-section">
-          <div class="rounded-text white-text"><p>Short Bio</p></div>
+      <div class="about-section" id="about-section">
+        <div class="rounded-text white-text"><p>Short Bio</p></div>
 
-          <div class="about-section-content">
-            <div class="about-section-content-section about-left">
-              <p class="normal-text grey-text">The name is Gatete Ishema Angelo Chrsitian, Call me Chris I'm a web developer from Kigali, Rwanda. I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</p>
-              <p class="normal-text grey-text">I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</p>
-              <p class="normal-text grey-text"> I work with organizations and individuals to create beautiful, responsive</p>
-         
-              <a href="" class="button button-white">Read More</a>
-           
-            </div>
-            <div class="about-section-content-section about-right about-right">
-              <div class="about-section-image-container">
-                <img src="./assets/images/my-avatar.svg" alt="hero image"/>
-              </div>
-            </div>
+        <div class="about-section-content">
+          <div class="about-section-content-section about-left">
+            <p class="normal-text grey-text">
+              The name is Gatete Ishema Angelo Chrsitian, Call me Chris I'm a
+              web developer from Kigali, Rwanda. I specialize in designing and
+              developing web experiences I work with organizations and
+              individuals to create beautiful, responsive, and scalable web
+              products tailor-made for them. Think we can make something great
+              together?
+            </p>
+            <p class="normal-text grey-text">
+              I specialize in designing and developing web experiences I work
+              with organizations and individuals to create beautiful,
+              responsive, and scalable web products tailor-made for them. Think
+              we can make something great together?
+            </p>
+            <p class="normal-text grey-text">
+              I work with organizations and individuals to create beautiful,
+              responsive
+            </p>
 
+            <a href="" class="button button-white">Read More</a>
           </div>
-
+          <div class="about-section-content-section about-right about-right">
+            <div class="about-section-image-container">
+              <img src="./assets/images/my-avatar.svg" alt="hero image" />
+            </div>
+          </div>
         </div>
-
+      </div>
 
       <!-- my skills -->
 
       <div class="skills-section" id="skills-section">
         <div class="rounded-text white-text"><p>My Skills</p></div>
-<div><h3 class="big-text">Explore My skills spectrum</h3></div>
+        <div><h3 class="big-text">Explore My skills spectrum</h3></div>
 
-<div class="skills-section-content">
+        <div class="skills-section-content">
+          <div class="skills-section-card">
+            <div class="skills-section-card-left">
+              <img src="./assets/images/ui-ux.svg" alt="image" />
+            </div>
+            <div class="skills-section-card-right">
+              <p class="white-text title">UI/UX Design</p>
+              <p class="grey-text small-text">
+                Experienced if making good visuals and detailed UI designs
+              </p>
+              <div>
+                <p class="white-text title">Tools I use</p>
+                <div class="tools-logos">
+                  <img
+                    src="./assets/images/figma-icon.svg"
+                    class=""
+                    alt="image"
+                  />
+                  <img src="./assets/images/adobe-3d.svg" alt="image" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="skills-section-card">
+            <div class="skills-section-card-left">
+              <img src="./assets/images/web-dev.svg" alt="image" />
+            </div>
+            <div class="skills-section-card-right">
+              <p class="white-text title">Web Development</p>
+              <p class="grey-text small-text">
+                Experienced if making good visuals and detailed UI designs
+              </p>
+              <div>
+                <p class="white-text title">Tools I use</p>
+                <div class="tools-logos">
+                  <img
+                    src="./assets/images/javascript-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                  <img src="./assets/images/html-3d.svg" class="" alt="image" />
+                  <!-- <img src="./assets/images/css-3d2.svg" class="" alt="image"/> -->
+                  <img
+                    src="./assets/images/react-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                  <img
+                    src="./assets/images/taiwind-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <div class="skills-section-card">
-    <div class="skills-section-card-left">
-      <img src="./assets/images/ui-ux.svg" alt="image"/>
-    </div>
-    <div class="skills-section-card-right">
-      <p class="white-text title">UI/UX Design</p>
-      <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-      <div>
-        <p class="white-text title">Tools I use</p>
-        <div class="tools-logos">
-          <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
-      <img src="./assets/images/adobe-3d.svg" alt="image"/>
-
+          <div class="skills-section-card">
+            <div class="skills-section-card-left">
+              <img src="./assets/images/mobile.svg" alt="image" />
+            </div>
+            <div class="skills-section-card-right">
+              <p class="white-text title">Mobile Development</p>
+              <p class="grey-text small-text">
+                Experienced if making good visuals and detailed UI designs
+              </p>
+              <div>
+                <p class="white-text title">Tools I use</p>
+                <div class="tools-logos">
+                  <img
+                    src="./assets/images/flutter-2-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                  <img
+                    src="./assets/images/flutter-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                  <img
+                    src="./assets/images/react-native.svg"
+                    class=""
+                    alt="image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="skills-section-card">
+            <div class="skills-section-card-left">
+              <img src="./assets/images/server.svg" alt="image" />
+            </div>
+            <div class="skills-section-card-right">
+              <p class="white-text title">Sever-side Development</p>
+              <p class="grey-text small-text">
+                Experienced if making good visuals and detailed UI designs
+              </p>
+              <div>
+                <p class="white-text title">Tools I use</p>
+                <div class="tools-logos">
+                  <img
+                    src="./assets/images/nodejs-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                  <img src="./assets/images/sql.svg" class="" alt="image" />
+                  <img
+                    src="./assets/images/python-3d.svg"
+                    class=""
+                    alt="image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="skills-section-card">
-    <div class="skills-section-card-left">
-      <img src="./assets/images/web-dev.svg" alt="image"/>
-    </div>
-    <div class="skills-section-card-right">
-      <p class="white-text title">Web Development</p>
-      <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-      <div>
-        <p class="white-text title">Tools I use</p>
-        <div class="tools-logos">
-          <img src="./assets/images/javascript-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/html-3d.svg" class="" alt="image"/>
-          <!-- <img src="./assets/images/css-3d2.svg" class="" alt="image"/> -->
-          <img src="./assets/images/react-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/taiwind-3d.svg" class="" alt="image"/>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-  
-  <div class="skills-section-card">
-    <div class="skills-section-card-left">
-      <img src="./assets/images/mobile.svg" alt="image"/>
-    </div>
-    <div class="skills-section-card-right">
-      <p class="white-text title">Mobile Development</p>
-      <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-      <div>
-        <p class="white-text title">Tools I use</p>
-        <div class="tools-logos">
-          <img src="./assets/images/flutter-2-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/flutter-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/react-native.svg" class="" alt="image"/>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="skills-section-card">
-    <div class="skills-section-card-left">
-      <img src="./assets/images/server.svg" alt="image"/>
-    </div>
-    <div class="skills-section-card-right">
-      <p class="white-text title">Sever-side Development</p>
-      <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-      <div>
-        <p class="white-text title">Tools I use</p>
-        <div class="tools-logos">
-          <img src="./assets/images/nodejs-3d.svg" class="" alt="image"/>
-          <img src="./assets/images/sql.svg" class="" alt="image"/>
-          <img src="./assets/images/python-3d.svg" class="" alt="image"/>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
       </div>
 
       <!--projects section -->
 
       <div class="projects-section" id="projects-section">
-        
         <div class="rounded-text white-text"><p>My Portifolio</p></div>
         <div><h3 class="big-text">Projects that built my expertise</h3></div>
 
         <div class="projects-section-content">
           <div class="projects-section-projects-container">
-
-          
-              <div class="projects-section-card">
-                <div class="projects-section-card-image">
-                  <img src="./assets/images/deepmind.webp" alt="">
-                </div>
-                <div class="projects-section-card-details">
-                    <p class="white-text title">Sever-side Development</p>
-                    <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-                    <div>
-                      <p class="white-text title">Tools used</p>
-                      <div class="tools-logos">
-                        <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
-                      </div>
-             
-                  </div>
-                  <button class="button button-white">View More</button>
-                </div>
+            <div class="projects-section-card">
+              <div class="projects-section-card-image">
+                <img src="./assets/images/deepmind.webp" alt="" />
               </div>
-              <div class="projects-section-card">
-                <div class="projects-section-card-image">
-                  <img src="./assets/images/deepmind.webp" alt="">
-                </div>
-                <div class="projects-section-card-details">
-                    <p class="white-text title">Sever-side Development</p>
-                    <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-                    <div>
-                      <p class="white-text title">Tools used</p>
-                      <div class="tools-logos">
-                        <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
-                      </div>
-             
+              <div class="projects-section-card-details">
+                <p class="white-text title">Sever-side Development</p>
+                <p class="grey-text small-text">
+                  Experienced if making good visuals and detailed UI designs
+                </p>
+                <div>
+                  <p class="white-text title">Tools used</p>
+                  <div class="tools-logos">
+                    <img
+                      src="./assets/images/figma-icon.svg"
+                      class=""
+                      alt="image"
+                    />
                   </div>
-                  <button class="button button-white">View More</button>
                 </div>
-              </div>
-              <div class="projects-section-card">
-                <div class="projects-section-card-image">
-                  <img src="./assets/images/deepmind.webp" alt="">
-                </div>
-                <div class="projects-section-card-details">
-                    <p class="white-text title">Sever-side Development</p>
-                    <p class=" grey-text small-text">Experienced if making good visuals and detailed UI designs </p>
-                    <div>
-                      <p class="white-text title">Tools used</p>
-                      <div class="tools-logos">
-                        <img src="./assets/images/figma-icon.svg" class="" alt="image"/>
-                      </div>
-                  </div>
-               
-                  <button class="button button-white">View More</button>
-                </div>
+                <button class="button button-white">View More</button>
               </div>
             </div>
-           
-            <div class="projects-section-navigation">
-              <div class="projects-section-navigation-container">
-                <div id="navigator-left " class="arrow">
-                  <span class="material-symbols-outlined" style="font-size: large;">
-                    arrow_back_ios
-                    </span>
-                </div>
-                <div id="navigator-right" class="arrow">
-                  <span class="material-symbols-outlined" style="font-size: large;">
-                    arrow_forward_ios
-                    </span>
-                </div>
+            <div class="projects-section-card">
+              <div class="projects-section-card-image">
+                <img src="./assets/images/deepmind.webp" alt="" />
               </div>
-     
+              <div class="projects-section-card-details">
+                <p class="white-text title">Sever-side Development</p>
+                <p class="grey-text small-text">
+                  Experienced if making good visuals and detailed UI designs
+                </p>
+                <div>
+                  <p class="white-text title">Tools used</p>
+                  <div class="tools-logos">
+                    <img
+                      src="./assets/images/figma-icon.svg"
+                      class=""
+                      alt="image"
+                    />
+                  </div>
+                </div>
+                <button class="button button-white">View More</button>
+              </div>
             </div>
+            <div class="projects-section-card">
+              <div class="projects-section-card-image">
+                <img src="./assets/images/deepmind.webp" alt="" />
+              </div>
+              <div class="projects-section-card-details">
+                <p class="white-text title">Sever-side Development</p>
+                <p class="grey-text small-text">
+                  Experienced if making good visuals and detailed UI designs
+                </p>
+                <div>
+                  <p class="white-text title">Tools used</p>
+                  <div class="tools-logos">
+                    <img
+                      src="./assets/images/figma-icon.svg"
+                      class=""
+                      alt="image"
+                    />
+                  </div>
+                </div>
 
+                <button class="button button-white">View More</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="projects-section-navigation">
+            <div class="projects-section-navigation-container">
+              <div id="navigator-left " class="arrow">
+                <span
+                  class="material-symbols-outlined"
+                  style="font-size: large"
+                >
+                  arrow_back_ios
+                </span>
+              </div>
+              <div id="navigator-right" class="arrow">
+                <span
+                  class="material-symbols-outlined"
+                  style="font-size: large"
+                >
+                  arrow_forward_ios
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        
       </div>
 
       <!-- testimonial section -->
@@ -329,7 +428,9 @@
         <div><h3 class="big-text">What they say about me!</h3></div>
 
         <div class="testimonial-section-content">
-          <div class="testimonial-section-content-section testimonial-section-content-left">
+          <div
+            class="testimonial-section-content-section testimonial-section-content-left"
+          >
             <div><h3 class="big-text">My achievement</h3></div>
             <div class="achievement">
               <div><h5 class="big-text">20+</h5></div>
@@ -340,40 +441,57 @@
               <p class="grey-text">Projects Completed</p>
             </div>
           </div>
-          <div class="testimonial-section-content-section testimonial-section-content-right">
+          <div
+            class="testimonial-section-content-section testimonial-section-content-right"
+          >
             <div class="testimonial-section-card">
-              <img src="./assets/images/quotations.svg" alt="" class="testimonial-section-card-quotations">
-              <p class="grey-text small-text message">Working with Angelo was a game-changer. His creative vision truly amplified our brand's potential.</p>
+              <img
+                src="./assets/images/quotations.svg"
+                alt=""
+                class="testimonial-section-card-quotations"
+              />
+              <p class="grey-text small-text message">
+                Working with Angelo was a game-changer. His creative vision
+                truly amplified our brand's potential.
+              </p>
               <div class="testimonial-section-card-details">
-                
-                  <img src="./assets/./images/avatar.webp" alt="">
+                <img src="./assets/./images/avatar.webp" alt="" />
                 <div>
-                  <p class="white-text  small-text">Mukunzi Enock</p>
-                  <p class="grey-text  small-text">Product Manager, Crift Tech</p>
+                  <p class="white-text small-text">Mukunzi Enock</p>
+                  <p class="grey-text small-text">
+                    Product Manager, Crift Tech
+                  </p>
                 </div>
               </div>
             </div>
-            <div class="testimonial-section-card" >
-              <img src="./assets/images/quotations.svg" alt="" class="testimonial-section-card-quotations">
-              <p class="grey-text small-text message">Working with Angelo was a game-changer. His creative vision truly amplified our brand's potential.</p>
+            <div class="testimonial-section-card">
+              <img
+                src="./assets/images/quotations.svg"
+                alt=""
+                class="testimonial-section-card-quotations"
+              />
+              <p class="grey-text small-text message">
+                Working with Angelo was a game-changer. His creative vision
+                truly amplified our brand's potential.
+              </p>
               <div class="testimonial-section-card-details">
-                
-                <img src="./assets/./images/avatar.webp" alt="">
+                <img src="./assets/./images/avatar.webp" alt="" />
                 <div>
                   <p class="white-text title small-text">Mukunzi Enock</p>
-                  <p class="grey-text title small-text">Product Manager, Crift Tech</p>
+                  <p class="grey-text title small-text">
+                    Product Manager, Crift Tech
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
       <!-- subsribe -->
       <div class="subscribe-section">
         <h3 class="big-text">Subscribe to my blog!</h3>
         <div class="subscribe-email-input">
-          <input type="email" name="email" placeholder="Enter Your email"/>
+          <input type="email" name="email" placeholder="Enter Your email" />
           <div class="button">Subscribe</div>
         </div>
       </div>
@@ -383,7 +501,6 @@
         <div class="rounded-text white-text"><p>Contact us</p></div>
         <div class="footer-main">
           <div class="footer-section footer-left">
-
             <h3 class="big-text">Get in touch with me!</h3>
             <div class="footer-details">
               <p class="title white-text small-text">Location</p>
@@ -392,59 +509,97 @@
 
             <div class="footer-details">
               <p class="title white-text small-text">Connect</p>
-              <div  class="contact-info">
+              <div class="contact-info">
                 <p class="content grey-text small-text">Email:</p>
-                <a href="mailto=ishgatetechristian@gmail.com" class="content grey-text small-text">ishgatetechristian@gmail.com</a>
+                <a
+                  href="mailto=ishgatetechristian@gmail.com"
+                  class="content grey-text small-text"
+                  >ishgatetechristian@gmail.com</a
+                >
               </div>
               <div class="contact-info">
                 <p class="content grey-text small-text">Phone:</p>
                 <a href="" class="content grey-text small-text">0785534291</a>
               </div>
-              
             </div>
             <div class="footer-details social-links">
               <p class="title white-text small-text">Social Links</p>
               <div class="icons">
-               <div class="socials">
-               <img src="./assets/images/linkedin.png" alt=""/>
-              </div>
-              <div class="socials">
-               <img src="./assets/images/twitter.png" alt=""/>
-              </div>
+                <div class="socials">
+                  <img src="./assets/images/linkedin.png" alt="" />
+                </div>
+                <div class="socials">
+                  <img src="./assets/images/twitter.png" alt="" />
+                </div>
               </div>
             </div>
           </div>
           <div class="footer-section footer-right">
-            <!-- <form action="" class="contact-form" id="contact-form" method=""> -->
+            <form class="contact-form" id="contact-form" method="GET">
               <div class="input-form">
                 <p class="white-text grey-text">Name</p>
-                <input type="text" name="name" id="contact-form-name" placeholder="Enter Your Name"/>
+                <input
+                  type="text"
+                  name="name"
+                  id="contact-form-name"
+                  placeholder="Enter Your Name"
+                />
+                <p class="small-text red-text error" id="contact-form-name-error"></p>
               </div>
               <div class="input-form">
-                <p class="white-text grey-text">Email </p>
-                <input type="text" name="email" id="contact-form-email" placeholder="Enter Your Email"/>
+                <p class="white-text grey-text">Email</p>
+                <input
+                  type="text"
+                  name="email"
+                  id="contact-form-email"
+                  placeholder="Enter Your Email"
+                />
+                <p class="small-text red-text error" id="contact-form-email-error"></p>
+
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Phone Number</p>
-                <input type="text" name="phone" id="contact-form-phone" placeholder="Enter Your Name"/>
+                <input
+                  type="text"
+                  name="phone"
+                  id="contact-form-phone"
+                  placeholder="Enter Your Name"
+                />
+                <p class="small-text red-text error" id="contact-form-phone-error"></p>
+
               </div>
               <div class="input-form">
-                <p class="white-text grey-text">Message</p>
+                <p class="white-text grey-text small-text">Message</p>
                 <label for="message"></label>
-                <textarea name="message" id='contact-form-message' rows="3" ></textarea>
+                <textarea
+                  name="message"
+                  id="contact-form-message"
+                  rows="3"
+                ></textarea>
+                <p class="small-text red-text error" id="contact-form-message-error"></p>
+
               </div>
               <div class="input-form">
                 <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
-          <button type="submit" value="" onclick="sendMail()" class="button" id="contact-form-submit-button">Send Message </button>
+                <button
+                  type="submit"
+                  value=""
+                  /**onclick="sendMail()"**/
+                  class="button"
+                  id="contact-form-submit-button"
+                >
+                  Send Message
+                </button>
               </div>
-            <!-- </form> -->
+            </form>
           </div>
         </div>
 
-        <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
+        <div class="small-text grey-text copyright">
+          <p>&copy; 2024 . All rights reserved Angelo Christian</p>
+        </div>
       </div>
     </div>
-  <script src="./Js/index.js"></script>
-   
+    <script src="./Js/index.js"></script>
   </body>
 </html>

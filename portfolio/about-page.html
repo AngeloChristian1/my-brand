@@ -9,9 +9,22 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="shortcut icon" href=".../assets/images/logo-color.svg" type="image/x-icon">
     <title>About me</title>
+    <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+  ></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("15uvCbWBezx9UHs3k");
+    })();
+  </script>
   </head>
   <body>
     <div class="main-container" >
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
       <nav class="nav">
         <div class="desktop-nav">
           <div class="links-container">
@@ -454,26 +467,54 @@
             </div>
           </div>
           <div class="footer-section footer-right">
-            <form action="" class="contact-form">
+            <form class="contact-form" id="contact-form" method="GET">
               <div class="input-form">
                 <p class="white-text grey-text">Name</p>
-                <input type="text" name="name" id="name" placeholder="Enter Your Name"/>
+                <input
+                  type="text"
+                  name="name"
+                  id="contact-form-name"
+                  placeholder="Enter Your Name"
+                />
               </div>
               <div class="input-form">
-                <p class="white-text grey-text">Email </p>
-                <input type="text" name="email" id="email" placeholder="Enter Your Email"/>
+                <p class="white-text grey-text">Email</p>
+                <input
+                  type="text"
+                  name="email"
+                  id="contact-form-email"
+                  placeholder="Enter Your Email"
+                />
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Phone Number</p>
-                <input type="text" name="phone" id="phone" placeholder="Enter Your Name"/>
+                <input
+                  type="text"
+                  name="phone"
+                  id="contact-form-phone"
+                  placeholder="Enter Your Name"
+                />
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Message</p>
                 <label for="message"></label>
-                <textarea name="message" id='message' rows="3" ></textarea>
+                <textarea
+                  name="message"
+                  id="contact-form-message"
+                  rows="3"
+                ></textarea>
               </div>
               <div class="input-form">
-          <button type="button" value="" class="button">Send Message </button>
+                <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
+                <button
+                  type="submit"
+                  value=""
+                  /**onclick="sendMail()"**/
+                  class="button"
+                  id="contact-form-submit-button"
+                >
+                  Send Message
+                </button>
               </div>
             </form>
           </div>
