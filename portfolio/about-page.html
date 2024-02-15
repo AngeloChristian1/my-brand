@@ -25,53 +25,79 @@
         <span class="material-symbols-outlined" id="error-icon"> error </span>
         <p id="error-text" class="error-text"></p>
       </div>
+      <div class=" success-container" id="success-container">
+        <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+        <p id="success-text" class="success-text"></p>
+      </div>
       <nav class="nav">
         <div class="desktop-nav">
+          <button class="button theme-button" id="theme-button"><span class="material-symbols-outlined dark-text" id="theme-icon">
+            light_mode
+            </span></button>
+
           <div class="links-container">
             <div class="links">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="#about-section" id="active">About</a></li>
-                </ul>
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li id="active"><a href="">About</a></li>
+              </ul>
             </div>
-            <div class="logo">
-                <img src="../assets/images/logo.png" alt="logo"/>
-            </div>
+            <a href="../index.html" class="logo">
+              <img src="../assets/images/logo.png" alt="logo" />
+            </a>
             <div class="links">
-                <ul>
-                    <li><a href="#skills-section">Skills</a></li>
-                    <li><a href="#projects-section">Projects</a></li>
-                </ul>
+              <ul>
+                <li><a href="#skills-section">Skills</a></li>
+                <li><a href="#projects-section">Projects</a></li>
+              </ul>
             </div>
           </div>
-          <a href="./blog/blog-homepage.html" target="_blank" rel="noopener noreferrer" class="button blog-button ">
-            <div class="blog-button-content"><p> BLOG</p> <span class="material-symbols-outlined">
-            chevron_right
-            </span></div></a>
+          <a
+            href="../blog/blog-homepage.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button blog-button"
+          >
+            <div class="blog-button-content">
+              <p>BLOG</p>
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </div></a
+          >
         </div>
         <div class="mobile-nav">
+
           <div class="menu-bar">
-            <div class="logo">
-              <img src="../assets/images/logo.png" alt="logo"/>
-          </div>
-            <div class="burger">
-             <div class="burger-line burger-line1"></div>
-             <div class="burger-line burger-line2" ></div>
-             <div class="burger-line burger-line3"></div>
-          </div>
+            <a href="../index.html" class="logo">
+              <img src="../assets/images/logo.png" alt="logo" />
+            </a>
+            <div class="burger" id="burger">
+              <div class="burger-line burger-line1" id="burger-line1"></div>
+              <div class="burger-line burger-line2" id="burger-line2"></div>
+              <div class="burger-line burger-line3" id="burger-line3"></div>
+            </div>
           </div>
 
-          <div class="mobile-links">
+          <div class="mobile-links" id="mobile-links">
+            <button class="button theme-button" "><span class="material-symbols-outlined dark-text" id="theme-icon">
+              light_mode
+              </span></button>
             <ul>
               <li><a href="">Home</a></li>
-              <li><a href="#about-section">About</a></li>
+              <li><a href="../portfolio/about-page.html">About</a></li>
               <li><a href="#skills-section">Skills</a></li>
               <li><a href="#projects-section">Projects</a></li>
-              <li><a href="./blog/blog-homepage.html" target="_blank" rel="noopener noreferrer" class="button-white button ">
-                 BLOG</a></li>
-          </ul>
+              <li>
+                <a
+                  href="../blog/blog-homepage.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="button-white button"
+                >
+                  BLOG</a
+                >
+              </li>
+            </ul>
           </div>
-          
         </div>
       </nav>
 
@@ -95,10 +121,7 @@
               </div>
             </div>
           </div>
-         
         </div>
-
-
       </div>
 
       <!-- my experience -->
@@ -430,99 +453,210 @@
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="footer" id="contact">
-        <div class="rounded-text white-text"><p>Contact us</p></div>
-        <div class="footer-main">
-          <div class="footer-section footer-left">
+     <!-- Footer -->
+     <div class="footer" id="contact">
+      <div class="rounded-text white-text"><p>Contact us</p></div>
+      <div class="footer-main">
+        <div class="footer-section footer-left">
+          <h3 class="big-text">Get in touch with me!</h3>
+          <div class="footer-details">
+            <p class="title white-text small-text">Location</p>
+            <p class="content grey-text small-text">Kigali Rwanda</p>
+          </div>
 
-            <h3 class="big-text">Get in touch with me!</h3>
-            <div class="footer-details">
-              <p class="title white-text small-text">Location</p>
-              <p class="content grey-text small-text">Kigali Rwanda</p>
+          <div class="footer-details">
+            <p class="title white-text small-text">Connect</p>
+            <div class="contact-info">
+              <p class="content grey-text small-text">Email:</p>
+              <a
+                href="mailto=ishgatetechristian@gmail.com"
+                class="content grey-text small-text"
+                >ishgatetechristian@gmail.com</a
+              >
             </div>
-
-            <div class="footer-details">
-              <p class="title white-text small-text">Connect</p>
-              <div  class="contact-info">
-                <p class="content grey-text small-text">Email:</p>
-                <a href="mailto=ishgatetechristian@gmail.com" class="content grey-text small-text">ishgatetechristian@gmail.com</a>
-              </div>
-              <div class="contact-info">
-                <p class="content grey-text small-text">Phone:</p>
-                <a href="" class="content grey-text small-text">0785534291</a>
-              </div>
-              
+            <div class="contact-info">
+              <p class="content grey-text small-text">Phone:</p>
+              <a href="" class="content grey-text small-text">0785534291</a>
             </div>
-            <div class="footer-details social-links">
-              <p class="title white-text small-text">Social Links</p>
-              <div class="icons">
-               <div class="socials">
-               <img src="../assets/images/linkedin.png" alt=""/>
+          </div>
+          <div class="footer-details social-links">
+            <p class="title white-text small-text">Social Links</p>
+            <div class="icons">
+              <div class="socials">
+                <img src="./assets/images/linkedin.png" alt="" />
               </div>
               <div class="socials">
-               <img src="../assets/images/twitter.png" alt=""/>
-              </div>
+                <img src="./assets/images/twitter.png" alt="" />
               </div>
             </div>
           </div>
-          <div class="footer-section footer-right">
-            <form class="contact-form" id="contact-form" method="GET">
-              <div class="input-form">
-                <p class="white-text grey-text">Name</p>
-                <input
-                  type="text"
-                  name="name"
-                  id="contact-form-name"
-                  placeholder="Enter Your Name"
-                />
-              </div>
-              <div class="input-form">
-                <p class="white-text grey-text">Email</p>
-                <input
-                  type="text"
-                  name="email"
-                  id="contact-form-email"
-                  placeholder="Enter Your Email"
-                />
-              </div>
-              <div class="input-form">
-                <p class="white-text grey-text">Phone Number</p>
-                <input
-                  type="text"
-                  name="phone"
-                  id="contact-form-phone"
-                  placeholder="Enter Your Name"
-                />
-              </div>
-              <div class="input-form">
-                <p class="white-text grey-text">Message</p>
-                <label for="message"></label>
-                <textarea
-                  name="message"
-                  id="contact-form-message"
-                  rows="3"
-                ></textarea>
-              </div>
-              <div class="input-form">
-                <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
-                <button
-                  type="submit"
-                  value=""
-                  /**onclick="sendMail()"**/
-                  class="button"
-                  id="contact-form-submit-button"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
+        <div class="footer-section footer-right">
+          <form class="contact-form" id="contact-form" method="GET">
+            <div class="input-form">
+              <p class="white-text grey-text">Name</p>
+              <input
+                type="text"
+                name="name"
+                id="contact-form-name"
+                placeholder="Enter Your Name"
+              />
+              <p class="small-text red-text error" id="contact-form-name-error"></p>
+            </div>
+            <div class="input-form">
+              <p class="white-text grey-text">Email</p>
+              <input
+                type="text"
+                name="email"
+                id="contact-form-email"
+                placeholder="Enter Your Email"
+              />
+              <p class="small-text red-text error" id="contact-form-email-error"></p>
 
-        <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
+            </div>
+            <div class="input-form">
+              <p class="white-text grey-text">Phone Number</p>
+              <input
+                type="text"
+                name="phone"
+                id="contact-form-phone"
+                placeholder="Enter Your Name"
+              />
+              <p class="small-text red-text error" id="contact-form-phone-error"></p>
+
+            </div>
+            <div class="input-form">
+              <p class="white-text grey-text small-text">Message</p>
+              <label for="message"></label>
+              <textarea
+                name="message"
+                id="contact-form-message"
+                rows="3"
+              ></textarea>
+              <p class="small-text red-text error" id="contact-form-message-error"></p>
+
+            </div>
+            <div class="input-form">
+              <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
+              <button
+                type="submit"
+                value=""
+                /**onclick="sendMail()"**/
+                class="button"
+                id="contact-form-submit-button"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="small-text grey-text copyright">
+        <p>&copy; 2024 . All rights reserved Angelo Christian</p>
       </div>
     </div>
-    <script src="../Js/index.js"></script>
-  </body>
+  </div>
+  <script src="../Js/index.js"></script>
+  <script src="../Js/animation.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" integrity="sha512-xAxjKW1J/R4TFytv43xvQ7jFTrJlBzsDOH/Aw0fFc2nvarQkE3d08lTicjzUsZJYDoHYDCpwsUUqOJXh34A1sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
+
+  <script>
+    let themeButton = document.querySelector('#theme-button');
+    let themeIcon = document.querySelector('#theme-icon');
+    let theme = localStorage.getItem("theme");
+    // create default theme as light
+    if (theme == null) {
+      localStorage.setItem("theme", "dark");
+    }
+    const root = document.documentElement; 
+    console.log("theme before click", theme)
+
+    themeButton.addEventListener("click", () => {
+
+      if (theme === "dark") {
+        localStorage.setItem("theme", "light");
+        theme = "light";
+        root.style.setProperty('--dark', '#9394A5');
+        root.style.setProperty('--darker', '#D2D3DB'); 
+        root.style.setProperty('--darkest', '#E4E5F1');
+        root.style.setProperty('--white', '#19181e');
+        root.style.setProperty('--dark-white', '#19181e');
+        root.style.setProperty('--grey', '#23202a');
+        themeIcon.innerHTML = 'dark_mode';
+        console.log("theme in light", theme)
+
+      } else if (theme === "light") {
+        localStorage.setItem("theme", "dark");
+        theme = "dark";
+        root.style.setProperty('--dark', '#23202a');
+        root.style.setProperty('--darker', '#1e1b24');
+        root.style.setProperty('--darkest', '#19181e');
+        root.style.setProperty('--white', '#ffffff');
+        root.style.setProperty('--grey', '#999cb4');
+        themeIcon.innerHTML = 'light_mode';
+        // themeIcon.sytle.display = 'white';
+        console.log("theme in dark", theme)
+      
+      } else{
+        localStorage.setItem("theme", "dark");
+        console.log("theme else where", theme)
+      }
+
+    });
+
+
+  //   const deleteTheme = ()=>{
+      
+  //     localStorage.removeItem("theme");
+  //     alert('theme deleted')
+  // }
+  // themeButton.addEventListener("click",()=>{
+  //   deleteTheme();
+  // })
+
+  
+  </script>
+  <script>
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const splitTypes = document.querySelectorAll('.reveal-text')
+    splitTypes.forEach((char, i) =>{
+      const text = new SplitType(char, {types:'chars, words'})
+      gsap.from(text.chars, {
+        scrollTrigger:{
+          trigger: char,
+          start: 'top 80%',
+          end:'top 20%',
+          scrub: true,
+          markers: false
+        },
+        opacity:0.2,
+        stagger:0.1
+      })
+    })
+
+
+const lenis = new Lenis()
+duration: 4000
+direction: 'vertical'
+smooth: true;
+ease: 'power1.inOut'
+lenis.on('scroll', (e) => {
+// console.log(e)
+})
+
+function raf(time) {
+lenis.raf(time)
+requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+  </script>
+</body>
 </html>

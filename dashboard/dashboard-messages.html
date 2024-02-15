@@ -74,13 +74,13 @@
                 <img src="../assets/images/dashboard-icons/comment.svg" alt="">
                 <div>
                     <p class="title white-text">Total Comments</p>
-                    <p class="title grey-text big-text">20</p>
+                    <p class="title grey-text big-text" id="total-comments">20</p>
                 </div>
             </div>
             <div class="dashboard-tag">
                 <img src="../assets/images/dashboard-icons/eye.svg" alt="">
                 <div>
-                    <p class="title white-text">Total Views</p>
+                    <p class="title white-text" id="total-views">Total Views</p>
                     <p class="title grey-text big-text">20</p>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="dashboard-tag">
                 <img src="../assets/images/dashboard-icons/articles.svg" alt="">
                 <div>
-                    <p class="title white-text">Total Articles</p>
+                    <p class="title white-text" id="total-articles">Total Articles</p>
                     <p class="title grey-text big-text">20</p>
                 </div>
             </div>
@@ -100,6 +100,7 @@
                         <p class="title white-text small-text"> Recent Messages</p>
              
                     </div>
+                    <button class="button button-primary small-text bg-dark red-text" id="delete-all-messages" onclick="deleteAllmessages()">Delete all messages</button>
                 </div>
                 <div class="dashboard-blog-container-map">
 
@@ -111,121 +112,14 @@
                                 <th className="small-text text-white">Telephone</th>
                                 <th className="small-text text-white">Date</th>
                                 <th className="small-text text-white ">Time</th>
+                                <th className="small-text text-white ">Message</th>
                                 <th className="small-text text-white "></th>
                                 <th className="small-text text-white "></th>
                               </tr>
                         </thead>
                             
-                        <tbody>
-                            <tr>  
-                                <td>
-                                    <p class="small-text">Ngezi Peter</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">ngenzipeter10@gmail.com</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">078554672</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">08/February/2024</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">14:20 AM</p>
-
-                                </td>
-                            
-                                <td>
-                                    <a href="./dashboard-single-message.html" class="small-text rounded-text text-blue title category-tag">View</a>
-                                </td>
-                                <td>
-                                    <p class="small-text rounded-text text-yellow title category-tag">Reply</p>
-                                </td>
-                            </tr>
-                            <tr>  
-                                <td>
-                                    <p class="small-text">Ngezi Peter</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">ngenzipeter10@gmail.com</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">078554672</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">08/February/2024</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">14:20 AM</p>
-
-                                </td>
-                            
-                                <td>
-                                    <a href="./dashboard-single-message.html" class="small-text rounded-text text-blue title category-tag">View</a>
-                                </td>
-                                <td>
-                                    <p class="small-text rounded-text text-yellow title category-tag">Reply</p>
-                                </td>
-                            </tr>
-                            <tr>  
-                                <td>
-                                    <p class="small-text">Ngezi Peter</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">ngenzipeter10@gmail.com</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">078554672</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">08/February/2024</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">14:20 AM</p>
-
-                                </td>
-                            
-                                <td>
-                                    <a href="./dashboard-single-message.html" class="small-text rounded-text text-blue title category-tag">View</a>
-                                </td>
-                                <td>
-                                    <p class="small-text rounded-text text-yellow title category-tag">Reply</p>
-                                </td>
-                            </tr>
-                            <tr>  
-                                <td>
-                                    <p class="small-text">Ngezi Peter</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">ngenzipeter10@gmail.com</p>
-                                </td>
-                                <td>
-                                    <p class="small-text">078554672</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">08/February/2024</p>
-
-                                </td>
-                                <td>
-                                    <p class="small-text">14:20 AM</p>
-
-                                </td>
-                            
-                                <td>
-                                    <a href="./dashboard-single-message.html" class="small-text rounded-text text-blue title category-tag">View</a>
-                                </td>
-                                <td>
-                                    <p class="small-text rounded-text text-yellow title category-tag">Reply</p>
-                                </td>
-                            </tr>
-                           
+                        <tbody id="messages-table-body">
+                                   
                         </tbody>
                     </table>
                 </div>
@@ -236,5 +130,6 @@
     </div>
     </div>
     </div>
+    <script src="../Js/dashboard.js"></script>
   </body>
 </html>

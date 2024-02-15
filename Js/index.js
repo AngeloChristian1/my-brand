@@ -97,14 +97,49 @@ function sendMail(){
   emailjs.send(serviceID,templateID, params)
   .then(
     res =>{
-      document.document.getElementById("contact-form-name").value = "";
-      document.document.getElementById("contact-form-email").value = "";
-      document.document.getElementById("contact-form-phone").value = "";
-      document.document.getElementById("contact-form-message").value = "";
+      document.getElementById("contact-form-name").value = "";
+      document.getElementById("contact-form-email").value = "";
+      document.getElementById("contact-form-phone").value = "";
+      document.getElementById("contact-form-message").value = "";
       console.log(res);
       alert('Message sent')
     }
   ).catch((err)=> console.log(err))
+}
+
+const todayDate = new Date();
+const today = todayDate.getDate();
+const month = todayDate.getMonth();
+const year = todayDate.getFullYear();
+const hours = todayDate.getHours();
+const minutes = todayDate.getMinutes();
+const seconds = todayDate.getSeconds();
+
+const handleFormSubmit = () => {
+  let params = {
+    name: document.getElementById("contact-form-name").value,
+    email: document.getElementById("contact-form-email").value,
+    number: document.getElementById("contact-form-phone").value,
+    date: `${today}/${month}/${year}`,
+    time: `${hours}:${minutes}:${seconds}`,
+    message: document.getElementById("contact-form-message").value,
+    
+  }
+
+  let allMessages = JSON.parse(localStorage.getItem('messages')) || [];
+  allMessages.push(params);
+
+  localStorage.setItem('messages', JSON.stringify(allMessages)); // Store the updated array in local storage
+
+  console.log('User Messages:', allMessages);
+  alert("Form submitted");
+
+       console.log('user Messages',allMessages);
+  alert("Form submited");
+    document.getElementById("contact-form-name").value = "";
+    document.getElementById("contact-form-email").value = "";
+    document.getElementById("contact-form-phone").value = "";
+    document.getElementById("contact-form-message").value = "";
 }
 
 const contactForm = document.getElementById('contact-form');
@@ -114,11 +149,44 @@ const contactPhone = document.getElementById("contact-form-phone");
 const contactMessage = document.getElementById("contact-form-message");
 const errorContainer = document.getElementById("error-container");
 const errorElement = document.getElementById("error-text");
+const successContainer = document.getElementById("success-container");
+const successElement = document.getElementById("success-text");
 const emailError = document.getElementById("contact-form-email-error");
 const nameError = document.getElementById("contact-form-name-error");
 const messageError = document.getElementById("contact-form-message-error");
 const phoneError = document.getElementById("contact-form-phone-error");
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const phonePattern = /^[0-9]{10}$/;
+const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+const namePattern = /^[a-zA-Z]+$/;
+
+// signup form
+const signupForm = document.getElementById("signup-form");
+const signupFormName = document.getElementById("signup-form-name");
+const signupFormEmail = document.getElementById("signup-form-email");
+const signupFormPhone = document.getElementById("signup-form-phone");
+const signupFormPassword = document.getElementById("signup-form-password");
+const signupFormSubmit = document.getElementById("signup-form-submit");
+const signupFormNameError = document.getElementById("signup-form-name-error");
+const signupFormEmailError = document.getElementById("signup-form-email-error");
+const signupFormPhoneError = document.getElementById("signup-form-phone-error");
+const signupFormPasswordError = document.getElementById("signup-form-password-error");
+
+// login form
+const loginForm = document.getElementById("login-form");
+const loginFormEmail = document.getElementById("login-form-email");
+const loginFormPassword = document.getElementById("login-form-password");
+const loginFormSubmit = document.getElementById("login-form-submit");
+const loginFormEmailError = document.getElementById("login-form-email-error");
+const loginFormPasswordError = document.getElementById("login-form-password-error");
+
+
+const timeDelay = (container, element)=>{
+  setTimeout(()=>{
+    container.style.display = "none";
+    element.innerText = "";
+  }, 3000)
+}
 
 contactForm.addEventListener('submit', (e)=>{
   let messages = []
@@ -212,7 +280,15 @@ contactForm.addEventListener('submit', (e)=>{
     contactPhone.style.border = 'none';
     contactEmail.style.border = 'none';
     contactName.style.border = 'none';
-    sendMail();
+    successElement.innerText = "Form submitted";
+    successContainer.style.display = "flex";
+    
+    setTimeout(() => {
+      successContainer.style.display = "none";
+      successElement.innerText = "";
+    }, 2000);
+    handleFormSubmit();
+    // sendMail();
   }
 
   if (messages.length > 0){
@@ -224,30 +300,93 @@ contactForm.addEventListener('submit', (e)=>{
 })
 
 
-const Validator = () => {
-  if (email.length === 0) {
-    setEmailError("Email is required");
-    setIsLoading(false);
-    console.log(emailError);
-  } else if (!emailPattern.test(email)) {
-    setEmailError("Invalid Email");
-    setIsLoading(false);
-    console.log(emailError);
-  } else if (email.indexOf(" ") >= 0) {
-    setEmailError("Email can't contain space");
-    setIsLoading(false);
-    console.log(emailError);
-  } else if (password.length < 6) {
-    setPasswordError("Password must be at least 6 characters");
-    setIsLoading(false);
-    console.log(passwordError);
-  } else if (password.indexOf(" ") >= 0) {
-    setPasswordError("Password can't contain space");
-    setIsLoading(false);
-    console.log(passwordError);
-  } else {
-    setEmailError("");
-    setPasswordError("");
-    setIsLoading(true);
+
+// signup form submit
+
+const handleSignup = () => {
+
+  let params = {
+    name: signupFormName.value,
+    email: signupFormEmail.value,
+    phone: signupFormPhone.value,
+    password: signupFormPassword.value,
+    date: `${today}/${month}/${year}`,
+    time: `${hours}:${minutes}:${seconds}`,
+    role: "user",
+    isLoggedIn: false,
+    isVerified: false,
+    isBlocked: false,    
   }
+
+  let allUsers = JSON.parse(localStorage.getItem('users')) || [];
+  allUsers.push(params);
+  localStorage.setItem('users', JSON.stringify(allUsers));
+  console.log('All users:', allUsers);
+  signupFormName.value = "";
+  signupFormEmail.value = "";
+  signupFormPhone.value = "";
+  signupFormPassword.value = "";
+  successContainer.style.display = "flex",
+    successElement.innerHTML = "User Registered successfully"
+  timeDelay(successContainer, successElement)
+  window.location.href = "../blog/LoginPage.html"; 
 }
+
+signupForm.addEventListener("submit", (e) => {
+  let errors = [];
+  e.preventDefault();
+  
+  if (signupFormName.value ==="" || signupFormName.value === null) {
+    errors.push("Please enter a valid name");
+    signupFormNameError.innerText = "Please enter a valid name";
+
+  }else{
+    signupFormNameError.innerText = "";
+    errorElement.innerText = ""
+    errorContainer.style.display = "none"
+  }
+  if (signupFormEmail.value ==="" || !emailPattern.test(signupFormEmail.value)) {
+    errors.push("Please enter a valid email");
+    signupFormEmailError.innerText = "Please enter a valid email";
+  }
+  else{
+    signupFormEmailError.innerText = "";
+    errorElement.innerText = ""
+    errorContainer.style.display = "none"
+  }
+  if (signupFormPhone.value ==="" || !phonePattern.test(signupFormPhone.value)) {
+    errors.push("Please enter a valid phone number");
+    signupFormPhoneError.innerText = "Please enter a valid phone number";
+  }
+  else{
+    signupFormPhoneError.innerText = "";
+    errorElement.innerText = ""
+    errorContainer.style.display = "none"
+  }
+
+  if (signupFormPassword.value ==="" ) {
+    errors.push("Please enter a valid password");
+    signupFormPasswordError.innerText = "Please enter a valid password";
+  }
+ else if (signupFormPassword.value.length < 6) {
+    errors.push("Password must be at least 6 characters");
+    signupFormPasswordError.innerText = "Password must be at least 6 characters";
+  }
+  else{
+    signupFormPasswordError.innerText = "";
+    errorElement.innerText = ""
+    errorContainer.style.display = "none"
+  }
+
+  if (errors.length > 0){
+    e.preventDefault();
+    errorElement.innerText = errors.join(', ')
+    errorContainer.style.display = "flex"
+    timeDelay(errorContainer, errorElement)
+  }
+  
+  if (!errors.length){
+    handleSignup();
+  }
+
+})

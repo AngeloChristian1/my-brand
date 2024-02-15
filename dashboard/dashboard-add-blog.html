@@ -11,8 +11,18 @@
     <title>My Brand</title>
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
+
   <body>
     <div class="dashboard-container " >
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
     <aside class="dashboard-sidebar">
         <div class="dashboard-image-logo">
             <img src="../assets/images/logo.png" alt="logo"/>
@@ -79,25 +89,47 @@
                 <form action="" class="dashboard-input-information-form" id="dashboard-input-information-form">
                     <div class="input-form">
                         <p class="white-text title small-text">Add Image</p>
-                        <input type="file" name="poster" id="poster" placeholder="Enter Your Image"/>
-                      </div>
+                        <input type="file" name="poster" id="blog-form-poster" placeholder="Enter Your Image"/>
+                        <p class="small-text red-text error" id="blog-form-poster-error"></p>
+                    </div>
     
                       <div class="input-form">
                         <p class="hite-text title small-text">Title</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
+                        <input  type="text" name="title" id="blog-form-title" placeholder="Enter The Title"/>
+                        <p class="small-text red-text error" id="blog-form-title-error"></p>
+
                       </div>
                       <div class="input-form">
+                        <p class="hite-text title small-text">Sub Title</p>
+                        <input type="text" name="title" id="blog-form-sub-title" placeholder="Enter The sub Title"/>
+                        <p class="small-text red-text error" id="blog-form-sub-title-error"></p>
+
+                      </div>
+
+                      <div class="input-form">
                         <p class="hite-text title small-text">Category</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
+                          <select name="categories" id="blog-form-category">
+                            <option value="">Choose Category</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="artificial-intelligence">Artificial Intelligence</option>
+                            <option value="technology">Technology</option>
+                            <option value="web-hosting">Web Hosting</option>
+                        </select>
+                        <p class="small-text red-text error" id="blog-form-category-error"></p>
+
                       </div>
                       <div class="input-form">
                         <p class="hite-text title small-text">Time To read</p>
-                        <input type="text" name="title" id="title" placeholder="Enter The Title"/>
-                      </div>
+                        <input type="text" name="time" id="blog-form-time-to-read" placeholder="Enter TheTime Taken To read"/>
+                        <p class="small-text red-text error" id="blog-form-time-to-read-error"></p>
+                      
+                    </div>
                       <div class="input-form">
                         <p class="hite-text title small-text">Content</p>
-                        <label for="message">.</label>
-                        <textarea name="message" id='message' rows="3" ></textarea>
+                        <label for="blog-form-content"></label>
+                        <textarea name="blog-form-content" id='blog-form-content' rows="3" ></textarea>
+                        <p class="small-text red-text error" id="blog-form-content-error"></p>
+
                       </div>
 
                       <div class="input-form">
@@ -111,6 +143,162 @@
     </div>
     </div>
     </div>
-    <script src="../Js/index.js"></script>
+    <!-- <script src="../Js/dashboard.js"></script> -->
+    <script src="../assets/ckeditor/ckeditor.js"></script>
+    <script>
+        const blogForm = document.getElementById("dashboard-input-information-form")
+        let blogPoster = document.getElementById("blog-form-poster");
+        let blogTitle = document.getElementById("blog-form-title")
+        let blogSubTitle = document.getElementById("blog-form-sub-title")
+        let blogContent = document.getElementById("blog-form-content")
+        let blogTime = document.getElementById("blog-form-time-to-read")
+        let blogCategory = document.getElementById("blog-form-category")
+        const blogPosterError = document.getElementById("blog-form-poster-error")
+        const blogTitleError = document.getElementById("blog-form-title-error")
+        const blogSubTitleError = document.getElementById("blog-form-sub-title-error")
+        const blogContentError = document.getElementById("blog-form-content-error")
+        const blogTimeError = document.getElementById("blog-form-time-to-read-error")
+        const blogCategoryError = document.getElementById("blog-form-category-error")
+        const errorContainer = document.getElementById("error-container");
+        const errorElement = document.getElementById("error-text");
+        const successContainer = document.getElementById("success-container");
+        const successElement = document.getElementById("success-text");
+
+        const todayDate = new Date();
+        const today = todayDate.getDate();
+        const month = todayDate.getMonth();
+        const year = todayDate.getFullYear();
+        const hours = todayDate.getHours();
+        const minutes = todayDate.getMinutes();
+        const seconds = todayDate.getSeconds();
+
+const handleBlogSubmit = () => {
+  let params = {
+    poster: blogPoster.value,
+    title: blogTitle.value,
+    subtitle: blogSubTitle.value,
+    category: blogCategory.value,
+    content: blogContent.value,
+    timeToRead: blogTime.value,
+    date: `${today}/${month}/${year}`,
+    time: `${hours}:${minutes}:${seconds}`,
+    editor:"Gatete Angelo Christian",
+    views:[],
+    likes:[],
+    comments:[],
+    shares:[]    
+  }
+
+  let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
+  allArticles.push(params);
+
+  localStorage.setItem('articles', JSON.stringify(allArticles)); // Store the updated array in local storage
+
+       console.log('user articles',allArticles);
+  alert("Form submited");
+  blogPoster.value = "";
+  blogSubTitle.value = "";
+  blogTitle.value = "";
+    blogContent.value = "";
+    blogTime.value = ""; 
+    blogCategory.value = ""; 
+    blogPosterError.innerHTML = '';
+    blogTitleError.innerHTML = '';
+    blogSubTitleError.innerHTML = '';
+    blogContentError.innerHTML = '';
+    blogTimeError.innerHTML = '';
+    blogCategoryError.innerHTML = '';
+
+    successElement.innerText = "Blog Posted Successfully";
+    errorContainer.style.display = "none"
+    successContainer.style.display = "flex";
+    
+    setTimeout(() => {
+    successContainer.style.display = "none";
+    successElement.innerText = "";
+    }, 2000);
+
+}
+        
+
+        blogForm.addEventListener("submit",(e)=>{
+            let errors = [];
+            e.preventDefault()
+
+            if (blogPoster.value === '' || blogPoster.value == null){
+                errors.push('Picture is required')
+                blogPosterError.style.opacity = '1';
+                blogPosterError.style.display = 'block';
+                blogPosterError.innerHTML = 'Picture is required';
+                blogPoster.style.border = '1px solid red';
+            }
+          
+            else if(blogTitle.value ==="" || blogTitle.value === null){
+                blogPosterError.style.display = 'none';
+                blogPoster.style.border = '1px solid green';
+                errors.push('Title is required')
+                blogTitleError.style.opacity = '1';
+                blogTitleError.style.display = 'block';
+                blogTitleError.innerHTML = 'Title is required';
+                blogTitle.style.border = '1px solid red';
+            }
+            else if(blogSubTitle.value ==="" || blogSubTitle.value === null){
+                blogTitleError.style.display = 'none';
+                blogTitle.style.border = '1px solid green';
+                errors.push('sub Title is required')
+                blogSubTitleError.style.opacity = '1';
+                blogSubTitleError.style.display = 'block';
+                blogSubTitleError.innerHTML = 'SubTitle is required';
+                blogSubTitle.style.border = '1px solid red';
+            }
+            else if(blogTime.value ==="" || blogTime.value === null){
+                blogSubTitleError.style.display = 'none';
+                blogSubTitle.style.border = '1px solid green';
+                errors.push('Time is required')
+                blogTimeError.style.opacity = '1';
+                blogTimeError.style.display = 'block';
+                blogTimeError.innerHTML = 'Time is required';
+                blogTime.style.border = '1px solid red';
+            }
+            else if(blogCategory.value ==="" || blogCategory.value === null){
+                blogTimeError.style.display = 'none';
+                blogTime.style.border = '1px solid green';
+                errors.push('Category is required')
+                blogCategoryError.style.opacity = '1';
+                blogCategoryError.style.display = 'block';
+                blogCategoryError.innerHTML = 'Blog Category is required';
+                blogCategory.style.border = '1px solid red';
+            }
+
+             else if(blogContent.value ==="" || blogContent.value === null){
+                blogCategoryError.style.display = 'none';
+                blogCategory.style.border = '1px solid green';
+                errors.push('Blog Content is required')
+                blogContentError.style.opacity = '1';
+                blogContentError.style.display = 'block';
+                blogContentError.innerHTML = 'Blog Content is required';
+                blogContent.style.border = '1px solid red';
+            }
+            else{
+                blogContentError.style.display = 'none';
+                blogContent.style.border = '1px solid green';
+
+                handleBlogSubmit();
+                // sendMail();
+            }
+              
+
+        if (errors.length > 0){
+    e.preventDefault();
+    errorElement.innerText = errors.join(', ')
+    errorContainer.style.display = "flex"
+  }})
+
+        
+    </script>
+
+    <script>
+        CKEDITOR.replace('blog-form-content');
+    </script>
   </body>
 </html>
