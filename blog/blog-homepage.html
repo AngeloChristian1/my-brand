@@ -92,7 +92,7 @@
 
 <div class="blog-container-section">
 
-  <a href="./single-blog-page.html"  class="blog-home-card">
+  <!-- <a href="./single-blog-page.html"  class="blog-home-card">
     <img src="../assets/images/deepmind.webp" alt="Blog Image" class="blog-image"/>
     <div class="blog-home-card-details">
       <div class="rounded-text white-text category-tag" id="active-tag"><p>All categories</p></div>
@@ -105,63 +105,8 @@
         
       </div>
     </div>
-  </a>
-  <a href="./single-blog-page.html"  class="blog-home-card">
-    <img src="../assets/images/deepmind.webp" alt="Blog Image" class="blog-image"/>
-    <div class="blog-home-card-details">
-      <div class="rounded-text white-text category-tag" id="active-tag"><p>All categories</p></div>
-      <p class="white-text title blog-title">Architectural Engineering Wonders of the modern era for your Inspiration</p>
-      <div class="blog-home-card-info">
-        <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-        <p class="grey-text">Angelo Christian</p>
-        <p class="grey-text">&#x2022;</p>
-        <p class="grey-text">22 January 2024</p>
-        
-      </div>
-    </div>
-  </a>
-  <a href="./single-blog-page.html"  class="blog-home-card">
-    <img src="../assets/images/deepmind.webp" alt="Blog Image" class="blog-image"/>
-    <div class="blog-home-card-details">
-      <div class="rounded-text white-text category-tag" id="active-tag"><p>All categories</p></div>
-      <p class="white-text title blog-title">Architectural Engineering Wonders of the modern era for your Inspiration</p>
-      <div class="blog-home-card-info">
-        <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-        <p class="grey-text">Angelo Christian</p>
-        <p class="grey-text">&#x2022;</p>
-        <p class="grey-text">22 January 2024</p>
-        
-      </div>
-    </div>
-  </a>
-  <a href="./single-blog-page.html"  class="blog-home-card">
-    <img src="../assets/images/deepmind.webp" alt="Blog Image" class="blog-image"/>
-    <div class="blog-home-card-details">
-      <div class="rounded-text white-text category-tag" id="active-tag"><p>All categories</p></div>
-      <p class="white-text title blog-title">Architectural Engineering Wonders of the modern era for your Inspiration</p>
-      <div class="blog-home-card-info">
-        <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-        <p class="grey-text">Angelo Christian</p>
-        <p class="grey-text">&#x2022;</p>
-        <p class="grey-text">22 January 2024</p>
-        
-      </div>
-    </div>
-  </a>
-  <a href="./single-blog-page.html"  class="blog-home-card">
-    <img src="../assets/images/deepmind.webp" alt="Blog Image" class="blog-image"/>
-    <div class="blog-home-card-details">
-      <div class="rounded-text white-text category-tag" id="active-tag"><p>All categories</p></div>
-      <p class="white-text title blog-title">Architectural Engineering Wonders of the modern era for your Inspiration</p>
-      <div class="blog-home-card-info">
-        <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-        <p class="grey-text">Angelo Christian</p>
-        <p class="grey-text">&#x2022;</p>
-        <p class="grey-text">22 January 2024</p>
-        
-      </div>
-    </div>
-  </a>
+  </a> -->
+  
 
 </div>
 
@@ -251,5 +196,64 @@
         <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
       </div>
     </div>
+    <script>
+      let blogs = JSON.parse(localStorage.getItem('articles'));
+      // console.log("all articles",allArticles);
+
+// Get blog cards container
+const blogCardsContainer = document.querySelector('.blog-container-section');
+
+// Loop through blogs 
+blogs.forEach(blog => {
+
+  // Create card element
+  const card = document.createElement('a');
+  card.classList.add('blog-home-card');
+  card.href = './single-blog-page.html';
+  
+  // Add thumbnail
+  const img = document.createElement('img');
+  img.src = blog.poster;
+  img.alt = 'Blog Image';
+  img.classList.add('blog-image');
+  card.appendChild(img);
+  
+  // Add details
+  const details = document.createElement('div');
+  details.classList.add('blog-home-card-details');
+  
+  // Add category
+  const category = document.createElement('div');
+  category.classList.add('rounded-text', 'white-text', 'category-tag');
+  category.innerHTML = `<p>${blog.category}</p>`;
+  details.appendChild(category);
+
+  // Add title
+  const title = document.createElement('p');
+  title.classList.add('white-text', 'title', 'blog-title'); 
+  title.innerText = blog.title;
+  details.appendChild(title);
+
+  // Add author info
+  const info = document.createElement('div');
+  info.classList.add('blog-home-card-info');
+
+  // Add avatar, author, date
+  info.innerHTML = `
+    <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
+    <p class="grey-text">${blog.editor}</p> 
+    <p class="grey-text">&#x2022;</p>
+    <p class="grey-text">${blog.date}</p>
+  `;
+
+  details.appendChild(info);
+  
+  card.appendChild(details);
+
+  blogCardsContainer.appendChild(card);
+
+});
+
+    </script>
   </body>
 </html>
