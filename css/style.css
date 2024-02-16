@@ -42,8 +42,10 @@
   --dark-green:rgb(4, 122, 12);
   --dark-red:rgb(170, 10, 10);
   --white-red:rgb(249, 27, 27);
-  --dark-white: rgb(230, 228, 228);
-
+  --dark-white: #e6e4e4;
+  --blue:#1f2eb3;
+  --green:#26a226;
+  --yellow:#a47725;
 
   /* font-size */
   --text-xs: 12px;
@@ -112,6 +114,11 @@ a {
   font-size: var(--text-sm);
 }
 
+.testimonial-section-card-quotations{
+  filter: contrast(.01) brightness(1);
+  
+
+}
 .dark-text{
   color : --dar
 }
@@ -254,6 +261,11 @@ nav {
   padding: var(--p-5);
 }
 
+.logo-image{
+  width: 60px;
+  height: 60px;
+  /* filter: contrast(0.5); */
+}
 /* menu */
 
 /* scrollbar */
@@ -342,7 +354,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--p-3);
+  padding: var(--p-1);
+  color:var(--dark)
 }
 .blog-button-content {
   display: flex;
@@ -1493,13 +1506,13 @@ color: var(--grey);
 }
 
 .text-blue {
-  color: #1f2eb3;
+  color: var(--blue);
 }
 .text-green {
-  color: #26a226;
+  color: var(--green);
 }
 .text-yellow {
-  color: #a47725;
+  color: var(--yellow);
 }
 .cursor-pointer {
   cursor: pointer;
