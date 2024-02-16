@@ -122,8 +122,8 @@
                               </tr>
                         </thead>
                             
-                        <tbody>
-                            <tr>
+                        <tbody id="dashboard-blog-table-body">
+                            <tr id="dashboard-blog-row">
                                 <td>
                                     <img src="../assets/images/company-logo.png" alt="" class="dashboard-blog-poster">
                                 </td>
@@ -218,5 +218,62 @@
     </div>
     </div>
     </div>
+    <!-- <script src="../Js/dashboard.js"></script> -->
+    <script>
+        let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
+        // let allArticlesArray = JSON.parse(allArticles);
+        let messageRow = document.getElementById('dashboard-blog-row');
+
+        console.log("All articles",allArticles)
+
+        const populateBlogTable = ()=>{
+            let tableBody = document.getElementById('dashboard-blog-table-body');
+            tableBody.innerHTML='';
+
+            for (let i=0;i<allArticles.length;i++){
+                let row = createElement('tr',{'class':'article-row'});
+                row.id = `dashboard-${i}`;
+                createTdForArticle(row, allArticles[i]);
+                tableBody.appendChild(row);
+            }
+        };
+        
+        const createTdForArticle=(parent, article)=>{
+            let td1 = createElement('td',{'class':'dashboard-blog-poster'});
+            let img = createElement('img', {'src':'./Images/defaultPoster.png', 'alt':'', 'class':'dashboard-blog-poster'});
+            td1.appendChild(img);
+            parent.appendChild(td1);
+
+            let a = createElement('a',{'href':`#dashboard-${article.id}`, 'class':'dashboard-blog-title'});
+            a.innerHTML = article.title; 
+            let td2 = createElement('td',null,a);
+            parent.appendChild(td2);
+
+            let td3 = createElement('td',{'class':'dashboard-blog-category'},article.category);
+            parent.appendChild(td3);
+
+            let td4 = createElement('td',{'class':'dashboard-blog-views'},article.views);
+            parent.appendChild(td4);
+
+            let btnGroup = createElement('div', {'class':'btn-group float-right'});
+            let td5 = createElement('td',{'class':'dashboard-blog-likes'},btnGroup);
+            parent.appendChild(td5);
+            
+            let likeBtn = createLikeButton(article.isLiked);
+            likeBtn.addEventListener('click',function(){
+                likeBtn.classList.toggle('liked');
+                article.isLiked = !article.isLiked;
+            });
+            btnGroup.appendChild(likeBtn);
+            
+            allArticles.forEach((article,index)=>{
+                let tableRow = document.createElement('tr');
+                tableRow.className += "dashboard-blog-row";
+                tableRow.id= `dashboard-${index}`;
+                createTdForArticle(tableRow, article);
+                tableBody.appendChild(tableRow); 
+            });
+        }
+    </script>
   </body>
 </html>

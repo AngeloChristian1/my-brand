@@ -13,6 +13,14 @@
   </head>
   <body>
     <div class="main-container" >
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
+      <div class=" success-container" id="success-container">
+        <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+        <p id="success-text" class="success-text"></p>
+      </div>
       <nav class="nav">
         <div class="desktop-nav">
           <div class="links-container">
@@ -42,7 +50,7 @@
             <div class="logo">
               <img src="../assets/images/logo.png" alt="logo"/>
           </div>
-            <div class="burger">
+            <div class="burger" id="burger">
              <div class="burger-line burger-line1"></div>
              <div class="burger-line burger-line2" ></div>
              <div class="burger-line burger-line3"></div>
@@ -63,99 +71,144 @@
         </div>
       </nav>
 
-      <!-- homepage -->
+      <!-- form div -->
       
 
       <div class="skills-section signup-form" id="blog-home">
         <div class="rounded-text white-text category-tag text-large"><p class="title">Login</p></div>
 
-        <div class="footer-section footer-right">
-            <form action="" class="contact-form">
+        <div class="footer-section footer-right contact-form-container">
+            <form action="" class="contact-form" id="login-form">
           
               <div class="input-form">
                 <p class="white-text grey-text">Email </p>
-                <input type="text" name="email" id="email" placeholder="Enter Your Email"/>
+                <input type="text" name="email" id="login-form-email" placeholder="Enter Your Email"/>
+            <p class="small-text red-text error" id="login-form-email-error"></p>
+
               </div>
             
               <div class="input-form">
                 <p class="white-text grey-text">Password</p>
-                <input type="password" name="password" id="password" placeholder="Enter Your Password"/>
+                <input type="password" name="password" id="login-form-password" placeholder="Enter Your Password"/>
+            <p class="small-text red-text error" id="login-form-password-error"></p>
+
               </div>
               <p class="grey-text small-text">Don't have an account? <a href="./RegisterPage.html" class=" white-text title small-text">Create One</a></p>
               
               <div class="input-form submit-button">
-          <a href="../dashboard/dashboard.html" type="button" value="" class="button button-white">Log in</a>
+          <button type="submit" value="" class="button button-white">Log in</button>
               </div>
             </form>
           </div>
       </div>
 
       <div class="blog-page-section">
-
-      <!-- Footer -->
-      <div class="footer" id="contact">
-        <div class="rounded-text white-text"><p>Contact us</p></div>
-        <div class="footer-main">
-          <div class="footer-section footer-left">
-
-            <h3 class="big-text">Get in touch with me!</h3>
-            <div class="footer-details">
-              <p class="title white-text small-text">Location</p>
-              <p class="content grey-text small-text">Kigali Rwanda</p>
-            </div>
-
-            <div class="footer-details">
-              <p class="title white-text small-text">Connect</p>
-              <div  class="contact-info">
-                <p class="content grey-text small-text">Email:</p>
-                <a href="mailto=ishgatetechristian@gmail.com" class="content grey-text small-text">ishgatetechristian@gmail.com</a>
-              </div>
-              <div class="contact-info">
-                <p class="content grey-text small-text">Phone:</p>
-                <a href="" class="content grey-text small-text">0785534291</a>
-              </div>
-              
-            </div>
-            <div class="footer-details social-links">
-              <p class="title white-text small-text">Social Links</p>
-              <div class="icons">
-               <div class="socials">
-               <img src="../assets/images/linkedin.png" alt=""/>
-              </div>
-              <div class="socials">
-               <img src="../assets/images/twitter.png" alt=""/>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="footer-section footer-right">
-            <form action="" class="contact-form">
-              <div class="input-form">
-                <p class="white-text grey-text">Name</p>
-                <input type="text" name="name" id="name" placeholder="Enter Your Name"/>
-              </div>
-              <div class="input-form">
-                <p class="white-text grey-text">Email </p>
-                <input type="text" name="email" id="email" placeholder="Enter Your Email"/>
-              </div>
-              <div class="input-form">
-                <p class="white-text grey-text">Phone Number</p>
-                <input type="text" name="phone" id="phone" placeholder="Enter Your Name"/>
-              </div>
-              <div class="input-form">
-                <p class="white-text grey-text">Message</p>
-                <label for="message"></label>
-                <textarea name="message" id='message' rows="3" ></textarea>
-              </div>
-              <div class="input-form">
-          <button type="button" value="" class="button">Send Message </button>
-              </div>
-            </form>
-          </div>
+   <!-- Footer -->
+   <div class="footer" id="contact">
+    <div class="rounded-text white-text"><p>Contact us</p></div>
+    <div class="footer-main">
+      <div class="footer-section footer-left">
+        <h3 class="big-text">Get in touch with me!</h3>
+        <div class="footer-details">
+          <p class="title white-text small-text">Location</p>
+          <p class="content grey-text small-text">Kigali Rwanda</p>
         </div>
 
-        <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
+        <div class="footer-details">
+          <p class="title white-text small-text">Connect</p>
+          <div class="contact-info">
+            <p class="content grey-text small-text">Email:</p>
+            <a
+              href="mailto=ishgatetechristian@gmail.com"
+              class="content grey-text small-text"
+              >ishgatetechristian@gmail.com</a
+            >
+          </div>
+          <div class="contact-info">
+            <p class="content grey-text small-text">Phone:</p>
+            <a href="" class="content grey-text small-text">0785534291</a>
+          </div>
+        </div>
+        <div class="footer-details social-links">
+          <p class="title white-text small-text">Social Links</p>
+          <div class="icons">
+            <div class="socials">
+              <img src="../assets/images/linkedin.png" alt="" />
+            </div>
+            <div class="socials">
+              <img src="../assets/images/twitter.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-section footer-right">
+        <form class="contact-form" id="contact-form" method="GET">
+          <div class="input-form">
+            <p class="white-text grey-text">Name</p>
+            <input
+              type="text"
+              name="name"
+              id="contact-form-name"
+              placeholder="Enter Your Name"
+            />
+            <p class="small-text red-text error" id="contact-form-name-error"></p>
+          </div>
+          <div class="input-form">
+            <p class="white-text grey-text">Email</p>
+            <input
+              type="text"
+              name="email"
+              id="contact-form-email"
+              placeholder="Enter Your Email"
+            />
+            <p class="small-text red-text error" id="contact-form-email-error"></p>
+
+          </div>
+          <div class="input-form">
+            <p class="white-text grey-text">Phone Number</p>
+            <input
+              type="text"
+              name="phone"
+              id="contact-form-phone"
+              placeholder="Enter Your Name"
+            />
+            <p class="small-text red-text error" id="contact-form-phone-error"></p>
+
+          </div>
+          <div class="input-form">
+            <p class="white-text grey-text small-text">Message</p>
+            <label for="message"></label>
+            <textarea
+              name="message"
+              id="contact-form-message"
+              rows="3"
+            ></textarea>
+            <p class="small-text red-text error" id="contact-form-message-error"></p>
+
+          </div>
+          <div class="input-form">
+            <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
+            <button
+              type="submit"
+              value=""
+              /**onclick="sendMail()"**/
+              class="button"
+              id="contact-form-submit-button"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </body>
+
+    <div class="small-text grey-text copyright">
+      <p>&copy; 2024 . All rights reserved Angelo Christian</p>
+    </div>
+  </div>
+</div>
+<script src="../Js/login.js"></script>
+<!-- <script src="../Js/index.js"></script> -->
+
+</body>
 </html>

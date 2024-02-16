@@ -106,6 +106,9 @@
                     <p class="grey-text rounded-text category-tag">Accelerating Development Tasks - ChatGPT can help developers by automating repetitive tasks, such as writing boilerplate code, generating code snippets, or even producing complete code for simple tasks. This accelerates the development process, allowing programmers to focus on more complex and creative aspects of their projects.</p>
                 </div>
             </div>
+            <div id="message-details">
+                
+            </div>
 
             <button class="button button-dark text-yellow">Reply</button>
            
@@ -114,5 +117,34 @@
     </div>
     </div>
     </div>
+
+    <script>
+// Function to retrieve URL parameters
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+
+    let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    let results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Retrieve message index from URL parameter
+let messageIndex = parseInt(getUrlParameter('index'));
+
+// Retrieve message details from allMessages array using the index
+let message = allMessages[messageIndex];
+
+// Populate message details on the page
+let messageDetailsDiv = document.getElementById('message-details');
+messageDetailsDiv.innerHTML = `
+    <p class="small-text">Name: ${message.name}</p>
+    <p class="small-text">Email: ${message.email}</p>
+    <p class="small-text">Telephone: ${message.number}</p>
+    <p class="small-text">Date: ${message.date}</p>
+    <p class="small-text">Time: ${message.time}</p>
+    <p class="small-text">Message: ${message.message}</p>
+`;
+</script>
+  
   </body>
 </html>
