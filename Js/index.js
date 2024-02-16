@@ -288,7 +288,7 @@ contactForm.addEventListener('submit', (e)=>{
       successElement.innerText = "";
     }, 2000);
     handleFormSubmit();
-    // sendMail();
+    sendMail();
   }
 
   if (messages.length > 0){
