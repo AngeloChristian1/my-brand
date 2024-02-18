@@ -2015,6 +2015,26 @@ textarea {
     font-size: var(--text-xl);
     margin-top: var(--p-1);
   }
+  .error-page-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: var(--p-6);
+    gap: var(--p-4);
+  }
+  .error-page-container img {
+    height: 50%;
+    width:70%
+  }
+
+  .error-page-container h3,   .error-page-container p{
+
+    width: 80%;
+    text-align: center;
+    font-size: var(--text-base);
+  }
 }
 
 /* srceen  and (max-width: 450px) */
