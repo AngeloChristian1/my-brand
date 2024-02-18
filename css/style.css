@@ -98,8 +98,8 @@ button {
   align-self: flex-start;
   justify-self: self-start;
   cursor: pointer;
-  background-color:var(--white);
-  color:var(--darkest)
+  background-color: var(--white);
+  color: var(--darkest);
 }
 * {
   margin: 0;
@@ -135,6 +135,7 @@ ul {
 .title {
   font-weight: var(--semibold);
 }
+
 
 img {
   /* object-fit: cover; */
@@ -346,7 +347,7 @@ nav {
   right: var(--p-6);
   background-color: var(--darkest);
   border-radius: var(--rounded-full);
-  color:var(--white)
+  color: var(--white);
 }
 .theme-button {
   position: absolute;
@@ -369,60 +370,60 @@ nav {
 }
 .user-button-content {
   color: var(--white);
-  gap:var(--p-2);
-  flex-direction:column
+  gap: var(--p-2);
+  flex-direction: column;
 }
 
 .blog-button a {
   color: var(--darkest);
   /* font-weight:var(--bold); */
 }
-.user-name-profile{
-background-color:var(--white);
-padding:2px;
-border-radius: var(--rounded-full);
-position: absolute;
-right: var(--p-6);
-cursor:pointer;
-display:none;
+.user-name-profile {
+  background-color: var(--white);
+  padding: 2px;
+  border-radius: var(--rounded-full);
+  position: absolute;
+  right: var(--p-6);
+  cursor: pointer;
+  display: none;
 }
-.user-name-profile h3{
-background-color:var(--dark);
-border-radius: var(--rounded-full);
-width:40px;
-height:40px;
-display:flex;
-align-items: center;
-justify-content: center;
-font-size:var(--text-2xl);
-font-weight:500
+.user-name-profile h3 {
+  background-color: var(--dark);
+  border-radius: var(--rounded-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  font-weight: 500;
 }
-.user-name-profile .letter{
-  position:relative;
+.user-name-profile .letter {
+  position: relative;
 }
 
-.user-name-profile .letter .info{
-position:absolute;
-right:var(--p-4);
-top:var(--p-1);
-width:200px;
-background:red;
-background-color:var(--dark);
-border-radius: var(--rounded-10);
-padding: var(--p-2);
-font-size: var(--text-sm);
-display:flex;
-flex-direction:column;
-gap:var(--p-2);
+.user-name-profile .letter .info {
+  position: absolute;
+  right: var(--p-4);
+  top: var(--p-1);
+  width: 200px;
+  background: red;
+  background-color: var(--dark);
+  border-radius: var(--rounded-10);
+  padding: var(--p-2);
+  font-size: var(--text-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-2);
 
-/* display:none; */
-opacity:0
+  /* display:none; */
+  opacity: 0;
 }
-.user-name-profile .letter .info:hover{
-  opacity:1
+.user-name-profile .letter .info:hover {
+  opacity: 1;
 }
-.user-name-profile .letter:hover .user-name-profile .letter .info{
-  display:block;
+.user-name-profile .letter:hover .user-name-profile .letter .info {
+  display: block;
 }
 .links-container .links {
   align-items: center;
@@ -479,6 +480,7 @@ opacity:0
 .star-desorator {
   position: absolute;
   right: 50%;
+  z-index: 0;
 }
 .hero-section {
   width: 45%;
@@ -740,6 +742,7 @@ textarea {
   border: none;
   border-radius: var(--rounded-2xl);
   padding: var(--p-2);
+  color:var(--darkest)
 }
 .subscribe-section .subscribe-email-input .button {
   background-color: var(--darkest);
@@ -1048,12 +1051,14 @@ textarea {
   background-color: var(--grey);
 }
 .active-tag {
-  color: var(--darkest);
-  background-color: var(--grey);
+  /* color: var(--darkest);
+  background-color: var(--grey); */
+  cursor: pointer;
 }
 
 .category-tag {
   border-radius: var(--rounded-20);
+  text-transform: capitalize;
 }
 
 .blog-container-section {
@@ -1080,13 +1085,20 @@ textarea {
   border-radius: var(--rounded-full);
   background-color: var(--white);
 }
-
+.blog-home-card {
+  overflow: hidden;
+}
 .blog-home-card .blog-image {
-  /* height: 40vh; */
-  background-color: var(--white);
+  height: 40vh;
+  background-color: var(--grey);
   border-radius: var(--rounded-40);
-  /* padding: var(--p-2);
-  background-color: transparent; */
+  object-fit: cover;
+  overflow: hidden;
+  transition: all ease 0.5s;
+}
+.blog-home-card .blog-image:hover {
+  transition: all ease 0.5s;
+  scale: 103%;
 }
 
 .blog-home-card-details {
@@ -1148,6 +1160,26 @@ textarea {
   margin: var(--p-5) auto;
   object-position: center;
   object-fit: cover;
+}
+.blog-image-poster {
+  background-color: var(--grey);
+}
+.input-form {
+  position: relative;
+}
+#login-form-password {
+  position: relative;
+}
+.visibility {
+  display: flex;
+  position: absolute;
+  top: 45%;
+  right: var(--p-1);
+  color: var(--grey);
+  background-color: var(--darkest);
+  padding: var(--p-2);
+  border-radius: var(--rounded-10);
+  cursor: pointer;
 }
 
 .blog-content {
@@ -1634,15 +1666,15 @@ textarea {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.dashboard-image-preview{
+.dashboard-image-preview {
   width: var(--full);
-  height:30%;
+  height: 30%;
   /* display:none; */
 }
 .dashboard-image-preview #image-preview {
   border-radius: var(--rounded-10);
   width: 100%;
-  height:100%;
+  height: 100%;
 }
 
 /* dashboard-single-message */
@@ -1760,20 +1792,28 @@ textarea {
 }
 
 /* error-page-container */
-.error-page-container{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  margin-top:var(--p-6);
-  gap:var(--p-4)
+.error-page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: var(--p-6);
+  gap: var(--p-4);
 }
-.error-page-container img{
-  height:50%;
+.error-page-container img {
+  height: 50%;
 }
-.error-page-container #backButton{
-  align-self:center
+.error-page-container #backButton {
+  align-self: center;
+}
+.dashboard-blog-table tbody .dashboard-blog-poster {
+  width: 80px;
+  height:80px;
+  border-radius: var(--rounded-20);
+  background-color: var(--grey);
+  object-fit: cover;
+
 }
 /* ------------------------------------ */
 @media screen and (max-width: 850px) {
@@ -1851,7 +1891,9 @@ textarea {
     padding-top: var(--p-6);
     padding-bottom: var(--p-6);
   }
-
+  .visibility { 
+    right: 23%;
+  }
   /* dashboard home */
 
   .dashboard-container {
@@ -1868,10 +1910,10 @@ textarea {
     border: 1px solid var(--grey);
   }
 
-  .dashboard-menu-search .burger{
+  .dashboard-menu-search .burger {
     z-index: 0;
   }
-  .dashboard-links-container .burger-close{
+  .dashboard-links-container .burger-close {
     z-index: 0;
     position: absolute;
     top: var(--p-4);
@@ -1889,7 +1931,7 @@ textarea {
   }
 
   .dashboard-content-container {
-    overflow: visible;;
+    overflow: visible;
     width: 100%;
   }
 
@@ -1898,11 +1940,11 @@ textarea {
   }
 
   .dashboard-content-container
-  .dashboard-header
-  .dashboard-user-info
-  .small-text {
-  font-size: var(--text-xs);
-}
+    .dashboard-header
+    .dashboard-user-info
+    .small-text {
+    font-size: var(--text-xs);
+  }
   .dashboard-content {
     padding: var(--p-2);
     height: auto;
@@ -1925,26 +1967,24 @@ textarea {
     display: block;
   }
 
-  .views-likes-comments .like img{
-scale: 130% !important;
+  .views-likes-comments .like img {
+    scale: 130% !important;
   }
-  .views-likes-comments .like p{
-     font-size: var(--text-xs);
+  .views-likes-comments .like p {
+    font-size: var(--text-xs);
   }
-  
 
-    /* dashboard-articles */
+  /* dashboard-articles */
 
-    .dashboard-blog-container-upper {
-      margin: 0;
-    }
-    .dashboard-all-blogs .small-text,
-    .dashboard-all-blogs .white-text {
-      font-size: var(--text-xs);
-    }
+  .dashboard-blog-container-upper {
+    margin: 0;
+  }
+  .dashboard-all-blogs .small-text,
+  .dashboard-all-blogs .white-text {
+    font-size: var(--text-xs);
+  }
 
-
-    /* dashboard message */
+  /* dashboard message */
 
   .dashboard-message-information
     .message-container
@@ -2022,6 +2062,9 @@ scale: 130% !important;
     top: 0%;
   }
 
+  .visibility { 
+    right: var(--p-4);
+  }
   /* about section mobile */
   .about-section {
     padding: var(--p-2);
@@ -2263,12 +2306,12 @@ scale: 130% !important;
     font-size: var(--text-sm);
   }
 
-  .views-likes-comments .like img{
+  .views-likes-comments .like img {
     scale: 100%;
-      }
-      .views-likes-comments .like p{
-         font-size: 8px;
-      }
+  }
+  .views-likes-comments .like p {
+    font-size: 8px;
+  }
 
   /* dashboard-articles */
 

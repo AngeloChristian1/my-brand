@@ -337,6 +337,26 @@ const handleBlogSubmit = () => {
 
         
     </script>
+    <script> 
+    let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
+    console.log("All Articles",allArticles)
+    let currentUrl = window.location.href
+    let indexUrl = parseInt(currentUrl.split('index=')[1])
+    console.log("Index URL",indexUrl)
+
+    let singleArticle = allArticles[indexUrl]
+    //  blogPoster.value = singleArticle.poster;
+     displayImage(singleArticle.poster)
+     const imagePreview = document.getElementById("image-preview");
+  imagePreview.style.display="block"
+  imagePreview.src = singleArticle.poster;
+     blogTitle.value = singleArticle.title
+     blogSubTitle.value = singleArticle.subtitle
+     blogCategory.value = singleArticle.category
+     blogContent.value = singleArticle.content
+     blogTime.value = singleArticle.time
+
+    </script>
 
     <script>
         CKEDITOR.replace('blog-form-content');

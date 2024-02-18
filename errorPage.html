@@ -6,9 +6,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
-<link rel="stylesheet" href="../css/blog.css" />
-<link rel="stylesheet" href="../css/style.css" />
-<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+<link rel="stylesheet" href="./css/blog.css" />
+<link rel="stylesheet" href="./css/style.css" />
+<link rel="shortcut icon" href="./assets/images/logo-color.svg" type="image/x-icon">
     <title>Not-Found</title>
   </head>
   <body>
@@ -103,7 +103,7 @@
               </ul>
             </div>
           </div>
-          <a  href="../blog/LoginPage.html" rel="noopener noreferrer" class="button blog-button">
+          <a  href="./blog/LoginPage.html" rel="noopener noreferrer" class="button blog-button">
             <div class="blog-button-content">
               <p>LOGIN</p>
               <span class="material-symbols-outlined"> chevron_right </span>
@@ -112,7 +112,7 @@
 
         <!-- <a  href="" rel="noopener noreferrer" class=" user-logo-button">
             <div class="blog-button-content user-button-content">
-              <img src="../assets/images/no-profile.webp" class="avatar"/>
+              <img src="./assets/images/no-profile.webp" class="avatar"/>
               <p class="title"> User Name</p>
             </div>
           </a>           -->
@@ -124,7 +124,7 @@
                 <p>Admin</p>
                 <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
                   <p>Logout</p>
-                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+                  <img src="./assets//images//dashboard-icons/logout.svg" alt="">
       
               </div>
               </div>
@@ -142,6 +142,7 @@
               successContainer.style.display = "flex",
               successElement.innerHTML = "Logged out successfully"
               timeDelay(successContainer, successElement)
+              window.location.reload();
             }
             
             if(loggedUser.isLoggedIn){
@@ -156,7 +157,7 @@
                 <p>${loggedUser.role}</p>
                 <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
                   <p>Logout</p>
-                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+                  <img src="./assets//images//dashboard-icons/logout.svg" alt="">
       
               </button>
               </div>
@@ -201,7 +202,7 @@
       </nav>
 
       <div class="error-page-container">
-        <img src="../assets/images/sad-robot2.png"/>
+        <img src="./assets/images/sad-robot2.png"/>
         <h3 class="big-text">Sorry, we can't seem to find your page</h3>
         <p>You may not have access or page isn't available</p>
         <button class="button" id="backButton">Go Back</button>
@@ -245,10 +246,10 @@
           <p class="title white-text small-text">Social Links</p>
           <div class="icons">
             <div class="socials">
-              <img src="../assets/images/linkedin.png" alt="" />
+              <img src="./assets/images/linkedin.png" alt="" />
             </div>
             <div class="socials">
-              <img src="../assets/images/twitter.png" alt="" />
+              <img src="./assets/images/twitter.png" alt="" />
             </div>
           </div>
         </div>

@@ -167,15 +167,19 @@ const signupFormNameError = document.getElementById("signup-form-name-error");
 const signupFormEmailError = document.getElementById("signup-form-email-error");
 const signupFormPhoneError = document.getElementById("signup-form-phone-error");
 const signupFormPasswordError = document.getElementById("signup-form-password-error");
+const showButton = document.getElementById("visibility")
 
-// login form
-const loginForm = document.getElementById("login-form");
-const loginFormEmail = document.getElementById("login-form-email");
-const loginFormPassword = document.getElementById("login-form-password");
-const loginFormSubmit = document.getElementById("login-form-submit");
-const loginFormEmailError = document.getElementById("login-form-email-error");
-const loginFormPasswordError = document.getElementById("login-form-password-error");
-
+showButton.addEventListener('click',()=>{
+  if (showButton.innerHTML=== "visibility"){
+    showButton.innerHTML="visibility_off"
+    signupFormPassword.type ="password"
+  }
+  else{
+    showButton.innerHTML="visibility"
+    signupFormPassword.type ="text"
+  }
+  
+})
 
 const timeDelay = (container, element)=>{
   setTimeout(()=>{

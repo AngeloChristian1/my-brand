@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
 <link rel="stylesheet" href="../css/blog.css" />
@@ -70,7 +72,6 @@
           
         </div>
       </nav>
-
       <!-- form div -->
       <div class="skills-section signup-form" id="blog-home">
         <div class="rounded-text white-text category-tag text-large"><p class="title">Login</p></div>
@@ -87,7 +88,12 @@
             
               <div class="input-form">
                 <p class="white-text grey-text">Password</p>
-                <input type="password" name="password" id="login-form-password" placeholder="Enter Your Password"/>
+                <input type="password" name="password" id="login-form-password" placeholder="Enter Your Password">
+                 <span class="material-symbols-rounded visibility" id="visibility">
+                  visibility
+                  </span>
+                </input>
+              
             <p class="small-text red-text error" id="login-form-password-error"></p>
 
               </div>
@@ -206,6 +212,7 @@
   </div>
 </div>
 <script src="../Js/login.js"></script>
+<script src="../Js/theme.js"></script>
 <!-- <script src="../Js/index.js"></script> -->
 
 </body>

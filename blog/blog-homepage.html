@@ -28,6 +28,9 @@
     <div class="main-container">
       <nav class="nav">
         <div class="desktop-nav">
+          <button class="button theme-button" id="theme-button"><span class="material-symbols-outlined dark-text" id="theme-icon">
+            light_mode
+            </span></button>
           <div class="links-container">
             <div class="links">
               <ul>
@@ -45,55 +48,77 @@
               </ul>
             </div>
           </div>
-          
-          <a  href="./LoginPage.html" rel="noopener noreferrer" class="button blog-button">
+
+          <a
+            href="./LoginPage.html"
+            rel="noopener noreferrer"
+            class="button blog-button"
+          >
             <div class="blog-button-content">
               <p>LOGIN</p>
               <span class="material-symbols-outlined"> chevron_right </span>
             </div>
           </a>
 
-        <!-- <a  href="" rel="noopener noreferrer" class=" user-logo-button">
+          <!-- <a  href="" rel="noopener noreferrer" class=" user-logo-button">
             <div class="blog-button-content user-button-content">
               <img src="../assets/images/no-profile.webp" class="avatar"/>
               <p class="title"> User Name</p>
             </div>
           </a>           -->
-        <div  rel="noopener noreferrer" class="user-name-profile" title="Gatete Angelo, Admin">
+          <div
+            rel="noopener noreferrer"
+            class="user-name-profile"
+            title=""
+          >
             <div class="letter">
               <h3 class="grey-text">G</h3>
               <div class="info">
                 <p class="white-text">Gatete Angelo</p>
                 <p>Admin</p>
-                <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                <div
+                  class="rounded-text grey-text category-tag dashboard-link dashboard-logout"
+                >
                   <p>Logout</p>
-                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
-      
-              </div>
+                  <img
+                    src="../assets//images//dashboard-icons/logout.svg"
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
-          </div>  
+          </div>
           <script>
-            const blogButton = document.querySelector('.blog-button')
-            const profileIcon = document.querySelector('.user-name-profile')
+            const blogButton = document.querySelector(".blog-button");
+            const profileIcon = document.querySelector(".user-name-profile");
 
             const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
             console.log("loggedUser", loggedUser);
 
-            const handleLogout = ()=>{
-              localStorage.removeItem("loggedUser")
-              successContainer.style.display = "flex",
-              successElement.innerHTML = "Logged out successfully"
-              timeDelay(successContainer, successElement)
+            const handleLogout = () => {
+              localStorage.removeItem("loggedUser");
+              (successContainer.style.display = "flex"),
+                (successElement.innerHTML = "Logged out successfully");
+              timeDelay(successContainer, successElement);
+              window.location.reload();
+            };
+
+            const navigate = () => {
+              window.location.href="../dashboard/dashboard.html";
+              if(loggedUser.role == "admin") {
+              }
             }
-            
-            if(loggedUser.isLoggedIn){
-              blogButton.style.display = "none"
-              profileIcon.style.display="flex"
+
+            if (loggedUser.isLoggedIn) {
+              blogButton.style.display = "none";
+              profileIcon.style.display = "flex";
+              profileIcon.title = loggedUser.name + ", " + loggedUser.role
 
               profileIcon.innerHTML = `
-              <div class="letter">
-              <h3 class="grey-text">${loggedUser.name.split('')[[0]]}</h3>
+              <div class="letter" onClick="navigate()">
+              <h3 class="grey-text">${loggedUser.name
+                .split("")[0]
+                .toUpperCase()}</h3>
               <div class="info">
                 <p class="white-text">${loggedUser.name}</p>
                 <p>${loggedUser.role}</p>
@@ -104,12 +129,12 @@
               </button>
               </div>
             </div>
-              `
-            }else{
-              blogButton.style.display = "flex"
-              profileIcon.style.display="none" 
+              `;
+            } else {
+              blogButton.style.display = "flex";
+              profileIcon.style.display = "none";
             }
-          </script>        
+          </script>
         </div>
         <div class="mobile-nav">
           <div class="menu-bar">
@@ -168,18 +193,30 @@
         <div><h3 class="big-text text-center">Latest Blogs</h3></div>
 
         <div class="blog-page-categories">
-          <div class="rounded-text white-text category-tag" id="active-tag">
-            <p>All categories</p>
-          </div>
-          <div class="rounded-text white-text category-tag">
-            <p>Technology</p>
-          </div>
-          <div class="rounded-text white-text category-tag">
-            <p>Web Development</p>
-          </div>
-          <div class="rounded-text white-text category-tag">
-            <p>Web Hosting</p>
-          </div>
+          <p
+            class="rounded-text white-text category-tag active-tag all-tag blog-category-tag"
+            id="all-tag"
+          >
+            All categories
+          </p>
+
+          <p
+            class="rounded-text white-text category-tag technology-tag blog-category-tag"
+          >
+            Technology
+          </p>
+
+          <p
+            class="rounded-text white-text category-tag web-tag blog-category-tag"
+          >
+            Web Development
+          </p>
+
+          <p
+            class="rounded-text white-text category-tag hosting-tag blog-category-tag"
+          >
+            Web Hosting
+          </p>
         </div>
 
         <div class="blog-container-section">
@@ -303,73 +340,157 @@
         </div>
       </div>
     </div>
-    <script src="../Js/alert.js"></script> 
+    <script src="../Js/alert.js"></script>
     <script>
-      let blogs = JSON.parse(localStorage.getItem("articles"));
-      // console.log("all articles",allArticles);
+      let categoryTag = document.querySelectorAll(".blog-category-tag");
+      let allTag = document.getElementById("all-tag");
+      categoryTag.innerHTML = "category";
+      let allBlogs = JSON.parse(localStorage.getItem("articles"));
+      // let blogs = []
+      console.log("all articles", allBlogs);
+      allTag.addEventListener("click", () => {
+        showBlogs(allBlogs);
+      });
 
-      // Get blog cards container
-      const blogCardsContainer = document.querySelector(
-        ".blog-container-section"
-      );
+      categoryTag.forEach((element) => {
+        element.addEventListener("click", () => {
+          element.classList.add("active-tag");
+          if (!element) {
+            element.classList.remove("active-tag");
+          }
+          const selectedCategory = element.innerText
+            .toLowerCase()
+            .split(" ")
+            .join("-");
+          const filteredBlogs = allBlogs.filter(
+            (blog) => blog.category === selectedCategory
+          );
+          showBlogs(filteredBlogs);
+        });
+      });
 
-      // Loop through blogs
-      blogs.map((blog, index) => {
-        // Create card element
-        const card = document.createElement("a");
-        card.classList.add("blog-home-card");
-        card.href = `./single-blog-page.html?index=${index}`;
+      allTag.addEventListener("click", () => {
+        showBlogs(allBlogs);
+      });
 
-        // Add thumbnail
-        const img = document.createElement("img");
-        // img.src = blog.poster ;
-        img.src = blog.poster;
-        img.alt = "Blog Image";
-        img.classList.add("blog-image");
-        card.appendChild(img);
-
-        // Add details
-        const details = document.createElement("div");
-        details.classList.add("blog-home-card-details");
-
-        // Add category
-        const category = document.createElement("div");
-        category.classList.add(
-          "rounded-text",
-          "white-text",
-          "category-tag",
-          "active-tag"
+      function showBlogs(blogs) {
+        const blogCardsContainer = document.querySelector(
+          ".blog-container-section"
         );
-        category.innerHTML = `<p>${blog.category}</p>`;
-        details.appendChild(category);
 
-        // Add title
-        const title = document.createElement("p");
-        title.classList.add("white-text", "title", "blog-title");
-        title.innerText = blog.title;
-        details.appendChild(title);
+        // Clear existing blog cards
+        blogCardsContainer.innerHTML = "";
 
-        // Add author info
-        const info = document.createElement("div");
-        info.classList.add("blog-home-card-info");
+        // Create and append blog cards
+        blogs.forEach((blog, index) => {
+          const card = document.createElement("a");
+          card.classList.add("blog-home-card");
+          card.href = `./single-blog-page.html?index=${index}`;
 
-        // Add avatar, author, date
-        info.innerHTML = `
+          const img = document.createElement("img");
+          img.src = blog.poster;
+          img.alt = "Blog Image";
+          img.classList.add("blog-image");
+          card.appendChild(img);
+
+          const details = document.createElement("div");
+          details.classList.add("blog-home-card-details");
+
+          const category = document.createElement("div");
+          category.classList.add(
+            "rounded-text",
+            "white-text",
+            "category-tag",
+            "active-tag"
+          );
+          category.innerHTML = `<p>${blog.category.split("-").join(" ")}</p>`;
+          details.appendChild(category);
+
+          const title = document.createElement("p");
+          title.classList.add("white-text", "title", "blog-title");
+          title.innerText = blog.title;
+          details.appendChild(title);
+
+          // Append other details (if needed)
+          // Add author info
+          const info = document.createElement("div");
+          info.classList.add("blog-home-card-info");
+
+          // Add avatar, author, date
+          info.innerHTML = `
     <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
     <p class="grey-text">${blog.editor}</p> 
     <p class="grey-text">&#x2022;</p>
     <p class="grey-text">${blog.date}</p>
   `;
 
-        details.appendChild(info);
-
-        card.appendChild(details);
-
-        blogCardsContainer.appendChild(card);
-      });
+          details.appendChild(info);
+          card.appendChild(details);
+          blogCardsContainer.appendChild(card);
+        });
+      }
+      showBlogs(allBlogs);
     </script>
-    <script>
 
-    </script>
+<!-- theme control -->
+<script>
+  let themeButton = document.querySelector('#theme-button');
+  let themeIcon = document.querySelector('#theme-icon');
+  let logoImage = document.querySelector('#logo-image');
+  let theme = localStorage.getItem("theme");
+  // create default theme as light
+  if (theme == null) {
+    localStorage.setItem("theme", "dark");
+  }
+  const root = document.documentElement; 
+  console.log("theme before click", theme)
+
+  themeButton.addEventListener("click", () => {
+
+    if (theme === "dark") {
+      localStorage.setItem("theme", "light");
+      theme = "light";
+      root.style.setProperty('--dark', '#9394A5');
+      root.style.setProperty('--darker', '#D2D3DB'); 
+      root.style.setProperty('--darkest', '#E4E5F1');
+      root.style.setProperty('--white', '#19181e');
+      root.style.setProperty('--dark-white', '#19181e');
+      root.style.setProperty('--grey', '#23202a');
+      themeIcon.innerHTML = 'dark_mode';
+      console.log("theme in light", theme)
+      logoImage.src = "./assets/images/logo-color.svg"
+
+    } else if (theme === "light") {
+      localStorage.setItem("theme", "dark");
+      theme = "dark";
+      root.style.setProperty('--dark', '#23202a');
+      root.style.setProperty('--darker', '#1e1b24');
+      root.style.setProperty('--darkest', '#19181e');
+      root.style.setProperty('--white', '#ffffff');
+      root.style.setProperty('--grey', '#999cb4');
+      root.style.setProperty('--dark-white', '#e6e4e4');
+      themeIcon.innerHTML = 'light_mode';
+      // themeIcon.sytle.display = 'white';
+      logoImage.src = "./assets/images/logo.png"
+      console.log("theme in dark", theme)
+    
+    } else{
+      localStorage.setItem("theme", "dark");
+      console.log("theme else where", theme)
+    }
+
+  });
+
+
+//   const deleteTheme = ()=>{
+    
+//     localStorage.removeItem("theme");
+// }
+// themeButton.addEventListener("click",()=>{
+//   deleteTheme();
+// })
+
+
+</script>
   </body>
 </html>
