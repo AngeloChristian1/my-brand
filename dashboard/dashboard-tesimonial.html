@@ -12,7 +12,18 @@
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
-    <div class="dashboard-container " >
+    <div class="dashboard-container">
+        
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+          
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
+
     <aside class="dashboard-sidebar">
         <a href="../index.html" class="dashboard-image-logo">
             <img src="../assets/images/logo.png" alt="logo"/>
@@ -212,5 +223,25 @@
     </div>
     </div>
     </div>
+    <!-- protect dashboard from unauthorised access -->
+    <script>
+        const logoutButton = document.getElementById("logout-button");
+        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+        console.log("loggedUser", loggedUser);
+  
+        if (!loggedUser || loggedUser.role != "admin") {
+          window.location.href = "../errorPage.html";
+        } else {
+          
+        }
+  
+        logoutButton.addEventListener("click", () => {
+          localStorage.removeItem("loggedUser")
+          successContainer.style.display = "flex",
+          successElement.innerHTML = "Logged out successfully"
+          timeDelay(successContainer, successElement)
+          window.location.href = "../index.html";
+        });
+      </script>
   </body>
 </html>

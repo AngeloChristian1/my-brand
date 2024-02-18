@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
     <title>Blog</title>
-  </head>
+  </head> 
   <body>
     <div class="main-container" >
       <nav class="nav">
@@ -32,10 +32,70 @@
                 </ul>
             </div>
           </div>
-          <a href="./LoginPage.html"  rel="noopener noreferrer" class="button blog-button ">
-            <div class="blog-button-content"><p> LOGIN</p> <span class="material-symbols-outlined">
-            chevron_right
-            </span></div></a>
+          <a  href="./LoginPage.html" rel="noopener noreferrer" class="button blog-button">
+            <div class="blog-button-content">
+              <p>LOGIN</p>
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </div>
+          </a>
+
+        <!-- <a  href="" rel="noopener noreferrer" class=" user-logo-button">
+            <div class="blog-button-content user-button-content">
+              <img src="../assets/images/no-profile.webp" class="avatar"/>
+              <p class="title"> User Name</p>
+            </div>
+          </a>           -->
+        <div  rel="noopener noreferrer" class="user-name-profile" title="Gatete Angelo, Admin">
+            <div class="letter">
+              <h3 class="grey-text">G</h3>
+              <div class="info">
+                <p class="white-text">Gatete Angelo</p>
+                <p>Admin</p>
+                <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                  <p>Logout</p>
+                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+      
+              </div>
+              </div>
+            </div>
+          </div>  
+          <script>
+            const blogButton = document.querySelector('.blog-button')
+            const profileIcon = document.querySelector('.user-name-profile')
+
+            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+            console.log("loggedUser", loggedUser);
+
+            const handleLogout = ()=>{
+              localStorage.removeItem("loggedUser")
+              successContainer.style.display = "flex",
+              successElement.innerHTML = "Logged out successfully"
+              timeDelay(successContainer, successElement)
+            }
+            
+            if(loggedUser.isLoggedIn){
+              blogButton.style.display = "none"
+              profileIcon.style.display="flex"
+
+              profileIcon.innerHTML = `
+              <div class="letter">
+              <h3 class="grey-text">${loggedUser.name.split('')[[0]]}</h3>
+              <div class="info">
+                <p class="white-text">${loggedUser.name}</p>
+                <p>${loggedUser.role}</p>
+                <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                  <p>Logout</p>
+                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+      
+              </button>
+              </div>
+            </div>
+              `
+            }else{
+              blogButton.style.display = "flex"
+              profileIcon.style.display="none" 
+            }
+          </script>  
         </div>
         <div class="mobile-nav">
           <div class="menu-bar">
@@ -84,11 +144,8 @@
     </div>
 </div>
       </div>
-
-      <div class="blog-page-section">
-
-
-<div class="single-blog-content">
+<div class="blog-page-section" id="blog-page-section">
+<div class="single-blog-content" id="single-blog-content">
     <img src="../assets/images/deepmind.webp" alt="" class="blog-image">
 
     <div class="blog-content">
@@ -194,5 +251,81 @@
         <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
       </div>
     </div>
+    <script>
+      const blogHeader = document.getElementById("blog-home")
+      const blogContent = document.getElementById('single-blog-content')
+      let currentUrl = window.location.href
+      let allBlogs = JSON.parse(localStorage.getItem("articles"))
+      let indexUrl = parseInt(currentUrl.split('index=')[1])
+
+      console.log('allBlogs', allBlogs)
+
+      let blog = allBlogs[indexUrl]
+      console.log('index url', indexUrl)
+      console.log('single blog', blog)
+
+      blogHeader.innerHTML = `
+      <div class="rounded-text white-text category-tag"><p>${blog.category}</p></div>
+<div><h3 class="big-text">${blog.title}</h3></div>
+<div><p class="grey-text text-center join-text">${blog.subtitle}</p></div>
+<div class="blog-dates">
+    <div class="date blog-dates-details">
+        <span class="material-symbols-outlined">
+            calendar_today
+            </span>
+            <p>${blog.date}</p>
+    </div>
+    <div class="date blog-dates-details">
+        <span class="material-symbols-outlined">
+            timer
+            </span>
+            <p>20 Minute Read</p>
+    </div>
+</div>
+      `
+
+      blogContent.innerHTML = `
+  <div class="single-blog-content" id="single-blog-content">
+    <img src="../assets/images/blog1.jpg" alt="" class="blog-image">
+
+    <div class="blog-content">
+      <p class="white-text">${blog.content.split("\n").map((paragraph) => paragraph).join("<br>")}</p>
+      <!-- Use .join("<br>") to replace newlines with <br> tags -->
+    </div>
+
+    <div class="blog-home-card-info">
+      <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
+      <p class="grey-text">${blog.editor}</p>
+      <p class="grey-text">&#x2022;</p>
+      <p class="grey-text">${blog.date}</p>
+    </div>
+
+    <div class="blog-comment-section">
+      <p class="white-text title">Comments</p>
+      <div class="input-for comment-form">
+        <input type="text" name="comment" id="comment" placeholder="Comment here"/>
+        <p class="rounded-text category-tag white-text title">Add comment</p>
+      </div>
+
+      <div class="comment-container">
+        <div class="single-comment-card">
+          <div class="upper-text">
+            <p class="white-text title small-text">Mucyo Fred</p>
+            <p class="grey-text small-text"> - 24 February 2024</p>
+          </div>
+          <p class="small-text grey-text comment-text">The field of machine learning is no joke.</p>
+        </div>
+        <div class="single-comment-card">
+          <div class="upper-text">
+            <p class="white-text title small-text">Mucyo Fred</p>
+            <p class="grey-text small-text"> - 24 February 2024</p>
+          </div>
+          <p class="small-text grey-text comment-text">The field of machine learning is no joke.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+    </script>
   </body>
 </html>

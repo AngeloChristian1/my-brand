@@ -12,7 +12,18 @@
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
-    <div class="dashboard-container " >
+    <div class="dashboard-container">
+        
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+          
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
+
     <aside class="dashboard-sidebar">
         <a href="./dashboard.html" class="dashboard-image-logo">
             <img src="../assets/images/logo.png" alt="logo"/>
@@ -70,13 +81,13 @@
         </div>
         <div class="dashboard-content dashboard-single-message">
         <div class="dashboard-data-container">
-            <div class="dashboard-blog-container dashboard-message-information">
+            <div class="dashboard-blog-container dashboard-message-information" id="single-message-container">
                <div class="message-information-container">
 
                 <div class="message-information-section message-information-left">
                     <div class="text-container">
                         <p class="title white-text"> Sender Name</p>
-                        <p class="grey-text">Mugisha Samuel</p>
+                        <p class="grey-text" >Mugisha Samuel</p>
                     </div>
                     <div class="text-container">
                         <p class="title white-text"> Sender Email</p>
@@ -95,7 +106,7 @@
                     </div>
                     <div class="text-container">
                         <p class="title white-text"> Time Sent sent</p>
-                        <p class="grey-text">4:00 PM</p>
+                        <!-- <p class="grey-text">4:00 PM</p> -->
                     </div>
                 </div>                    
             </div>
@@ -118,7 +129,7 @@
     </div>
     </div>
 
-    <script>
+    <!-- <script>
 // Function to retrieve URL parameters
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -144,7 +155,87 @@ messageDetailsDiv.innerHTML = `
     <p class="small-text">Time: ${message.time}</p>
     <p class="small-text">Message: ${message.message}</p>
 `;
+</script> -->
+
+<script>
+    let messageContainer = document.getElementById('single-message-container');
+    messageContainer.innerHTML = ""
+    let allMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    console.log("All messages",allMessages)
+
+    let currentUrl = window.location.href
+    console.log("Current URL",currentUrl)
+    let indexUrl = parseInt(currentUrl.split('index=')[1])
+    console.log("Index URL",indexUrl)
+
+    
+    let singleMessage = allMessages[indexUrl]
+
+    // let singleMessage = currentUrl.split('index=')[1]
+    console.log("This message", singleMessage)
+
+    messageContainer.innerHTML = `
+    <div class="message-information-container">
+
+<div class="message-information-section message-information-left">
+    <div class="text-container">
+        <p class="title white-text"> Sender Name</p>
+        <p class="grey-text" >${singleMessage.name}</p>
+    </div>
+    <div class="text-container">
+        <p class="title white-text"> Sender Email</p>
+        <p class="grey-text">${singleMessage.email}</p>
+    </div>
+    <div class="text-container">
+        <p class="title white-text"> Sender Phone Number</p>
+        <p class="grey-text">${singleMessage.number}</p>
+    </div>
+ 
+</div>                            
+<div class="message-information-section message-information-right">
+    <div class="text-container">
+        <p class="title white-text"> Date sent</p>
+        <p class="grey-text">${singleMessage.date}</p>
+    </div>
+    <div class="text-container">
+        <p class="title white-text"> Time Sent sent</p>
+        <p class="grey-text">${singleMessage.time}</p>
+    </div>
+</div>                    
+</div> 
+
+<div class="message-container">
+<div class="text-container">
+    <p class="title white-text"> Message</p>
+    <p class="grey-text rounded-text category-tag">${singleMessage.message}</p>
+</div>
+</div>
+<div id="message-details">
+
+</div>
+
+<a href="mailto:${singleMessage.email}" ><button class="button button-dark text-yellow">Reply</button></a>
+    `
 </script>
+    <!-- protect dashboard from unauthorised access -->
+    <script>
+        const logoutButton = document.getElementById("logout-button");
+        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+        console.log("loggedUser", loggedUser);
   
+        if (!loggedUser || loggedUser.role != "admin") {
+          window.location.href = "../errorPage.html";
+        } else {
+        
+        }
+  
+        logoutButton.addEventListener("click", () => {
+          localStorage.removeItem("loggedUser")
+          successContainer.style.display = "flex",
+          successElement.innerHTML = "Logged out successfully"
+          timeDelay(successContainer, successElement)
+          window.location.href = "../index.html";
+        });
+      </script>
   </body>
 </html>

@@ -28,9 +28,7 @@
 
 
 // blogContentForm.addEventListener('submit', (e)=>{
-//   window.alert('Please enter')
 //   e.event.preventDefault();
-//   window.alert(blogContentForm.title)
   
 // })
 
@@ -123,7 +121,7 @@ const handleFormSubmit = () => {
     date: `${today}/${month}/${year}`,
     time: `${hours}:${minutes}:${seconds}`,
     message: document.getElementById("contact-form-message").value,
-    
+    // indexId : JSON.parse(localStorage.getItem('messages')).length + 1 || 0
   }
 
   let allMessages = JSON.parse(localStorage.getItem('messages')) || [];
@@ -132,10 +130,8 @@ const handleFormSubmit = () => {
   localStorage.setItem('messages', JSON.stringify(allMessages)); // Store the updated array in local storage
 
   console.log('User Messages:', allMessages);
-  alert("Form submitted");
 
-       console.log('user Messages',allMessages);
-  alert("Form submited");
+    console.log('user Messages',allMessages);
     document.getElementById("contact-form-name").value = "";
     document.getElementById("contact-form-email").value = "";
     document.getElementById("contact-form-phone").value = "";

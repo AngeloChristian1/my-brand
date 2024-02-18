@@ -14,7 +14,18 @@
   <script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
 
   <body>
-    <div class="dashboard-container " >
+    <div class="dashboard-container">
+
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
+
         <div class="error-container" id="error-container">
             <span class="material-symbols-outlined" id="error-icon"> error </span>
             <p id="error-text" class="error-text"></p>
@@ -92,6 +103,9 @@
                         <input type="file" name="poster" id="blog-form-poster" placeholder="Enter Your Image"/>
                         <p class="small-text red-text error" id="blog-form-poster-error"></p>
                     </div>
+                    <div class="dashboard-image-preview">
+                        <img src="" alt="blog-poster" id="image-preview">
+                    </div>
     
                       <div class="input-form">
                         <p class="hite-text title small-text">Title</p>
@@ -163,6 +177,8 @@
         const errorElement = document.getElementById("error-text");
         const successContainer = document.getElementById("success-container");
         const successElement = document.getElementById("success-text");
+        const previewContainer = document.querySelector('.dashboard-image-preview')
+        let imageUrl =null
 
         const todayDate = new Date();
         const today = todayDate.getDate();
@@ -172,9 +188,36 @@
         const minutes = todayDate.getMinutes();
         const seconds = todayDate.getSeconds();
 
+        // getting image posters from input field
+        blogPoster.addEventListener("change", handleImageUpload);
+
+function handleImageUpload(event) {
+  const selectedFile = event.target.files[0];
+
+  if (selectedFile) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const dataURL = e.target.result;
+      // Use this dataURL to display the image wherever needed
+      displayImage(dataURL);
+      imageUrl=dataURL
+      
+    };
+
+    reader.readAsDataURL(selectedFile);
+  }
+  
+}
+function displayImage(dataURL) {
+  const imagePreview = document.getElementById("image-preview");
+  imagePreview.style.display="block"
+  imagePreview.src = dataURL;
+}
+
+console.log('imageUrl',imageUrl,"end")
 const handleBlogSubmit = () => {
   let params = {
-    poster: blogPoster.value,
+    poster: imageUrl,
     title: blogTitle.value,
     subtitle: blogSubTitle.value,
     category: blogCategory.value,
@@ -195,7 +238,6 @@ const handleBlogSubmit = () => {
   localStorage.setItem('articles', JSON.stringify(allArticles)); // Store the updated array in local storage
 
        console.log('user articles',allArticles);
-  alert("Form submited");
   blogPoster.value = "";
   blogSubTitle.value = "";
   blogTitle.value = "";
@@ -219,8 +261,6 @@ const handleBlogSubmit = () => {
     }, 2000);
 
 }
-        
-
         blogForm.addEventListener("submit",(e)=>{
             let errors = [];
             e.preventDefault()
@@ -300,5 +340,26 @@ const handleBlogSubmit = () => {
     <script>
         CKEDITOR.replace('blog-form-content');
     </script>
+
+        <!-- protect dashboard from unauthorised access -->
+        <script>
+            const logoutButton = document.getElementById("logout-button");
+            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+            console.log("loggedUser", loggedUser);
+      
+            if (!loggedUser || loggedUser.role != "admin") {
+              window.location.href = "../errorPage.html";
+            } else {
+            
+            }
+      
+            logoutButton.addEventListener("click", () => {
+              localStorage.removeItem("loggedUser")
+              successContainer.style.display = "flex",
+              successElement.innerHTML = "Logged out successfully"
+              timeDelay(successContainer, successElement)
+              window.location.href = "../index.html";
+            });
+          </script>
   </body>
 </html>

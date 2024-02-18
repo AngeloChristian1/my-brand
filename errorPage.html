@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="../css/blog.css" />
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+    <title>Not-Found</title>
+  </head>
+  <body>
+    <div class="main-container" >
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
+      <div class=" success-container" id="success-container">
+        <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+        <p id="success-text" class="success-text"></p>
+      </div>
+      <nav class="nav">
+        <div class="desktop-nav">
+          <button class="button theme-button" id="theme-button"><span class="material-symbols-outlined dark-text" id="theme-icon">
+            light_mode
+            </span></button>
+          <script>
+            let themeButton = document.querySelector('#theme-button');
+            let themeIcon = document.querySelector('#theme-icon');
+            let logoImage = document.querySelector('#logo-image');
+            let theme = localStorage.getItem("theme");
+            // create default theme as light
+            if (theme == null) {
+              localStorage.setItem("theme", "dark");
+            }
+            const root = document.documentElement; 
+            console.log("theme before click", theme)
+
+            themeButton.addEventListener("click", () => {
+
+              if (theme === "dark") {
+                localStorage.setItem("theme", "light");
+                theme = "light";
+                root.style.setProperty('--dark', '#9394A5');
+                root.style.setProperty('--darker', '#D2D3DB'); 
+                root.style.setProperty('--darkest', '#E4E5F1');
+                root.style.setProperty('--white', '#19181e');
+                root.style.setProperty('--dark-white', '#19181e');
+                root.style.setProperty('--grey', '#23202a');
+                themeIcon.innerHTML = 'dark_mode';
+                console.log("theme in light", theme)
+                logoImage.src = "./assets/images/logo-color.svg"
+
+              } else if (theme === "light") {
+                localStorage.setItem("theme", "dark");
+                theme = "dark";
+                root.style.setProperty('--dark', '#23202a');
+                root.style.setProperty('--darker', '#1e1b24');
+                root.style.setProperty('--darkest', '#19181e');
+                root.style.setProperty('--white', '#ffffff');
+                root.style.setProperty('--grey', '#999cb4');
+                root.style.setProperty('--dark-white', '#e6e4e4');
+                themeIcon.innerHTML = 'light_mode';
+                // themeIcon.sytle.display = 'white';
+                logoImage.src = "./assets/images/logo.png"
+                console.log("theme in dark", theme)
+              
+              } else{
+                localStorage.setItem("theme", "dark");
+                console.log("theme else where", theme)
+              }
+
+            });
+
+
+          //   const deleteTheme = ()=>{
+              
+          //     localStorage.removeItem("theme");
+          // }
+          // themeButton.addEventListener("click",()=>{
+          //   deleteTheme();
+          // })
+
+          
+          </script>
+          <div class="links-container">
+            
+            <div class="links">
+              <ul>
+                <li id="active"><a href="">Home</a></li>
+                <li><a href="./portfolio/about-page.html">About</a></li>
+              </ul>
+            </div>
+            <a href="./index.html" class="logo">
+              <img src="./assets/images/logo.png" alt="logo" class="logo-image" />
+            </a>
+            <div class="links">
+              <ul>
+                <li><a href="#skills-section">Skills</a></li>
+                <li><a href="#projects-section">Projects</a></li>
+              </ul>
+            </div>
+          </div>
+          <a  href="../blog/LoginPage.html" rel="noopener noreferrer" class="button blog-button">
+            <div class="blog-button-content">
+              <p>LOGIN</p>
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </div>
+          </a>
+
+        <!-- <a  href="" rel="noopener noreferrer" class=" user-logo-button">
+            <div class="blog-button-content user-button-content">
+              <img src="../assets/images/no-profile.webp" class="avatar"/>
+              <p class="title"> User Name</p>
+            </div>
+          </a>           -->
+        <div  rel="noopener noreferrer" class="user-name-profile" title="Gatete Angelo, Admin">
+            <div class="letter">
+              <h3 class="grey-text">G</h3>
+              <div class="info">
+                <p class="white-text">Gatete Angelo</p>
+                <p>Admin</p>
+                <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                  <p>Logout</p>
+                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+      
+              </div>
+              </div>
+            </div>
+          </div>  
+          <script>
+            const blogButton = document.querySelector('.blog-button')
+            const profileIcon = document.querySelector('.user-name-profile')
+
+            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+            console.log("loggedUser", loggedUser);
+
+            const handleLogout = ()=>{
+              localStorage.removeItem("loggedUser")
+              successContainer.style.display = "flex",
+              successElement.innerHTML = "Logged out successfully"
+              timeDelay(successContainer, successElement)
+            }
+            
+            if(loggedUser.isLoggedIn){
+              blogButton.style.display = "none"
+              profileIcon.style.display="flex"
+
+              profileIcon.innerHTML = `
+              <div class="letter">
+              <h3 class="grey-text">${loggedUser.name.split('')[[0]]}</h3>
+              <div class="info">
+                <p class="white-text">${loggedUser.name}</p>
+                <p>${loggedUser.role}</p>
+                <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                  <p>Logout</p>
+                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+      
+              </button>
+              </div>
+            </div>
+              `
+            }else{
+              blogButton.style.display = "flex"
+              profileIcon.style.display="none" 
+            }
+          </script>  
+        </div>
+        <div class="mobile-nav">
+          <div class="menu-bar">
+            <a href="./index.html" class="logo">
+              <img src="./assets/images/logo.png" alt="logo" />
+            </a>
+            <div class="burger" id="burger">
+              <div class="burger-line burger-line1" id="burger-line1"></div>
+              <div class="burger-line burger-line2" id="burger-line2"></div>
+              <div class="burger-line burger-line3" id="burger-line3"></div>
+            </div>
+          </div>
+
+          <div class="mobile-links" id="mobile-links">
+            <ul>
+              <li><a href="">Home</a></li>
+              <li><a href="./portfolio/about-page.html">About</a></li>
+              <li><a href="#skills-section">Skills</a></li>
+              <li><a href="#projects-section">Projects</a></li>
+              <li>
+                <a
+                  href="./blog/LoginPage.html"
+                  rel="noopener noreferrer"
+                  class="button-white button"
+                >
+                  BLOG</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="error-page-container">
+        <img src="../assets/images/sad-robot2.png"/>
+        <h3 class="big-text">Sorry, we can't seem to find your page</h3>
+        <p>You may not have access or page isn't available</p>
+        <button class="button" id="backButton">Go Back</button>
+      </div>
+
+      <script>
+        const backButton = document.getElementById("backButton")
+
+        backButton.addEventListener("click",()=>{
+            window.history.back()
+        })
+      </script>
+    <div class="blog-page-section">
+   <!-- Footer -->
+   <div class="footer" id="contact">
+    <div class="rounded-text white-text"><p>Contact us</p></div>
+    <div class="footer-main">
+      <div class="footer-section footer-left">
+        <h3 class="big-text">Get in touch with me!</h3>
+        <div class="footer-details">
+          <p class="title white-text small-text">Location</p>
+          <p class="content grey-text small-text">Kigali Rwanda</p>
+        </div>
+
+        <div class="footer-details">
+          <p class="title white-text small-text">Connect</p>
+          <div class="contact-info">
+            <p class="content grey-text small-text">Email:</p>
+            <a
+              href="mailto=ishgatetechristian@gmail.com"
+              class="content grey-text small-text"
+              >ishgatetechristian@gmail.com</a
+            >
+          </div>
+          <div class="contact-info">
+            <p class="content grey-text small-text">Phone:</p>
+            <a href="" class="content grey-text small-text">0785534291</a>
+          </div>
+        </div>
+        <div class="footer-details social-links">
+          <p class="title white-text small-text">Social Links</p>
+          <div class="icons">
+            <div class="socials">
+              <img src="../assets/images/linkedin.png" alt="" />
+            </div>
+            <div class="socials">
+              <img src="../assets/images/twitter.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-section footer-right">
+        <form class="contact-form" id="contact-form" method="GET">
+          <div class="input-form">
+            <p class="white-text grey-text">Name</p>
+            <input
+              type="text"
+              name="name"
+              id="contact-form-name"
+              placeholder="Enter Your Name"
+            />
+            <p class="small-text red-text error" id="contact-form-name-error"></p>
+          </div>
+          <div class="input-form">
+            <p class="white-text grey-text">Email</p>
+            <input
+              type="text"
+              name="email"
+              id="contact-form-email"
+              placeholder="Enter Your Email"
+            />
+            <p class="small-text red-text error" id="contact-form-email-error"></p>
+
+          </div>
+          <div class="input-form">
+            <p class="white-text grey-text">Phone Number</p>
+            <input
+              type="text"
+              name="phone"
+              id="contact-form-phone"
+              placeholder="Enter Your Name"
+            />
+            <p class="small-text red-text error" id="contact-form-phone-error"></p>
+
+          </div>
+          <div class="input-form">
+            <p class="white-text grey-text small-text">Message</p>
+            <label for="message"></label>
+            <textarea
+              name="message"
+              id="contact-form-message"
+              rows="3"
+            ></textarea>
+            <p class="small-text red-text error" id="contact-form-message-error"></p>
+
+          </div>
+          <div class="input-form">
+            <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
+            <button
+              type="submit"
+              value=""
+              /**onclick="sendMail()"**/
+              class="button"
+              id="contact-form-submit-button"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="small-text grey-text copyright">
+      <p>&copy; 2024 . All rights reserved Angelo Christian</p>
+    </div>
+  </div>
+</div>
+
+<script src="./Js/contactForm.js"></script>
+
+</body>
+</html>
