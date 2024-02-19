@@ -64,12 +64,12 @@
               if (theme === "dark") {
                 localStorage.setItem("theme", "light");
                 theme = "light";
-                root.style.setProperty('--dark', '#9394A5');
+                root.style.setProperty('--dark', '#EDEDFD');
                 root.style.setProperty('--darker', '#D2D3DB'); 
-                root.style.setProperty('--darkest', '#E4E5F1');
+                root.style.setProperty('--darkest', '#F6F6FF');
                 root.style.setProperty('--white', '#19181e');
                 root.style.setProperty('--dark-white', '#19181e');
-                root.style.setProperty('--grey', '#23202a');
+                root.style.setProperty('--grey', '#999cb4');
                 themeIcon.innerHTML = 'dark_mode';
                 console.log("theme in light", theme)
                 logoImage.src = "./assets/images/logo-color.svg"
@@ -198,15 +198,15 @@
       <!-- Main section -->
 
       <div class="main-section" id="main-section">
-        <div class="main-section-content">
+        <div class="main-section-content back-gradient">
           <div class="rounded-text "><p class="reveal-text">Hello</p></div>
-          <div class="main-section-content-container">
+          <div class="main-section-content-container ">
             <div class="star-desorator">
               <img src="./assets/images/star.svg" alt="" />
             </div>
             <div class="hero-section main-left">
               <p class="white-text">I'm</p>
-              <h3 class="big-text">Angelo Christian</h3>
+              <h3 class="big-text gradient-text">Angelo Christian</h3>
               <p class="normal-text grey-text reveal-text">
                 A software developer with experience full stack development.
                 With extensive ability in creating amazing UI and well tailored
@@ -676,6 +676,10 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
 
     <script>
+
+if(!urlMatch) {
+    window.location.replace("./errorPage.html");
+  }
 
       gsap.registerPlugin(ScrollTrigger)
 

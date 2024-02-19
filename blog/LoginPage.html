@@ -214,6 +214,12 @@
 <script src="../Js/login.js"></script>
 <script src="../Js/theme.js"></script>
 <!-- <script src="../Js/index.js"></script> -->
-
+<script>
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  
+  if (loggedUser) {
+    window.history.back()
+  } 
+</script>
 </body>
 </html>

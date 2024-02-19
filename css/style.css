@@ -184,6 +184,7 @@ img {
   right: var(--p-5);
   top: var(--p-5);
   display: none;
+  color:white;
 }
 #success-container {
   display: flex;
@@ -197,6 +198,7 @@ img {
   right: var(--p-5);
   top: var(--p-5);
   display: none;
+  color:white;
 }
 
 .visible {
@@ -1111,10 +1113,20 @@ textarea {
 
 .blog-home-card-info {
   display: flex;
+  flex-direction: row;
   align-items: center;
   font-size: var(--text-xs);
   gap: var(--p-3);
-  justify-content: center;
+  justify-content: start;
+  width: 80%;
+  margin: var(--p-4) auto;
+}
+
+.blog-likes-section{
+
+}
+.blog-likes-section .rounded-text{
+align-self: center;
 }
 
 .blogs-section-navigation {
@@ -1815,6 +1827,52 @@ textarea {
   object-fit: cover;
 
 }
+
+.gradient-text{
+  /* background-clip: text; */
+  font-size: 72px;
+  background: -webkit-linear-gradient(to right #eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-gradient{
+  background: (90deg, rgb(132, 147, 225), rgb(104, 106, 248), rgb(169, 110, 204));
+  /* background-color:red */
+  /* background-image: url("../assets/images/background1.jpeg"); */
+  /* opacity: .3; */
+}
+
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: white;
+  font-family: "Archivo Black", sans-serif;
+  /* Create the gradient. */
+  background-image: linear-gradient(45deg, #7884f3, #af4261);
+  
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+.heart-fill{
+  fill: 1;
+  fill: white;
+  background-color: white;
+  background-image: linear-gradient(white, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
 /* ------------------------------------ */
 @media screen and (max-width: 850px) {
   .desktop-nav {
@@ -2029,7 +2087,12 @@ textarea {
     width:70%
   }
 
-  .error-page-container h3,   .error-page-container p{
+  .error-page-container h3{
+    width: 80%;
+    text-align: center;
+    font-size: var(--text-xl);
+  }
+  .error-page-container p{
 
     width: 80%;
     text-align: center;

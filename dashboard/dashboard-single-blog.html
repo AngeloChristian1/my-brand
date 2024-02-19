@@ -148,7 +148,7 @@
                       </div>
 
                       <div class="input-form">
-                        <button type="submit"  value="" class="button">Upload Blog </button>
+                        <button type="submit"  value="" class="button">Updated Blog </button>
                             </div>
                 </form>
                 
@@ -217,7 +217,7 @@ function displayImage(dataURL) {
 
 console.log('imageUrl',imageUrl,"end")
 const handleBlogSubmit = () => {
-  let params = {
+  let updatedBlog = {
     poster: imageUrl,
     title: blogTitle.value,
     subtitle: blogSubTitle.value,
@@ -234,11 +234,18 @@ const handleBlogSubmit = () => {
   }
 
   let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
-  allArticles.push(params);
+ 
+      // Replace the old blog post with updated one
+      allArticles[indexUrl] = updatedBlog;
 
-  localStorage.setItem('articles', JSON.stringify(allArticles)); // Store the updated array in local storage
+      // Save updated articles array to localStorage
+      localStorage.setItem('articles', JSON.stringify(allArticles));
 
-       console.log('user articles',allArticles);
+      // Redirect to view all blogs page
+      setTimeout(() => {
+        window.location.href = '../blog/blog-homepage.html';
+      }, 2000)
+
   blogPoster.value = "";
   blogSubTitle.value = "";
   blogTitle.value = "";
@@ -252,7 +259,7 @@ const handleBlogSubmit = () => {
     blogTimeError.innerHTML = '';
     blogCategoryError.innerHTML = '';
 
-    successElement.innerText = "Blog Posted Successfully";
+    successElement.innerText = "Blog Updated Successfully";
     errorContainer.style.display = "none"
     successContainer.style.display = "flex";
     
@@ -323,9 +330,8 @@ const handleBlogSubmit = () => {
             else{
                 blogContentError.style.display = 'none';
                 blogContent.style.border = '1px solid green';
-
-                handleBlogSubmit();
-                // sendMail();
+              // handleBlogUpdate()
+              handleBlogSubmit()
             }
               
 
@@ -356,6 +362,34 @@ const handleBlogSubmit = () => {
      blogContent.value = singleArticle.content
      blogTime.value = singleArticle.time
 
+     const handleBlogUpdate =()=>{
+
+      // Get updated field values
+      const updatedTitle = blogTitle.value;
+      const updatedSubtitle = blogSubtitle.value;
+      const updatedCategory = blogCategory.value;
+      const updatedContent = blogContent.value;
+      const updatedTime = blogTime.value;
+      const updatedPoster = blogPoster.value;
+      // etc for other fields
+
+      // Create updated blog post object
+      const updatedBlogPost = {
+        title: updatedTitle, 
+        subtitle: updatedSubtitle,
+        // etc with other updated fields
+      };
+
+      // Replace the old blog post with updated one
+      allArticles[indexUrl] = updatedBlogPost;
+
+      // Save updated articles array to localStorage
+      localStorage.setItem('articles', JSON.stringify(allArticles));
+
+      // Redirect to view all blogs page
+      window.location.href = '/blogs.html';
+
+      };
     </script>
 
     <script>

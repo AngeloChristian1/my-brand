@@ -9,3 +9,7 @@ const timeDelay = (container, element)=>{
       element.innerText = "";
     }, 3000)
   }
+
+  if(!urlMatch) {
+    window.location.replace("../errorPage.html");
+  }

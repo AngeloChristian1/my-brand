@@ -71,3 +71,7 @@ let allBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
 console.log("All blogs",allBlogs)
 
 let blogRow = document.getElementById('blog-row');
+
+if(!urlMatch) {
+    window.location.replace("../errorPage.html");
+  }

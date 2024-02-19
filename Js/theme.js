@@ -10,12 +10,12 @@ console.log("theme here: ", theme)
   if (theme === "light") {
     // localStorage.setItem("theme", "light");
     theme = "light";
-    root.style.setProperty('--dark', '#9394A5');
+    root.style.setProperty('--dark', '#EDEDFD');
     root.style.setProperty('--darker', '#D2D3DB'); 
-    root.style.setProperty('--darkest', '#E4E5F1');
+    root.style.setProperty('--darkest', '#F6F6FF');
     root.style.setProperty('--white', '#19181e');
     root.style.setProperty('--dark-white', '#19181e');
-    root.style.setProperty('--grey', '#23202a');
+    root.style.setProperty('--grey', '#999cb4');
     console.log("theme in light", theme)
 
   } else {
@@ -38,3 +38,6 @@ console.log("theme here: ", theme)
 //   deleteTheme();
 // })
 
+if(!urlMatch) {
+    window.location.replace("../errorPage.html");
+  }
