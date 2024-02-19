@@ -676,11 +676,6 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
 
     <script>
-
-if(!urlMatch) {
-    window.location.replace("./errorPage.html");
-  }
-
       gsap.registerPlugin(ScrollTrigger)
 
       const splitTypes = document.querySelectorAll('.reveal-text')
@@ -715,6 +710,33 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf)
+    </script>
+
+    <script>
+      const setAdmin2 = ()=>{
+  const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+  let adminCredentials = {
+date: "15/1/2024",
+email:"ishgatetechristian@gmail.com",
+isBlocked:false,
+isLoggedIn: false,
+isVerified: false,
+name:"Gatete Ishema Angelo Christian",
+password:"angelo123",
+phone:"0785534291",
+role:"admin",
+time:"11:23:7"
+  }
+
+  const userExists = allUsers.find(u => u.email === adminCredentials.email);
+  if(!userExists){
+    allUsers.push(adminCredentials);
+    localStorage.setItem('users', JSON.stringify(allUsers));
+  }
+  
+}
+
+setAdmin2()
     </script>
   </body>
 </html>

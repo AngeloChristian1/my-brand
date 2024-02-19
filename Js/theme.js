@@ -38,6 +38,3 @@ console.log("theme here: ", theme)
 //   deleteTheme();
 // })
 
-if(!urlMatch) {
-    window.location.replace("../errorPage.html");
-  }

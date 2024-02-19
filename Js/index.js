@@ -391,35 +391,8 @@ signupForm.addEventListener("submit", (e) => {
 
 })
 
-const setAdmin = ()=>{
-  const allUsers = JSON.parse(localStorage.getItem("users")) || [];
-  const adminCredentials = {
-date: "15/1/2024",
-email:"ishgatetechristian@gmail.com",
-isBlocked:false,
-isLoggedIn: false,
-isVerified: false,
-name:"Gatete Ishema Angelo Christian",
-password:"angelo123",
-phone:"0785534291",
-role:"admin",
-time:"11:23:7"
-  }
 
-  const userExists = allUsers.find(u => u.email === adminCredentials.email);
-  if(!userExists){
-    allUsers.push(adminCredentials);
-    localStorage.setItem('users', JSON.stringify(allUsers));
-  }
-}
 
-// const setBlogs = ()=>{
-//   const allArticles = JSON.parse(localStorage.getItem("articles")) || [];
-
+// if(!urlMatch) {
+//   window.location.replace("../errorPage.html");
 // }
-
-setAdmin()
-
-if(!urlMatch) {
-  window.location.replace("../errorPage.html");
-}
