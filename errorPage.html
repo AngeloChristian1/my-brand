@@ -31,29 +31,25 @@
             let themeIcon = document.querySelector('#theme-icon');
             let logoImage = document.querySelector('#logo-image');
             let theme = localStorage.getItem("theme");
-            // create default theme as light
             if (theme == null) {
               localStorage.setItem("theme", "dark");
+              theme = "dark";
             }
             const root = document.documentElement; 
-            console.log("theme before click", theme)
-
             themeButton.addEventListener("click", () => {
-
               if (theme === "dark") {
                 localStorage.setItem("theme", "light");
                 theme = "light";
-                root.style.setProperty('--dark', '#9394A5');
+                root.style.setProperty('--dark', '#EDEDFD');
                 root.style.setProperty('--darker', '#D2D3DB'); 
-                root.style.setProperty('--darkest', '#E4E5F1');
+                root.style.setProperty('--darkest', '#F6F6FF');
                 root.style.setProperty('--white', '#19181e');
                 root.style.setProperty('--dark-white', '#19181e');
-                root.style.setProperty('--grey', '#23202a');
-                themeIcon.innerHTML = 'dark_mode';
+                root.style.setProperty('--grey', '#999cb4');
                 console.log("theme in light", theme)
                 logoImage.src = "./assets/images/logo-color.svg"
 
-              } else if (theme === "light") {
+              } else(theme === "light") {
                 localStorage.setItem("theme", "dark");
                 theme = "dark";
                 root.style.setProperty('--dark', '#23202a');
@@ -62,28 +58,8 @@
                 root.style.setProperty('--white', '#ffffff');
                 root.style.setProperty('--grey', '#999cb4');
                 root.style.setProperty('--dark-white', '#e6e4e4');
-                themeIcon.innerHTML = 'light_mode';
-                // themeIcon.sytle.display = 'white';
-                logoImage.src = "./assets/images/logo.png"
-                console.log("theme in dark", theme)
-              
-              } else{
-                localStorage.setItem("theme", "dark");
-                console.log("theme else where", theme)
-              }
-
-            });
-
-
-          //   const deleteTheme = ()=>{
-              
-          //     localStorage.removeItem("theme");
-          // }
-          // themeButton.addEventListener("click",()=>{
-          //   deleteTheme();
-          // })
-
-          
+                themeIcon.innerHTML = 'light_mode';             
+              } });
           </script>
           <div class="links-container">
             

@@ -1,6 +1,4 @@
-let themeButton = document.querySelector('#theme-button');
-let themeIcon = document.querySelector('#theme-icon');
-let logoImage = document.querySelector('#logo-image');
+
 let theme = localStorage.getItem("theme");
 // create default theme as light
 
