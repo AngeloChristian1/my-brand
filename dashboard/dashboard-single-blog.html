@@ -95,7 +95,11 @@
             <div class="dashboard-blog-container dashboard-input-information">
                 <div class="dashboard-input-information-upper-section">
                     <p class="title white-text small-text"> Fill in Information</p>
-                    <a class="title text-yellow rounded-text category-tag small-text cursor-pointer">Preview</a>
+                    <div class="div">
+                      <button class="title text-red rounded-text category-tag small-text cursor-pointer" id="delete-button">Delete</button>
+                      <button class="title text-yellow rounded-text category-tag small-text cursor-pointer">Preview</button>
+
+                    </div>
 
                 </div>
                 <form action="" class="dashboard-input-information-form" id="dashboard-input-information-form">
@@ -105,12 +109,12 @@
                         <p class="small-text red-text error" id="blog-form-poster-error"></p>
                     </div>
                     <div class="dashboard-image-preview">
-                        <img src="" alt="blog-poster" id="image-preview">
+                        <img src="../assets/images/default-blog.jpg" alt="blog-poster" id="image-preview">
                     </div>
     
                       <div class="input-form">
                         <p class="hite-text title small-text">Title</p>
-                        <input  type="text" name="title" id="blog-form-title" placeholder="Enter The Title"/>
+                        <input  type="text" name="title"  id="blog-form-title" placeholder="Enter The Title"/>
                         <p class="small-text red-text error" id="blog-form-title-error"></p>
 
                       </div>
@@ -142,13 +146,13 @@
                       <div class="input-form">
                         <p class="hite-text title small-text">Content</p>
                         <label for="blog-form-content"></label>
-                        <textarea name="blog-form-content" id='blog-form-content' rows="3" ></textarea>
+                        <textarea name="blog-form-content" id='blog-form-content' rows="12" ></textarea>
                         <p class="small-text red-text error" id="blog-form-content-error"></p>
 
                       </div>
 
                       <div class="input-form">
-                        <button type="submit"  value="" class="button">Upload Blog </button>
+                        <button type="submit"  value="" class="button">Updated Blog </button>
                             </div>
                 </form>
                 
@@ -174,9 +178,10 @@
         const blogContentError = document.getElementById("blog-form-content-error")
         const blogTimeError = document.getElementById("blog-form-time-to-read-error")
         const blogCategoryError = document.getElementById("blog-form-category-error")
+        const deleteButton = document.getElementById("delete-button")
         const errorContainer = document.getElementById("error-container");
         const errorElement = document.getElementById("error-text");
-        const successContainer = document.getElementById("success-container");
+        const successContainer = document.getElementById("success-container"); 
         const successElement = document.getElementById("success-text");
         const previewContainer = document.querySelector('.dashboard-image-preview')
         let imageUrl =null
@@ -215,9 +220,14 @@ function displayImage(dataURL) {
   imagePreview.src = dataURL;
 }
 
+// previewContainer.style.display ='none'
+// if(imageUrl){
+//   previewContainer.style.display ='block'
+// }
+
 console.log('imageUrl',imageUrl,"end")
 const handleBlogSubmit = () => {
-  let params = {
+  let updatedBlog = {
     poster: imageUrl,
     title: blogTitle.value,
     subtitle: blogSubTitle.value,
@@ -234,11 +244,18 @@ const handleBlogSubmit = () => {
   }
 
   let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
-  allArticles.push(params);
+ 
+      // Replace the old blog post with updated one
+      allArticles[indexUrl] = updatedBlog;
 
-  localStorage.setItem('articles', JSON.stringify(allArticles)); // Store the updated array in local storage
+      // Save updated articles array to localStorage
+      localStorage.setItem('articles', JSON.stringify(allArticles));
 
-       console.log('user articles',allArticles);
+      // Redirect to view all blogs page
+      setTimeout(() => {
+        window.location.href = '../blog/blog-homepage.html';
+      }, 2000)
+
   blogPoster.value = "";
   blogSubTitle.value = "";
   blogTitle.value = "";
@@ -252,7 +269,7 @@ const handleBlogSubmit = () => {
     blogTimeError.innerHTML = '';
     blogCategoryError.innerHTML = '';
 
-    successElement.innerText = "Blog Posted Successfully";
+    successElement.innerText = "Blog Updated Successfully";
     errorContainer.style.display = "none"
     successContainer.style.display = "flex";
     
@@ -274,7 +291,7 @@ const handleBlogSubmit = () => {
                 blogPoster.style.border = '1px solid red';
             }
           
-            else if(blogTitle.value ==="" || blogTitle.value === null){
+           else if(blogTitle.value ==="" || blogTitle.value === null){
                 blogPosterError.style.display = 'none';
                 blogPoster.style.border = '1px solid green';
                 errors.push('Title is required')
@@ -323,9 +340,8 @@ const handleBlogSubmit = () => {
             else{
                 blogContentError.style.display = 'none';
                 blogContent.style.border = '1px solid green';
-
-                handleBlogSubmit();
-                // sendMail();
+              // handleBlogUpdate()
+              handleBlogSubmit()
             }
               
 
@@ -335,7 +351,76 @@ const handleBlogSubmit = () => {
     errorContainer.style.display = "flex"
   }})
 
-        
+    </script>
+    <script> 
+    let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
+    console.log("All Articles",allArticles)
+    let currentUrl = window.location.href
+    let indexUrl = parseInt(currentUrl.split('index=')[1])
+    console.log("Index URL",indexUrl)
+
+    let singleArticle = allArticles[indexUrl]
+    //  blogPoster.value = singleArticle.poster;
+     displayImage(singleArticle.poster)
+     const imagePreview = document.getElementById("image-preview");
+  imagePreview.style.display="block"
+  imagePreview.src = singleArticle.poster;
+     blogTitle.value = singleArticle.title
+     blogSubTitle.value = singleArticle.subtitle
+     blogCategory.value = singleArticle.category
+     blogContent.value = singleArticle.content
+     blogTime.value = singleArticle.time
+
+     const handleBlogUpdate =()=>{
+
+      // Get updated field values
+      const updatedTitle = blogTitle.value;
+      const updatedSubtitle = blogSubtitle.value;
+      const updatedCategory = blogCategory.value;
+      const updatedContent = blogContent.value;
+      const updatedTime = blogTime.value;
+      const updatedPoster = blogPoster.value;
+      // etc for other fields
+
+      // Create updated blog post object
+      const updatedBlogPost = {
+        title: updatedTitle, 
+        subtitle: updatedSubtitle,
+        // etc with other updated fields
+      };
+
+      // Replace the old blog post with updated one
+      allArticles[indexUrl] = updatedBlogPost;
+
+      // Save updated articles array to localStorage
+      localStorage.setItem('articles', JSON.stringify(allArticles));
+
+      // Redirect to view all blogs page
+      window.location.href = '/blogs.html';
+
+      };
+
+              // function delete blog
+              deleteButton.addEventListener('click',()=>{
+          handleDeleteBlog()
+        } )
+        const handleDeleteBlog = ()=>{
+          // alert(indexUrl)
+          allArticles.splice(indexUrl, 1);
+          console.log("all articles deleted", allArticles)
+          localStorage.setItem('articles', JSON.stringify(allArticles));
+
+          successElement.innerText = "Blog Deleted Successfully";
+          errorContainer.style.display = "none"
+          successContainer.style.display = "flex";
+    
+          setTimeout(() => {
+          successContainer.style.display = "none";
+          successElement.innerText = "";
+          window.location.href = './dashboard-articles.html';
+          }, 2000);
+          
+        }
     </script>
 
     <script>

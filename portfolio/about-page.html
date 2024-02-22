@@ -106,11 +106,10 @@
       <div class="main-section" id="main-section about-page">
         
         <div class="main-section-content about-page-content">
-          <div class="rounded-text white-text"><p>Hello</p></div>
           <div class="main-section-content-container">
 
             <div class="hero-section main-left">
-             <h3 class="big-text my-intro">Hi, I’m Angelo and I’m a designer & developer</h3>
+             <h3 class="big-text my-intro">I’m Angelo a <span class="gradient-text">designer</span> & <span class="gradient-text">developer</span></h3>
               <p class="normal-text grey-text">A software developer with experience full stack development. With extensive ability in creating amazing UI and well tailored backend</p>
               <p class="normal-text grey-text">A software developer with experience full stack development. With extensive ability in creating amazing UI and well tailored backend</p>
       
@@ -581,12 +580,12 @@
       if (theme === "dark") {
         localStorage.setItem("theme", "light");
         theme = "light";
-        root.style.setProperty('--dark', '#9394A5');
+        root.style.setProperty('--dark', '#EDEDFD');
         root.style.setProperty('--darker', '#D2D3DB'); 
-        root.style.setProperty('--darkest', '#E4E5F1');
+        root.style.setProperty('--darkest', '#F6F6FF');
         root.style.setProperty('--white', '#19181e');
         root.style.setProperty('--dark-white', '#19181e');
-        root.style.setProperty('--grey', '#23202a');
+        root.style.setProperty('--grey', '#999cb4');
         themeIcon.innerHTML = 'dark_mode';
         console.log("theme in light", theme)
 

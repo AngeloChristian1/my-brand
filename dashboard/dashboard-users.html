@@ -12,7 +12,18 @@
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
-    <div class="dashboard-container " >
+    <div class="dashboard-container">
+        
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+          
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
+
     <aside class="dashboard-sidebar">
         <a href="../index.html" class="dashboard-image-logo">
             <img src="../assets/images/logo.png" alt="logo"/>
@@ -44,11 +55,12 @@
                 <p>Testimonials</p>
             </a>
         </div>
-        <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
-            <p>Logout</p>
-            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
-
-        </div>
+        <button
+          class="rounded-text grey-text category-tag dashboard-link dashboard-logout"
+          id="logout-button">
+          <p>Logout</p>
+          <img src="../assets//images//dashboard-icons/logout.svg" alt="" />
+        </button>
     </aside>
 
     <div class="dashboard-content-container">
@@ -145,7 +157,7 @@
                     <p class="title white-text small-text"> Recent Subscription</p>
                                         
                 </div>
-                <div class="dashboard-blog-container-map">
+                <div class="dashboard-blog-container-map" id="dashboard-user-container-map">
                     <div class="dashboard-blog-container-card dashboard-user-container-card">
                         <img src="../assets//images/no-profile.webp" alt="image" class="blog-card-image user-card-image">
                         <div class="blog-card-details users-card-details">
@@ -190,5 +202,65 @@
     </div>
     </div>
     </div>
+    <script>
+        let allUsers = JSON.parse(localStorage.getItem('users'))
+        let usersContainer = document.getElementById('dashboard-user-container-map')
+        console.log("allUsers", allUsers)
+
+        usersContainer.innerHTML = ""
+            allUsers.forEach(user => {
+            let userCard = document.createElement("div");
+            // Create div  for each property in the user object
+            userCard.classList.add("dashboard-blog-container-card","dashboard-user-container-card")
+
+            // image
+            const image = document.createElement("img")
+            image.src = "../assets//images/no-profile.webp"
+            image.alt = "image"
+            image.classList.add("blog-card-image","user-card-image") 
+            
+            // blog-card-details users-card-details
+            const details = document.createElement('div')
+            details.classList.add('blog-card-details','users-card-details')
+
+            details.innerHTML = `
+            <div class="blog-card-details users-card-details">
+                            <p class="title small-text">${user.name}</p>
+                            <p class=" smaller-text">${user.email}</p>
+                            <p class=" smaller-text">${user.phone}</p>
+ 
+                        </div>
+            `
+
+            userCard.appendChild(image)
+            userCard.appendChild(details);
+
+            usersContainer.appendChild(userCard)
+            });
+        
+    </script>
+
+    <!-- protect dashboard from unauthorised access -->
+    <script>
+        const logoutButton = document.getElementById("logout-button");
+        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+        console.log("loggedUser", loggedUser);
+  
+        if (!loggedUser || loggedUser.role != "admin") {
+          window.location.href = "../errorPage.html";
+        } else {
+          
+        }
+  
+        logoutButton.addEventListener("click", () => {
+          localStorage.removeItem("loggedUser")
+          successContainer.style.display = "flex",
+          successElement.innerHTML = "Logged out successfully"
+          timeDelay(successContainer, successElement)
+          window.location.href = "../index.html";
+        });
+      </script>
+          <script src="../Js/theme.js"></script>
+
   </body>
 </html>

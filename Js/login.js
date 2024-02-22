@@ -11,7 +11,7 @@ const successElement = document.getElementById("success-text");
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phonePattern = /^[0-9]{10}$/;
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-
+const showButton = document.getElementById("visibility")
 
 const timeDelay = (container, element)=>{
     setTimeout(()=>{
@@ -19,7 +19,17 @@ const timeDelay = (container, element)=>{
       element.innerText = "";
     }, 3000)
   }
-
+showButton.addEventListener('click',()=>{
+  if (showButton.innerHTML=== "visibility"){
+    showButton.innerHTML="visibility_off"
+    loginFormPassword.type ="password"
+  }
+  else{
+    showButton.innerHTML="visibility"
+    loginFormPassword.type ="text"
+  }
+  
+})
 const handleLogin = ()=>{
     const email = loginFormEmail.value;
     const password = loginFormPassword.value;
@@ -42,6 +52,13 @@ const handleLogin = ()=>{
         timeDelay(errorContainer, errorElement)
  
       }else{
+        //change user isloggedin from local storage to true
+        userExists.isLoggedIn = true;
+        console.log("userExist", userExists)
+        localStorage.setItem('users',JSON.stringify(allUsers));
+        localStorage.setItem('loggedUser',JSON.stringify(userExists));
+        
+        successElement.innerText="Successfully logged in!"
 
         successElement.innerText = "Login, successfull"
         successContainer.style.display = "flex"
@@ -53,7 +70,6 @@ const handleLogin = ()=>{
         else{
           window.location.href = "../blog/blog-homepage.html";  
         }
-
         
       }
     }

@@ -53,29 +53,42 @@
             let logoImage = document.querySelector('#logo-image');
             let theme = localStorage.getItem("theme");
             // create default theme as light
-            if (theme == null) {
+            if (!theme) {
               localStorage.setItem("theme", "dark");
             }
             const root = document.documentElement; 
             console.log("theme before click", theme)
 
             themeButton.addEventListener("click", () => {
-
               if (theme === "dark") {
                 localStorage.setItem("theme", "light");
                 theme = "light";
-                root.style.setProperty('--dark', '#9394A5');
+                setTheme()
+                // window.location.reload()
+              } else{
+                localStorage.setItem("theme", "dark");
+                theme = "dark";
+                setTheme()
+                // window.location.reload()
+              }
+            });
+
+            const setTheme = ()=>{
+              if (theme === "dark") {
+                // localStorage.setItem("theme", "light");
+                theme = "light";
+                root.style.setProperty('--dark', '#EDEDFD');
                 root.style.setProperty('--darker', '#D2D3DB'); 
-                root.style.setProperty('--darkest', '#E4E5F1');
+                root.style.setProperty('--darkest', '#F6F6FF');
                 root.style.setProperty('--white', '#19181e');
                 root.style.setProperty('--dark-white', '#19181e');
-                root.style.setProperty('--grey', '#23202a');
+                root.style.setProperty('--grey', '#999cb4');
                 themeIcon.innerHTML = 'dark_mode';
                 console.log("theme in light", theme)
-                logoImage.src = "./assets/images/logo-color.svg"
+                // logoImage.src = "./assets/images/logo-color.svg"
 
-              } else if (theme === "light") {
-                localStorage.setItem("theme", "dark");
+              } else  {
+                // localStorage.setItem("theme", "dark");
                 theme = "dark";
                 root.style.setProperty('--dark', '#23202a');
                 root.style.setProperty('--darker', '#1e1b24');
@@ -85,27 +98,12 @@
                 root.style.setProperty('--dark-white', '#e6e4e4');
                 themeIcon.innerHTML = 'light_mode';
                 // themeIcon.sytle.display = 'white';
-                logoImage.src = "./assets/images/logo.png"
+                // logoImage.src = "./assets/images/logo.png"
                 console.log("theme in dark", theme)
               
-              } else{
-                localStorage.setItem("theme", "dark");
-                console.log("theme else where", theme)
-              }
+              } 
+            }
 
-            });
-
-
-          //   const deleteTheme = ()=>{
-              
-          //     localStorage.removeItem("theme");
-          //     alert('theme deleted')
-          // }
-          // themeButton.addEventListener("click",()=>{
-          //   deleteTheme();
-          // })
-
-          
           </script>
           <div class="links-container">
             
@@ -199,15 +197,15 @@
       <!-- Main section -->
 
       <div class="main-section" id="main-section">
-        <div class="main-section-content">
+        <div class="main-section-content back-gradient">
           <div class="rounded-text "><p class="reveal-text">Hello</p></div>
-          <div class="main-section-content-container">
+          <div class="main-section-content-container ">
             <div class="star-desorator">
               <img src="./assets/images/star.svg" alt="" />
             </div>
             <div class="hero-section main-left">
               <p class="white-text">I'm</p>
-              <h3 class="big-text">Angelo Christian</h3>
+              <h3 class="big-text gradient-text">Angelo Christian</h3>
               <p class="normal-text grey-text reveal-text">
                 A software developer with experience full stack development.
                 With extensive ability in creating amazing UI and well tailored
@@ -259,7 +257,7 @@
             <a href="" class="button button-white">Read More</a>
           </div>
           <div class="about-section-content-section about-right about-right">
-            <div class="about-section-image-container">
+            <div class="about-section-image-container slide-in">
               <img src="./assets/images/my-avatar.svg" alt="hero image" />
             </div>
           </div>
@@ -273,7 +271,7 @@
         <div><h3 class="big-text">Explore My skills spectrum</h3></div>
 
         <div class="skills-section-content">
-          <div class="skills-section-card">
+          <div class="skills-section-card slide-in">
             <div class="skills-section-card-left">
               <img src="./assets/images/ui-ux.svg" alt="image" />
             </div>
@@ -295,7 +293,7 @@
               </div>
             </div>
           </div>
-          <div class="skills-section-card">
+          <div class="skills-section-card slide-in">
             <div class="skills-section-card-left">
               <img src="./assets/images/web-dev.svg" alt="image" />
             </div>
@@ -329,7 +327,7 @@
             </div>
           </div>
 
-          <div class="skills-section-card">
+          <div class="skills-section-card slide-in">
             <div class="skills-section-card-left">
               <img src="./assets/images/mobile.svg" alt="image" />
             </div>
@@ -360,7 +358,7 @@
               </div>
             </div>
           </div>
-          <div class="skills-section-card">
+          <div class="skills-section-card slide-in">
             <div class="skills-section-card-left">
               <img src="./assets/images/server.svg" alt="image" />
             </div>
@@ -398,7 +396,7 @@
 
         <div class="projects-section-content">
           <div class="projects-section-projects-container">
-            <div class="projects-section-card">
+            <div class="projects-section-card ">
               <div class="projects-section-card-image">
                 <img src="./assets/images/deepmind.webp" alt="" />
               </div>
@@ -420,7 +418,7 @@
                 <button class="button button-white">View More</button>
               </div>
             </div>
-            <div class="projects-section-card">
+            <div class="projects-section-card ">
               <div class="projects-section-card-image">
                 <img src="./assets/images/deepmind.webp" alt="" />
               </div>
@@ -442,7 +440,7 @@
                 <button class="button button-white">View More</button>
               </div>
             </div>
-            <div class="projects-section-card">
+            <div class="projects-section-card ">
               <div class="projects-section-card-image">
                 <img src="./assets/images/deepmind.webp" alt="" />
               </div>
@@ -512,7 +510,7 @@
           <div
             class="testimonial-section-content-section testimonial-section-content-right"
           >
-            <div class="testimonial-section-card">
+            <div class="testimonial-section-card slide-in">
               <img
                 src="./assets/images/quotations.svg"
                 alt=""
@@ -532,7 +530,7 @@
                 </div>
               </div>
             </div>
-            <div class="testimonial-section-card">
+            <div class="testimonial-section-card slide-in">
               <img
                 src="./assets/images/quotations.svg"
                 alt=""
@@ -556,7 +554,7 @@
         </div>
       </div>
       <!-- subsribe -->
-      <div class="subscribe-section">
+      <div class="subscribe-section slide-in">
         <h3 class="big-text">Subscribe to my blog!</h3>
         <div class="subscribe-email-input">
           <input type="email" name="email" placeholder="Enter Your email" />
@@ -677,7 +675,6 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
 
     <script>
-
       gsap.registerPlugin(ScrollTrigger)
 
       const splitTypes = document.querySelectorAll('.reveal-text')
@@ -712,6 +709,33 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf)
+    </script>
+
+    <script>
+      const setAdmin2 = ()=>{
+  const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+  let adminCredentials = {
+date: "15/1/2024",
+email:"ishgatetechristian@gmail.com",
+isBlocked:false,
+isLoggedIn: false,
+isVerified: false,
+name:"Gatete Ishema Angelo Christian",
+password:"angelo123",
+phone:"0785534291",
+role:"admin",
+time:"11:23:7"
+  }
+
+  const userExists = allUsers.find(u => u.email === adminCredentials.email);
+  if(!userExists){
+    allUsers.push(adminCredentials);
+    localStorage.setItem('users', JSON.stringify(allUsers));
+  }
+  
+}
+
+setAdmin2()
     </script>
   </body>
 </html>

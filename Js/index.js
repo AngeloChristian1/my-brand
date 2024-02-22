@@ -28,9 +28,7 @@
 
 
 // blogContentForm.addEventListener('submit', (e)=>{
-//   window.alert('Please enter')
 //   e.event.preventDefault();
-//   window.alert(blogContentForm.title)
   
 // })
 
@@ -123,7 +121,7 @@ const handleFormSubmit = () => {
     date: `${today}/${month}/${year}`,
     time: `${hours}:${minutes}:${seconds}`,
     message: document.getElementById("contact-form-message").value,
-    
+    // indexId : JSON.parse(localStorage.getItem('messages')).length + 1 || 0
   }
 
   let allMessages = JSON.parse(localStorage.getItem('messages')) || [];
@@ -132,10 +130,8 @@ const handleFormSubmit = () => {
   localStorage.setItem('messages', JSON.stringify(allMessages)); // Store the updated array in local storage
 
   console.log('User Messages:', allMessages);
-  alert("Form submitted");
 
-       console.log('user Messages',allMessages);
-  alert("Form submited");
+    console.log('user Messages',allMessages);
     document.getElementById("contact-form-name").value = "";
     document.getElementById("contact-form-email").value = "";
     document.getElementById("contact-form-phone").value = "";
@@ -171,15 +167,19 @@ const signupFormNameError = document.getElementById("signup-form-name-error");
 const signupFormEmailError = document.getElementById("signup-form-email-error");
 const signupFormPhoneError = document.getElementById("signup-form-phone-error");
 const signupFormPasswordError = document.getElementById("signup-form-password-error");
+const showButton = document.getElementById("visibility")
 
-// login form
-const loginForm = document.getElementById("login-form");
-const loginFormEmail = document.getElementById("login-form-email");
-const loginFormPassword = document.getElementById("login-form-password");
-const loginFormSubmit = document.getElementById("login-form-submit");
-const loginFormEmailError = document.getElementById("login-form-email-error");
-const loginFormPasswordError = document.getElementById("login-form-password-error");
-
+showButton.addEventListener('click',()=>{
+  if (showButton.innerHTML=== "visibility"){
+    showButton.innerHTML="visibility_off"
+    signupFormPassword.type ="password"
+  }
+  else{
+    showButton.innerHTML="visibility"
+    signupFormPassword.type ="text"
+  }
+  
+})
 
 const timeDelay = (container, element)=>{
   setTimeout(()=>{
@@ -390,3 +390,9 @@ signupForm.addEventListener("submit", (e) => {
   }
 
 })
+
+
+
+// if(!urlMatch) {
+//   window.location.replace("../errorPage.html");
+// }

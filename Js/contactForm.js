@@ -20,7 +20,6 @@ function sendMail(){
         document.getElementById("contact-form-phone").value = "";
         document.getElementById("contact-form-message").value = "";
         console.log(res);
-        alert('Message sent')
       }
     ).catch((err)=> console.log(err))
   }
@@ -50,10 +49,8 @@ function sendMail(){
     localStorage.setItem('messages', JSON.stringify(allMessages)); // Store the updated array in local storage
   
     console.log('User Messages:', allMessages);
-    alert("Form submitted");
   
          console.log('user Messages',allMessages);
-    alert("Form submited");
       document.getElementById("contact-form-name").value = "";
       document.getElementById("contact-form-email").value = "";
       document.getElementById("contact-form-phone").value = "";
@@ -195,4 +192,4 @@ function sendMail(){
     }
     // sendMail();
   })
-  
+ 

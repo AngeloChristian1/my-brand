@@ -13,6 +13,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
     <div class="dashboard-container " >
+        
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+          
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
+
     <aside class="dashboard-sidebar">
         <div class="dashboard-image-logo">
             <img src="../assets/images/logo.png" alt="logo"/>
@@ -44,11 +55,12 @@
                 <p>Testimonials</p>
             </a>
         </div>
-        <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
-            <p>Logout</p>
-            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
-
-        </div>
+        <button
+          class="rounded-text grey-text category-tag dashboard-link dashboard-logout"
+          id="logout-button">
+          <p>Logout</p>
+          <img src="../assets//images//dashboard-icons/logout.svg" alt="" />
+        </button>
     </aside>
 
     <div class="dashboard-content-container">
@@ -89,7 +101,7 @@
                 <img src="../assets/images/dashboard-icons/articles.svg" alt="">
                 <div>
                     <p class="title white-text">Total Articles</p>
-                    <p class="title grey-text big-text">20</p>
+                    <p class="title grey-text big-text" id="total-articles">20</p>
                 </div>
             </div>
         </div>
@@ -109,7 +121,7 @@
 
                     <table class="dashboard-blog-table">
                         <thead>
-                            <tr class='bg-dark'>
+                            <tr class=''>
                                 <th class="small-text text-white">Poster</th>
                                 <th class="small-text text-white">Title</th>
                                 <th class="small-text text-white">Category</th>
@@ -221,59 +233,150 @@
     <!-- <script src="../Js/dashboard.js"></script> -->
     <script>
         let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
-        // let allArticlesArray = JSON.parse(allArticles);
         let messageRow = document.getElementById('dashboard-blog-row');
-
+        const totalArticles = document.getElementById('total-articles')
+        totalArticles.innerText = allArticles.length
         console.log("All articles",allArticles)
 
         const populateBlogTable = ()=>{
             let tableBody = document.getElementById('dashboard-blog-table-body');
             tableBody.innerHTML='';
 
-            for (let i=0;i<allArticles.length;i++){
-                let row = createElement('tr',{'class':'article-row'});
-                row.id = `dashboard-${i}`;
-                createTdForArticle(row, allArticles[i]);
-                tableBody.appendChild(row);
-            }
-        };
-        
-        const createTdForArticle=(parent, article)=>{
-            let td1 = createElement('td',{'class':'dashboard-blog-poster'});
-            let img = createElement('img', {'src':'./Images/defaultPoster.png', 'alt':'', 'class':'dashboard-blog-poster'});
-            td1.appendChild(img);
-            parent.appendChild(td1);
+            allArticles.map((article,index)=>{
+                let row = document.createElement('tr')
+                row.classList.add('dashboard-blog-row')
 
-            let a = createElement('a',{'href':`#dashboard-${article.id}`, 'class':'dashboard-blog-title'});
-            a.innerHTML = article.title; 
-            let td2 = createElement('td',null,a);
-            parent.appendChild(td2);
+                // poster
+                let posterTD = document.createElement('td');
+                let poster = document.createElement('img')
+                poster.src=article.poster 
+                poster.classList.add('dashboard-blog-poster')
 
-            let td3 = createElement('td',{'class':'dashboard-blog-category'},article.category);
-            parent.appendChild(td3);
+                posterTD.appendChild(poster)
 
-            let td4 = createElement('td',{'class':'dashboard-blog-views'},article.views);
-            parent.appendChild(td4);
+                // title
+                let titleTD = document.createElement('td');
+                let title = document.createElement('p')
+                title.innerText=article.title 
+                title.classList.add('small-text', 'blog-title')
 
-            let btnGroup = createElement('div', {'class':'btn-group float-right'});
-            let td5 = createElement('td',{'class':'dashboard-blog-likes'},btnGroup);
-            parent.appendChild(td5);
-            
-            let likeBtn = createLikeButton(article.isLiked);
-            likeBtn.addEventListener('click',function(){
-                likeBtn.classList.toggle('liked');
-                article.isLiked = !article.isLiked;
-            });
-            btnGroup.appendChild(likeBtn);
-            
-            allArticles.forEach((article,index)=>{
-                let tableRow = document.createElement('tr');
-                tableRow.className += "dashboard-blog-row";
-                tableRow.id= `dashboard-${index}`;
-                createTdForArticle(tableRow, article);
-                tableBody.appendChild(tableRow); 
-            });
+                titleTD.appendChild(title)
+
+                // category
+                let categoryTD = document.createElement('td');
+                let category = document.createElement('p')
+                category.innerText=article.category 
+                category.classList.add('small-text')
+
+                categoryTD.appendChild(category)
+
+                // likes
+                let viewTD = document.createElement('td');
+                let view = document.createElement('div')
+                let viewIcon = document.createElement('img')
+                let viewSize =document.createElement('p')
+                viewIcon.src="../assets/images/dashboard-icons/eye.svg"
+                viewSize.classList.add('smaller-text', 'light-text')
+                viewSize.innerText=article.views.length + '-views' || '12 views'
+                view.appendChild(viewIcon)
+                view.appendChild(viewSize)
+                view.classList.add('like')
+
+                viewTD.appendChild(view)
+
+                // likes
+                let likeTD = document.createElement('td');
+                let like = document.createElement('div')
+                let likeIcon = document.createElement('img')
+                let likeSize =document.createElement('p')
+                likeIcon.src="../assets/images/dashboard-icons/heart.svg"
+                likeSize.classList.add('smaller-text', 'light-text')
+                likeSize.innerText=article.likes.length + '-likes' || '12 likes'
+
+                like.appendChild(likeIcon)
+                like.appendChild(likeSize)
+                like.classList.add('like')
+
+                likeTD.appendChild(like)
+
+                // commentss
+                let commentsTD = document.createElement('td');
+                let comments = document.createElement('div')
+                let commentsIcon = document.createElement('img')
+                let commentsSize =document.createElement('p')
+                commentsIcon.src="../assets/images/dashboard-icons/comment.svg"
+                commentsSize.classList.add('smaller-text', 'light-text')
+                commentsSize.innerText=`${article.comments.length}-comments` || '12 views'
+
+                comments.appendChild(commentsIcon)
+                comments.appendChild(commentsSize)
+                comments.classList.add('like')
+
+                commentsTD.appendChild(comments)
+
+                
+                // date
+                let dateTD = document.createElement('td');
+                let date = document.createElement('p')
+                date.innerText=article.date 
+                date.classList.add('small-text')
+
+                dateTD.appendChild(date)
+
+                // View Button
+                let viewButtonTD =document.createElement('td')
+                let viewButton = document.createElement('button');
+                viewButton.textContent = 'View';
+                viewButton.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
+                // Add click event listener to "View" link
+                viewButton.addEventListener('click', () => window.location.href=`./dashboard-single-blog.html?index=${index}`);
+                viewButtonTD.appendChild(viewButton);
+               
+
+                // edit
+                
+        let editButtonTD = document.createElement('td');
+        editButtonTD.innerHTML = `<a  class="text-green"> <button class="small-text rounded-text text-green title category-tag">Edit</button></a>`;
+
+                // append all
+                row.appendChild(posterTD,titleTD,categoryTD)
+                row.appendChild(titleTD)
+                row.appendChild(categoryTD)
+                row.appendChild(viewTD)
+                row.appendChild(likeTD)
+                row.appendChild(commentsTD)
+                row.appendChild(dateTD)
+                row.appendChild(viewButtonTD)
+                row.appendChild(editButtonTD)
+               
+                tableBody.appendChild(row)
+
+            })
         }
+            populateBlogTable()
     </script>
+
+        <!-- protect dashboard from unauthorised access -->
+        <script>
+            const logoutButton = document.getElementById("logout-button");
+            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+            console.log("loggedUser", loggedUser);
+      
+            if (!loggedUser || loggedUser.role != "admin") {
+              window.location.href = "../errorPage.html";
+            } else {
+              
+            }
+      
+            logoutButton.addEventListener("click", () => {
+              localStorage.removeItem("loggedUser")
+              successContainer.style.display = "flex",
+              successElement.innerHTML = "Logged out successfully"
+              timeDelay(successContainer, successElement)
+              window.location.href = "../index.html";
+            });
+          </script>
+          <script src="../Js/theme.js"></script>
+
   </body>
 </html>

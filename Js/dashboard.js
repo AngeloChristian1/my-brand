@@ -18,7 +18,7 @@ function populateMessagesTable() {
     tableBody.innerHTML = '';
 
     // Iterate over each message and create table row
-    allMessages.forEach(message => {
+    allMessages.map((message, index )=> {
         let row = document.createElement('tr');
 
         // Create table cells for each property in the message object
@@ -35,8 +35,8 @@ function populateMessagesTable() {
         // row.appendChild(viewLinkCell);
 
         let viewLinkCell = document.createElement('td');
-        let viewLink = document.createElement('a');
-        viewLink.href = '#'; // Prevent default link behavior
+        let viewLink = document.createElement('button');
+        // viewLink.href = `./dashboard-single-message.html?index=1`; // Prevent default link behavior
         viewLink.textContent = 'View';
         viewLink.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
         // Add click event listener to "View" link
@@ -45,7 +45,7 @@ function populateMessagesTable() {
         row.appendChild(viewLinkCell);
 
         let replyCell = document.createElement('td');
-        replyCell.innerHTML = `<p class="small-text rounded-text text-yellow title category-tag">Reply</p>`;
+        replyCell.innerHTML = `<a href="mailto:${message.email} class="text-yellow"> <button class="small-text rounded-text text-yellow title category-tag">Reply</button></a>`;
         row.appendChild(replyCell);
 
         // Append row to the table body
@@ -61,8 +61,8 @@ populateMessagesTable();
 
 const deleteAllmessages = ()=>{
     
-    localStorage.removeItem("messages");
-    alert('All messages deleted')
+    // localStorage.removeItem("messages");
+    // alert('All messages deleted')
 }
 
 // Blogs Integration

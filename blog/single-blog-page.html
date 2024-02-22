@@ -6,15 +6,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,300,1,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="../css/blog.css" />
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
     <title>Blog</title>
-  </head>
+  </head> 
   <body>
     <div class="main-container" >
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
+      <div class=" success-container" id="success-container">
+        <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+        <p id="success-text" class="success-text"></p>
+      </div>
       <nav class="nav">
         <div class="desktop-nav">
+          <button class="button theme-button" id="theme-button"><span class="material-symbols-outlined dark-text" id="theme-icon">
+            light_mode
+            </span></button>
           <div class="links-container">
             <div class="links">
                 <ul>
@@ -32,10 +46,71 @@
                 </ul>
             </div>
           </div>
-          <a href="./LoginPage.html"  rel="noopener noreferrer" class="button blog-button ">
-            <div class="blog-button-content"><p> LOGIN</p> <span class="material-symbols-outlined">
-            chevron_right
-            </span></div></a>
+          <a  href="./LoginPage.html" rel="noopener noreferrer" class="button blog-button">
+            <div class="blog-button-content">
+              <p>LOGIN</p>
+              <span class="material-symbols-outlined"> chevron_right </span>
+            </div>
+          </a>
+
+        <!-- <a  href="" rel="noopener noreferrer" class=" user-logo-button">
+            <div class="blog-button-content user-button-content">
+              <img src="../assets/images/no-profile.webp" class="avatar"/>
+              <p class="title"> User Name</p>
+            </div>
+          </a>           -->
+        <div  rel="noopener noreferrer" class="user-name-profile" title="Gatete Angelo, Admin">
+            <div class="letter">
+              <h3 class="grey-text">G</h3>
+              <div class="info">
+                <p class="white-text">Gatete Angelo</p>
+                <p>Admin</p>
+                <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                  <p>Logout</p>
+                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+      
+              </div>
+              </div>
+            </div>
+          </div>  
+          <script>
+            const blogButton = document.querySelector('.blog-button')
+            const profileIcon = document.querySelector('.user-name-profile')
+
+            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+            console.log("loggedUser", loggedUser);
+
+            const handleLogout = ()=>{
+              localStorage.removeItem("loggedUser")
+              successContainer.style.display = "flex",
+              successElement.innerHTML = "Logged out successfully"
+              timeDelay(successContainer, successElement)
+              window.location.reload();
+            }
+            
+            if(loggedUser.isLoggedIn){
+              blogButton.style.display = "none"
+              profileIcon.style.display="flex"
+
+              profileIcon.innerHTML = `
+              <div class="letter">
+              <h3 class="grey-text">${loggedUser.name.split('')[[0]]}</h3>
+              <div class="info">
+                <p class="white-text">${loggedUser.name}</p>
+                <p>${loggedUser.role}</p>
+                <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+                  <p>Logout</p>
+                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+      
+              </button>
+              </div>
+            </div>
+              `
+            }else{
+              blogButton.style.display = "flex"
+              profileIcon.style.display="none" 
+            }
+          </script>  
         </div>
         <div class="mobile-nav">
           <div class="menu-bar">
@@ -66,7 +141,7 @@
       <!-- homepage -->
 
       <div class="skills-section single-blog-page" id="blog-home">
-        <div class="rounded-text white-text category-tag"><p>Artificial Intelligent</p></div>
+        <!-- <div class="rounded-text white-text category-tag"><p>Artificial Intelligent</p></div>
 <div><h3 class="big-text">ChatGPT : A Developer's Best Friend or Worst Enemy?</h3></div>
 <div><p class="grey-text text-center join-text">Explore the pros and cons of ChatGPT as a tool for developers, and whether its AI-powered capabilities are a boon or a bane in the world of programming and software development..</p></div>
 <div class="blog-dates">
@@ -82,13 +157,10 @@
             </span>
             <p>20 Minute Read</p>
     </div>
-</div>
+</div> -->
       </div>
-
-      <div class="blog-page-section">
-
-
-<div class="single-blog-content">
+<div class="blog-page-section" id="blog-page-section">
+<div class="single-blog-content" id="single-blog-content">
     <img src="../assets/images/deepmind.webp" alt="" class="blog-image">
 
     <div class="blog-content">
@@ -97,6 +169,14 @@
         <p class="white-text">Artificial intelligence (AI) and machine learning have transformed numerous industries, and the field of software development is no exception. Among the most notable developments in this domain is OpenAI's ChatGPT, a state-of-the-art language model based on the GPT-4 architecture. ChatGPT has the potential to revolutionize the way developers interact with their code, but it also raises some valid concerns. In this article, we will explore the pros and cons of ChatGPT to determine if it is a developer's best friend or worst enemy.</p>
         <p class="white-text">Artificial intelligence (AI) and machine learning have transformed numerous industries, and the field of software development is no exception. Among the most notable developments in this domain is OpenAI's ChatGPT, a state-of-the-art language model based on the GPT-4 architecture. ChatGPT has the potential to revolutionize the way developers interact with their code, but it also raises some valid concerns. In this article, we will explore the pros and cons of ChatGPT to determine if it is a developer's best friend or worst enemy.</p>
     </div>
+
+    <div class="blog-home-card-info blog-likes-section">
+      <!-- <img src="../assets/images/favorite-outline.svg"/> -->
+      <img src="../assets/images/favorite.svg"/>
+      <p class="rounded-text category-tag white-text title">23 people likes this post</p>
+
+    </div>
+
     <div class="blog-home-card-info">
         <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
         <p class="grey-text">Angelo Christian</p>
@@ -104,14 +184,15 @@
         <p class="grey-text">22 January 2024</p>
         
       </div>
+
       <div class="blog-comment-section">
         <p class="white-text title">Comments</p>
-        <div class="input-for comment-form">
-          <input type="text" name="comment" id="comment" placeholder="Comment here"/>
+        <form class="input-for comment-form" id="comment-form">
+          <input type="text" name="comment" id="blog-comment" placeholder="Comment here"/>
        <p class="rounded-text category-tag white-text title">Add comment</p>
-        </div>
+        </form>
 
-        <div class="comment-container">
+        <div class="comment-container" id="comment-container">
           <div class="single-comment-card">
             <div class="upper-text">
               <p class="white-text title small-text">Mucyo Fred</p>
@@ -121,7 +202,7 @@
           </div>
           <div class="single-comment-card">
             <div class="upper-text">
-              <p class="white-text title small-text">Mucyo Fred</p>
+              <p class="white-text title small-text">Kamali Fred</p>
               <p class="grey-text small-text"> - 24 February 2024</p>
             </div>
             <p class="small-text grey-text comment-text">The field of machine learning is no joke.</p>
@@ -194,5 +275,269 @@
         <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
       </div>
     </div>
+    <script>
+      const blogHeader = document.getElementById("blog-home")
+      const blogContent = document.getElementById('single-blog-content')
+      let currentUrl = window.location.href
+      let allBlogs = JSON.parse(localStorage.getItem("articles"))
+      let indexUrl = parseInt(currentUrl.split('index=')[1])
+
+      const todayDate = new Date();
+        const today = todayDate.getDate()
+        const month = todayDate.getMonth();
+        const year = todayDate.getFullYear();
+        const hours = todayDate.getHours();
+        const minutes = todayDate.getMinutes();
+        const seconds = todayDate.getSeconds();
+      console.log('allBlogs', allBlogs)
+
+      let blog = allBlogs[indexUrl]
+      console.log('index url', indexUrl)
+      console.log('single blog', blog)
+
+      let storageComments = blog.comments
+    
+      let storageLikes = blog.likes
+      console.log("storageLikes", storageLikes)
+
+      blogHeader.innerHTML = `
+      <div class="rounded-text white-text category-tag"><p>${blog.category}</p></div>
+<div><h3 class="big-text">${blog.title}</h3></div>
+<div><p class="grey-text text-center join-text">${blog.subtitle}</p></div>
+<div class="blog-dates">
+    <div class="date blog-dates-details">
+        <span class="material-symbols-outlined">
+            calendar_today
+            </span>
+            <p>${blog.date}</p>
+    </div>
+    <div class="date blog-dates-details">
+        <span class="material-symbols-outlined">
+            timer
+            </span>
+            <p>20 Minute Read</p>
+    </div>
+</div>
+      `
+
+      blogContent.innerHTML = `
+  <div class="single-blog-content" id="single-blog-content">
+    <img src="${blog.poster}" alt="" class="blog-image blog-image-poster">
+
+    <div class="blog-content">
+      <p class="white-text">${blog.content.split("\n").map((paragraph) => paragraph).join("<br>")}</p>
+      <!-- Use .join("<br>") to replace newlines with <br> tags -->
+    </div>
+
+    <div class="blog-home-card-info blog-likes-section">
+     
+    </div>
+
+         <div class="blog-home-card-info">
+      <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
+      <p class="grey-text">${blog.editor}</p>
+      <p class="grey-text">&#x2022;</p>
+      <p class="grey-text">${blog.date}</p>
+    </div>
+
+    <div class="blog-comment-section">
+      <p class="white-text title">Comments</p>
+      <form action="" class="input-for comment-form" id="comment-form">
+        <input type="text" name="comment" id="blog-comment" placeholder="Comment here"/>
+        <button type="submit" class="rounded-text category-tag white-text title" >Add comment</button>
+      </form>
+
+      <div class="comment-container" id="comment-container">
+        
+      </div>
+    </div>
+  </div>
+`;
+
+const likesContainer = document.querySelector('.blog-likes-section');
+likesContainer.innerHTML = `
+<!-- <img src="../assets/images/favorite-outline.svg"/> -->
+      <img src="../assets/images/favorite.svg" id='heart-icon' alt="liked"/>
+      <p class="rounded-text category-tag white-text title">${storageLikes.length} people liked this post</p>
+
+`;
+let heart = document.getElementById('heart-icon');
+initializeLikeButton();
+
+// Add event listener to the heart icon
+heart.addEventListener('click', handleLikeBlog);
+
+function initializeLikeButton() {
+  const userLiked = storageLikes.some((like) => like.likedBy === loggedUser.name);
+
+  if (userLiked) {
+    heart.src = "../assets/images/favorite.svg";
+    heart.alt = 'liked';
+  } else {
+    heart.src = "../assets/images/favorite-outline.svg";
+    heart.alt = 'not-liked';
+  }
+}
+
+function handleLikeBlog() {
+  const likeExists = storageLikes.find((like) => like.likedBy === loggedUser.name);
+
+  if (likeExists) {
+    // User unlikes the post
+    heart.src = "../assets/images/favorite-outline.svg";
+    heart.alt = 'not-liked';
+    // Remove from the list of storage likes
+    storageLikes = storageLikes.filter((like) => like.likedBy !== loggedUser.name);
+  
+  } else {
+    // User likes the post
+    storageLikes.push({
+      likedBy: loggedUser.name,
+      date: `${today}/${month}/${year}`,
+      time: `${hours}:${minutes}:${seconds}`,
+      status: true,
+    });
+    heart.src = "../assets/images/favorite.svg";
+    heart.alt = 'liked';
+    
+  }
+  allBlogs[indexUrl].likes = storageLikes
+  console.log("this blog index url", allBlogs[indexUrl])
+  // Update the like count (you can display it wherever needed)
+  const likeCount = storageLikes.length;
+  console.log(`Total likes: ${likeCount}`);
+
+  localStorage.setItem('articles', JSON.stringify(allBlogs))
+  successContainer.style.display = "flex",
+        successElement.innerHTML = "Liked updated"
+        timeDelay(successContainer, successElement)
+        setTimeout(()=>{
+           window.location.reload();
+        }, 2000)
+       
+    }
+
+const blogComment = document.getElementById('blog-comment')
+const commentForm = document.getElementById('comment-form')
+const commentContainer = document.getElementById('comment-container')
+
+      commentForm.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        if(blogComment.value === '' || blogComment.value== null){
+          errorContainer.style.display = "flex",
+          errorElement.innerHTML = "Please input comment"
+          timeDelay(errorContainer, errorElement)
+        } else{
+          handleAddComment()
+        }
+      })
+      const handleAddComment =()=>{
+        let params = {
+          postedBy:loggedUser.name,
+          date: `${today}/${month}/${year}`,
+          time: `${hours}:${minutes}:${seconds}`,
+          content:blogComment.value,
+        }
+
+        blog.comments.push(params)
+        console.log("this blog index url", allBlogs[indexUrl])
+
+        localStorage.setItem('articles', JSON.stringify(allBlogs))
+        successContainer.style.display = "flex",
+        successElement.innerHTML = "Comment Added successfully"
+        timeDelay(successContainer, successElement)
+        setTimeout(()=>{
+           window.location.reload();
+        }, 2000)
+       
+      }
+      if(storageComments.length == 0){
+        
+        commentContainer.innerHTML = `
+        <div class="upper-text">
+      <p class="white-text title small-text">No Comments Yet</p>
+      <p class="grey-text small-text"></p>
+   </div>
+   <p class="small-text grey-text comment-text">Be the first to comment</p>
+  `
+      }
+      storageComments.map((comment, index)=>{
+  const commentCard = document.createElement('div')
+  commentCard.classList.add('single-comment-card')
+  commentCard.innerHTML=`
+  <div class="upper-text">
+      <p class="white-text title small-text">${comment.postedBy}</p>
+      <p class="grey-text small-text"> &#x2022; ${comment.date}</p>
+   </div>
+   <p class="small-text grey-text comment-text">${comment.content}</p>
+  `
+
+  commentContainer.appendChild(commentCard)
+
+})
+
+    </script>
+    <!-- theme control -->
+     <script>
+      let themeButton = document.querySelector('#theme-button');
+      let themeIcon = document.querySelector('#theme-icon');
+      let logoImage = document.querySelector('#logo-image');
+      let theme = localStorage.getItem("theme");
+      // create default theme as light
+      if (theme == null) {
+        localStorage.setItem("theme", "dark");
+      }
+      const root = document.documentElement; 
+      console.log("theme before click", theme)
+
+      themeButton.addEventListener("click", () => {
+
+        if (theme === "dark") {
+          localStorage.setItem("theme", "light");
+          theme = "light";
+          root.style.setProperty('--dark', '#9394A5');
+          root.style.setProperty('--darker', '#D2D3DB'); 
+          root.style.setProperty('--darkest', '#E4E5F1');
+          root.style.setProperty('--white', '#19181e');
+          root.style.setProperty('--dark-white', '#19181e');
+          root.style.setProperty('--grey', '#23202a');
+          themeIcon.innerHTML = 'dark_mode';
+          console.log("theme in light", theme)
+          logoImage.src = "./assets/images/logo-color.svg"
+
+        } else if (theme === "light") {
+          localStorage.setItem("theme", "dark");
+          theme = "dark";
+          root.style.setProperty('--dark', '#23202a');
+          root.style.setProperty('--darker', '#1e1b24');
+          root.style.setProperty('--darkest', '#19181e');
+          root.style.setProperty('--white', '#ffffff');
+          root.style.setProperty('--grey', '#999cb4');
+          root.style.setProperty('--dark-white', '#e6e4e4');
+          themeIcon.innerHTML = 'light_mode';
+          // themeIcon.sytle.display = 'white';
+          logoImage.src = "./assets/images/logo.png"
+          console.log("theme in dark", theme)
+        
+        } else{
+          localStorage.setItem("theme", "dark");
+          console.log("theme else where", theme)
+        }
+
+      });
+
+
+    //   const deleteTheme = ()=>{
+        
+    //     localStorage.removeItem("theme");
+    // }
+    // themeButton.addEventListener("click",()=>{
+    //   deleteTheme();
+    // })
+
+    
+    </script>
+    <script src="../Js/alert.js"></script>
+
   </body>
 </html>
