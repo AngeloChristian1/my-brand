@@ -47,64 +47,62 @@
           <button class="button theme-button" id="theme-button"><span class="material-symbols-outlined dark-text" id="theme-icon">
             light_mode
             </span></button>
-          <script>
-            let themeButton = document.querySelector('#theme-button');
-            let themeIcon = document.querySelector('#theme-icon');
-            let logoImage = document.querySelector('#logo-image');
-            let theme = localStorage.getItem("theme");
-            // create default theme as light
-            if (!theme) {
-              localStorage.setItem("theme", "dark");
-            }
-            const root = document.documentElement; 
-            console.log("theme before click", theme)
-
-            themeButton.addEventListener("click", () => {
-              if (theme === "dark") {
-                localStorage.setItem("theme", "light");
-                theme = "light";
-                setTheme()
-                // window.location.reload()
-              } else{
+            <script>
+              let themeButton = document.querySelector('#theme-button');
+              let themeIcon = document.querySelector('#theme-icon');
+              let theme = localStorage.getItem("theme");
+              // create default theme as light
+              if (theme == null) {
                 localStorage.setItem("theme", "dark");
-                theme = "dark";
-                setTheme()
-                // window.location.reload()
               }
-            });
-
-            const setTheme = ()=>{
-              if (theme === "dark") {
-                // localStorage.setItem("theme", "light");
-                theme = "light";
-                root.style.setProperty('--dark', '#EDEDFD');
-                root.style.setProperty('--darker', '#D2D3DB'); 
-                root.style.setProperty('--darkest', '#F6F6FF');
-                root.style.setProperty('--white', '#19181e');
-                root.style.setProperty('--dark-white', '#19181e');
-                root.style.setProperty('--grey', '#999cb4');
-                themeIcon.innerHTML = 'dark_mode';
-                console.log("theme in light", theme)
-                // logoImage.src = "./assets/images/logo-color.svg"
-
-              } else  {
-                // localStorage.setItem("theme", "dark");
-                theme = "dark";
-                root.style.setProperty('--dark', '#23202a');
-                root.style.setProperty('--darker', '#1e1b24');
-                root.style.setProperty('--darkest', '#19181e');
-                root.style.setProperty('--white', '#ffffff');
-                root.style.setProperty('--grey', '#999cb4');
-                root.style.setProperty('--dark-white', '#e6e4e4');
-                themeIcon.innerHTML = 'light_mode';
-                // themeIcon.sytle.display = 'white';
-                // logoImage.src = "./assets/images/logo.png"
-                console.log("theme in dark", theme)
-              
-              } 
-            }
-
-          </script>
+              const root = document.documentElement; 
+              console.log("theme before click", theme)
+          
+              themeButton.addEventListener("click", () => {
+          
+                if (theme === "dark") {
+                  localStorage.setItem("theme", "light");
+                  theme = "light";
+                  root.style.setProperty('--dark', '#EDEDFD');
+                  root.style.setProperty('--darker', '#D2D3DB'); 
+                  root.style.setProperty('--darkest', '#F6F6FF');
+                  root.style.setProperty('--white', '#19181e');
+                  root.style.setProperty('--dark-white', '#19181e');
+                  root.style.setProperty('--grey', '#999cb4');
+                  themeIcon.innerHTML = 'dark_mode';
+                  console.log("theme in light", theme)
+          
+                } else if (theme === "light") {
+                  localStorage.setItem("theme", "dark");
+                  theme = "dark";
+                  root.style.setProperty('--dark', '#23202a');
+                  root.style.setProperty('--darker', '#1e1b24');
+                  root.style.setProperty('--darkest', '#19181e');
+                  root.style.setProperty('--white', '#ffffff');
+                  root.style.setProperty('--grey', '#999cb4');
+                  themeIcon.innerHTML = 'light_mode';
+                  // themeIcon.sytle.display = 'white';
+                  console.log("theme in dark", theme)
+                
+                } else{
+                  localStorage.setItem("theme", "dark");
+                  console.log("theme else where", theme)
+                }
+          
+              });
+          
+          
+            //   const deleteTheme = ()=>{
+                
+            //     localStorage.removeItem("theme");
+            //     alert('theme deleted')
+            // }
+            // themeButton.addEventListener("click",()=>{
+            //   deleteTheme();
+            // })
+          
+            
+            </script>
           <div class="links-container">
             
             <div class="links">
@@ -667,6 +665,7 @@
       </div>
     </div>
     <script src="./Js/index.js"></script>
+    <!-- <script src="./Ts/index.ts"></script> -->
     <script src="./Js/animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -674,7 +673,7 @@
     <script src="https://unpkg.com/split-type"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
 
-    <script>
+    <script type="module">
       gsap.registerPlugin(ScrollTrigger)
 
       const splitTypes = document.querySelectorAll('.reveal-text')
@@ -711,7 +710,7 @@ function raf(time) {
 requestAnimationFrame(raf)
     </script>
 
-    <script>
+    <script type="module">
       const setAdmin2 = ()=>{
   const allUsers = JSON.parse(localStorage.getItem("users")) || [];
   let adminCredentials = {

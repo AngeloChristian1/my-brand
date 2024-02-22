@@ -1840,7 +1840,9 @@ align-self: center;
   object-fit: cover;
 
 }
-
+.burger-close {
+  display: none;
+}
 .gradient-text{
   /* background-clip: text; */
   /* font-size: 72px; */
@@ -1885,6 +1887,7 @@ align-self: center;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
+
 
 @media(prefers-reduced-motion: no-preference){
   .slide-in{
@@ -2007,6 +2010,7 @@ align-self: center;
     position: absolute;
     top: var(--p-4);
     right: var(--p-6);
+    
   }
 
   .burger:hover .dashboard-sidebar {
