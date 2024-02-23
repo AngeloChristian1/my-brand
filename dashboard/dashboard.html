@@ -224,7 +224,7 @@
                   >+ Add New</a
                 >
               </div>
-              <div class="dashboard-blog-container-map">
+              <div class="dashboard-blog-container-map" id="dashboard-blog-container-map">
                 <div class="dashboard-blog-container-card">
                   <img
                     src="../assets//images//deepmind.webp"
@@ -359,6 +359,69 @@
         timeDelay(successContainer, successElement)
         window.location.href = "../index.html";
       });
+    </script>
+
+    <script>
+                let allBlogs = JSON.parse(localStorage.getItem("articles"));
+                let blogContainer = document.getElementById('dashboard-blog-container-map')
+
+                blogContainer.innerHTML =""
+                allBlogs.map((blog, index) =>{
+                  if (index < 3){
+                    const card = document.createElement('a');
+                    card.classList.add("dashboard-blog-container-card");
+                    card.href = `./dashboard-single-blog.html?index=${index}`;
+
+                    const img = document.createElement("img");
+                    img.src = blog.poster;
+                    img.alt = "Blog Image";
+                    img.classList.add("blog-card-image");
+                    card.appendChild(img);
+
+                    const details = document.createElement("div");
+                    details.classList.add("blog-card-details", 'blog-card-details');
+
+                    const title = document.createElement("p");
+                    title.classList.add("small-text", "title", "blog-title");
+                    title.innerText = blog.title;
+                    details.appendChild(title);
+
+                    const viewsLikesComments = document.createElement("div");
+                    details.classList.add("views-likes-comments");
+
+                    viewsLikesComments.innerHTML = `
+                    <div class="views-likes-comments">
+                      <div class="like">
+                        <img
+                          src="../assets//images//dashboard-icons/eye.svg"
+                          alt=""
+                        />
+                        <p class="light-text smaller-text">${blog.views.length} views</p>
+                      </div>
+                      <div class="like">
+                        <img
+                          src="../assets//images//dashboard-icons/heart.svg"
+                          alt=""
+                        />
+                        <p class="light-text smaller-text">${blog.likes.length} likes</p>
+                      </div>
+                      <div class="like">
+                        <img
+                          src="../assets//images//dashboard-icons/comment.svg"
+                          alt=""
+                        />
+                        <p class="light-text smaller-text">${blog.comments.length} comments</p>
+                      </div>
+                    </div>
+                    `
+                    details.appendChild(viewsLikesComments)
+                    card.appendChild(details)
+                    // card.appendChild(details)
+
+                    blogContainer.appendChild(card)
+                  }
+                })
+
     </script>
           <script src="../Js/theme.js"></script>
 

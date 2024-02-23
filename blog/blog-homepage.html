@@ -401,9 +401,9 @@
             "rounded-text",
             "white-text",
             "category-tag",
-            "active-tag"
+            
           );
-          category.innerHTML = `<p>${blog.category.split("-").join(" ")}</p>`;
+          category.innerHTML = `<p class="rounded-text category-tag active-tag bg-grey ">${blog.category.split("-").join(" ")}</p>`;
           details.appendChild(category);
 
           const title = document.createElement("p");

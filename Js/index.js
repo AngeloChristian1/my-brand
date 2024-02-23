@@ -328,10 +328,8 @@ signupForm.addEventListener("submit", (e) => {
     errorContainer.style.display = "flex"
     timeDelay(errorContainer, errorElement)
   }
-  
   if (!errors.length){
     handleSignup();
   }
-
 })
 

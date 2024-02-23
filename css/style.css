@@ -90,6 +90,10 @@
   --full: 100%;
 }
 
+html {
+  /* scroll-behavior: smooth; */
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
@@ -101,6 +105,7 @@ button {
   background-color: var(--white);
   color: var(--darkest);
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -412,7 +417,6 @@ nav {
   right: var(--p-4);
   top: var(--p-1);
   width: 200px;
-  background: red;
   background-color: var(--dark);
   border-radius: var(--rounded-10);
   padding: var(--p-2);
@@ -1131,7 +1135,8 @@ textarea {
   gap: var(--p-3);
   justify-content: start;
   width: 80%;
-  margin: var(--p-4) auto;
+  margin: var(--p-2) auto;
+  width: 100%;
 }
 
 .blog-likes-section{
@@ -1605,7 +1610,6 @@ align-self: center;
   text-align: start;
 }
 .dashboard-blog-table tbody {
-  /* background-color: red; */
   padding: var(--p-2);
   border-radius: var(--rounded-2xl);
   border-bottom: 1px solid grey;
@@ -1651,7 +1655,12 @@ align-self: center;
 .dashboard-input-information textarea {
   background-color: var(--dark);
 }
-
+.dashboard-blog-content-fraction{
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .dashboard-input-information-form {
   width: 50%;
   display: flex;
@@ -1853,7 +1862,6 @@ align-self: center;
 
 .back-gradient{
   background: (90deg, rgb(132, 147, 225), rgb(104, 106, 248), rgb(169, 110, 204));
-  /* background-color:red */
   /* background-image: url("../assets/images/background1.jpeg"); */
   /* opacity: .3; */
 }
@@ -1888,6 +1896,10 @@ align-self: center;
   -moz-text-fill-color: transparent;
 }
 
+.bg-grey{
+  background-color: var(--grey);
+  color:var(--dark)
+}
 
 @media(prefers-reduced-motion: no-preference){
   .slide-in{
@@ -1895,7 +1907,7 @@ align-self: center;
   opacity: 0;
   animation: fade-in linear forwards;
   animation-timeline: view();
-  animation-range: 250px 500px;
+  animation-range: 60vh 10vh;
   animation-range: entry;
   }
 
@@ -2133,13 +2145,17 @@ align-self: center;
     text-align: center;
     font-size: var(--text-base);
   }
+
+  .dashboard-blog-content-fraction{
+    flex-direction: column;
+  }
 }
 
 /* srceen  and (max-width: 450px) */
 
 @media screen and (max-width: 450px) {
   body {
-    /* background-color: red; */
+ 
     /* overflow-x: hidden; */
   }
   .big-text {
@@ -2227,7 +2243,7 @@ align-self: center;
   /* Project section -mobile */
 
   .projects-section {
-    /* background-color: red; */
+   
   }
 
   .projects-section-projects-container {
