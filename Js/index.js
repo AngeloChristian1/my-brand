@@ -24,63 +24,7 @@
          }
         })
 
-// let blogContentForm = document.getElementById('dashboard-input-information-form')
-
-
-// blogContentForm.addEventListener('submit', (e)=>{
-//   e.event.preventDefault();
-  
-// })
-
-
-
-// let loginForm = document.getElementById("loginForm");
-
-// loginForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   let username = document.getElementById("username");
-//   let password = document.getElementById("password");
-
-//   if (username.value == "" || password.value == "") {
-//     alert("Ensure you input a value in both fields!");
-//   } else {
-//     // perform operation with form input
-//     alert("This form has been successfully submitted!");
-//     console.log(
-//       `This form has a username of ${username.value} and password of ${password.value}`
-//     );
-
-//     username.value = "";
-//     password.value = "";
-//   }
-// });
-
-// // contact form integration
-// const contactFormButton = document.getElementById('contact-form-submit-button');
-
-// document.getElementById('contact-form')
-//  .addEventListener('submit', function(event) {
-//    event.preventDefault();
-// window.alert('Enter here')
-//    contactFormButton.value = 'Sending...';
-
-//    const serviceID = 'default_service';
-//    const templateID = 'template_db3vxyi';
-
-//    emailjs.sendForm(serviceID, templateID, this)
-//     .then(() => {
-//       contactFormButton.value = 'Send Email';
-//       alert('Sent!');
-//     }, (err) => {
-//       contactFormButton.value = 'Send Email';
-//       alert(JSON.stringify(err));
-//     });
-// });
-
-function sendMail(){
-  
-  
+function sendMail(){  
   let params = {
     name: document.getElementById("contact-form-name").value,
     number: document.getElementById("contact-form-phone").value,
@@ -384,15 +328,8 @@ signupForm.addEventListener("submit", (e) => {
     errorContainer.style.display = "flex"
     timeDelay(errorContainer, errorElement)
   }
-  
   if (!errors.length){
     handleSignup();
   }
-
 })
 
-
-
-// if(!urlMatch) {
-//   window.location.replace("../errorPage.html");
-// }

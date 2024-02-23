@@ -1,5 +1,28 @@
 {
   "dependencies": {
-    "gsap": "^3.12.5"
-  }
+    "axios": "^1.6.7",
+    "gsap": "^3.12.5",
+    "type-coverage": "^2.27.1"
+  },
+  "name": "my-brand",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "ts-node ./Js/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
