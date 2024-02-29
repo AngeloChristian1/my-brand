@@ -195,7 +195,6 @@
             <button
               type="submit"
               value=""
-              /**onclick="sendMail()"**/
               class="button"
               id="contact-form-submit-button"
             >
@@ -211,9 +210,7 @@
     </div>
   </div>
 </div>
-<script src="../Js/login.js"></script>
-<script src="../Js/theme.js"></script>
-<!-- <script src="../Js/index.js"></script> -->
+
 <script>
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
   
@@ -248,5 +245,9 @@ localStorage.setItem('users', JSON.stringify(allUsers));
 
 setAdmin()
 </script>
+<script src="../Js/index.js"></script>
+<script src="../Js/login.js"></script>
+<script src="../Js/theme.js"></script>
+<script src="../Js/contactForm.js"></script>
 </body>
 </html>
