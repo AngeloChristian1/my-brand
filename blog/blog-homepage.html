@@ -26,11 +26,21 @@
   </head>
   <body>
     <div class="main-container">
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
+      <div class=" success-container" id="success-container">
+        <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+        <p id="success-text" class="success-text"></p>
+      </div>
       <nav class="nav">
         <div class="desktop-nav">
-          <button class="button theme-button" id="theme-button"><span class="material-symbols-outlined dark-text" id="theme-icon">
-            light_mode
-            </span></button>
+          <button class="button theme-button" id="theme-button">
+            <span class="material-symbols-outlined dark-text" id="theme-icon">
+              light_mode
+            </span>
+          </button>
           <div class="links-container">
             <div class="links">
               <ul>
@@ -66,11 +76,7 @@
               <p class="title"> User Name</p>
             </div>
           </a>           -->
-          <div
-            rel="noopener noreferrer"
-            class="user-name-profile"
-            title=""
-          >
+          <div rel="noopener noreferrer" class="user-name-profile" title="">
             <div class="letter">
               <h3 class="grey-text">G</h3>
               <div class="info">
@@ -93,7 +99,6 @@
             const profileIcon = document.querySelector(".user-name-profile");
 
             const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-            console.log("loggedUser", loggedUser);
 
             const handleLogout = () => {
               localStorage.removeItem("loggedUser");
@@ -102,17 +107,18 @@
               timeDelay(successContainer, successElement);
               window.location.reload();
             };
+            console.log("LoggedUser", loggedUser)
 
             const navigate = () => {
-              window.location.href="../dashboard/dashboard.html";
-              if(loggedUser.role == "admin") {
+              window.location.href = "../dashboard/dashboard.html";
+              if (loggedUser.role == "admin") {
               }
-            }
+            };
 
-            if (loggedUser.isLoggedIn) {
+            if (loggedUser) {
               blogButton.style.display = "none";
               profileIcon.style.display = "flex";
-              profileIcon.title = loggedUser.name + ", " + loggedUser.role
+              profileIcon.title = loggedUser.name + ", " + loggedUser.role;
 
               profileIcon.innerHTML = `
               <div class="letter" onClick="navigate()">
@@ -293,41 +299,67 @@
             </div>
           </div>
           <div class="footer-section footer-right">
-            <form action="" class="contact-form">
+            <form class="contact-form" id="contact-form" method="GET">
               <div class="input-form">
                 <p class="white-text grey-text">Name</p>
                 <input
                   type="text"
                   name="name"
-                  id="name"
+                  id="contact-form-name"
                   placeholder="Enter Your Name"
                 />
+                <p
+                  class="small-text red-text error"
+                  id="contact-form-name-error"
+                ></p>
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Email</p>
                 <input
                   type="text"
                   name="email"
-                  id="email"
+                  id="contact-form-email"
                   placeholder="Enter Your Email"
                 />
+                <p
+                  class="small-text red-text error"
+                  id="contact-form-email-error"
+                ></p>
               </div>
               <div class="input-form">
                 <p class="white-text grey-text">Phone Number</p>
                 <input
                   type="text"
                   name="phone"
-                  id="phone"
+                  id="contact-form-phone"
                   placeholder="Enter Your Name"
                 />
+                <p
+                  class="small-text red-text error"
+                  id="contact-form-phone-error"
+                ></p>
               </div>
               <div class="input-form">
-                <p class="white-text grey-text">Message</p>
+                <p class="white-text grey-text small-text">Message</p>
                 <label for="message"></label>
-                <textarea name="message" id="message" rows="3"></textarea>
+                <textarea
+                  name="message"
+                  id="contact-form-message"
+                  rows="3"
+                ></textarea>
+                <p
+                  class="small-text red-text error"
+                  id="contact-form-message-error"
+                ></p>
               </div>
               <div class="input-form">
-                <button type="button" value="" class="button">
+                <!-- <input type="button" value="Send Message" class="button button-white" id="contact-form-submit-button"> -->
+                <button
+                  type="submit"
+                  value=""
+                  class="button"
+                  id="contact-form-submit-button"
+                >
                   Send Message
                 </button>
               </div>
@@ -340,17 +372,19 @@
         </div>
       </div>
     </div>
-    <script src="../Js/alert.js"></script>
+
     <script>
       let categoryTag = document.querySelectorAll(".blog-category-tag");
       let allTag = document.getElementById("all-tag");
       categoryTag.innerHTML = "category";
       let allBlogs = JSON.parse(localStorage.getItem("articles"));
-      // let blogs = []
-      console.log("all articles", allBlogs);
+
       allTag.addEventListener("click", () => {
         showBlogs(allBlogs);
       });
+
+      let APIBlogs = []; // Initialize the variable outside the fetch block
+      const apiUrl = "http://localhost:8080/blogs"; // Replace with your API URL
 
       categoryTag.forEach((element) => {
         element.addEventListener("click", () => {
@@ -377,15 +411,12 @@
         const blogCardsContainer = document.querySelector(
           ".blog-container-section"
         );
-
-        // Clear existing blog cards
         blogCardsContainer.innerHTML = "";
 
-        // Create and append blog cards
         blogs.forEach((blog, index) => {
           const card = document.createElement("a");
           card.classList.add("blog-home-card");
-          card.href = `./single-blog-page.html?index=${index}`;
+          card.href = `./single-blog-page.html?index=${blog._id}`;
 
           const img = document.createElement("img");
           img.src = blog.poster;
@@ -397,13 +428,10 @@
           details.classList.add("blog-home-card-details");
 
           const category = document.createElement("div");
-          category.classList.add(
-            "rounded-text",
-            "white-text",
-            "category-tag",
-            
-          );
-          category.innerHTML = `<p class="rounded-text category-tag active-tag bg-grey ">${blog.category.split("-").join(" ")}</p>`;
+          category.classList.add("rounded-text", "white-text", "category-tag");
+          category.innerHTML = `<p class="rounded-text category-tag active-tag bg-grey ">${blog.category
+            .split("-")
+            .join(" ")}</p>`;
           details.appendChild(category);
 
           const title = document.createElement("p");
@@ -429,68 +457,73 @@
           blogCardsContainer.appendChild(card);
         });
       }
-      showBlogs(allBlogs);
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          APIBlogs = data; // Assign the fetched data to the variable
+          console.log("data", data);
+          showBlogs(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+
+      // Now you can use APIBlogs outside the fetch block
+      console.log("APIBlog outside fetch:", APIBlogs);
     </script>
 
-<!-- theme control -->
-<script>
-  let themeButton = document.querySelector('#theme-button');
-  let themeIcon = document.querySelector('#theme-icon');
-  let logoImage = document.querySelector('#logo-image');
-  let theme = localStorage.getItem("theme");
-  // create default theme as light
-  if (theme == null) {
-    localStorage.setItem("theme", "dark");
-  }
-  const root = document.documentElement; 
-  console.log("theme before click", theme)
+    <!-- theme control -->
+    <script>
+      let themeButton = document.querySelector("#theme-button");
+      let themeIcon = document.querySelector("#theme-icon");
+      let logoImage = document.querySelector("#logo-image");
+      let theme = localStorage.getItem("theme");
+      // create default theme as light
+      if (theme == null) {
+        localStorage.setItem("theme", "dark");
+      }
+      const root = document.documentElement;
 
-  themeButton.addEventListener("click", () => {
+      themeButton.addEventListener("click", () => {
+        if (theme === "dark") {
+          localStorage.setItem("theme", "light");
+          theme = "light";
+          root.style.setProperty("--dark", "#9394A5");
+          root.style.setProperty("--darker", "#D2D3DB");
+          root.style.setProperty("--darkest", "#E4E5F1");
+          root.style.setProperty("--white", "#19181e");
+          root.style.setProperty("--dark-white", "#19181e");
+          root.style.setProperty("--grey", "#23202a");
+          themeIcon.innerHTML = "dark_mode";
+          logoImage.src = "./assets/images/logo-color.svg";
+        } else if (theme === "light") {
+          localStorage.setItem("theme", "dark");
+          theme = "dark";
+          root.style.setProperty("--dark", "#23202a");
+          root.style.setProperty("--darker", "#1e1b24");
+          root.style.setProperty("--darkest", "#19181e");
+          root.style.setProperty("--white", "#ffffff");
+          root.style.setProperty("--grey", "#999cb4");
+          root.style.setProperty("--dark-white", "#e6e4e4");
+          themeIcon.innerHTML = "light_mode";
+          // themeIcon.sytle.display = 'white';
+          logoImage.src = "./assets/images/logo.png";
+        } else {
+          localStorage.setItem("theme", "dark");
+        }
+      });
 
-    if (theme === "dark") {
-      localStorage.setItem("theme", "light");
-      theme = "light";
-      root.style.setProperty('--dark', '#9394A5');
-      root.style.setProperty('--darker', '#D2D3DB'); 
-      root.style.setProperty('--darkest', '#E4E5F1');
-      root.style.setProperty('--white', '#19181e');
-      root.style.setProperty('--dark-white', '#19181e');
-      root.style.setProperty('--grey', '#23202a');
-      themeIcon.innerHTML = 'dark_mode';
-      console.log("theme in light", theme)
-      logoImage.src = "./assets/images/logo-color.svg"
+      //   const deleteTheme = ()=>{
 
-    } else if (theme === "light") {
-      localStorage.setItem("theme", "dark");
-      theme = "dark";
-      root.style.setProperty('--dark', '#23202a');
-      root.style.setProperty('--darker', '#1e1b24');
-      root.style.setProperty('--darkest', '#19181e');
-      root.style.setProperty('--white', '#ffffff');
-      root.style.setProperty('--grey', '#999cb4');
-      root.style.setProperty('--dark-white', '#e6e4e4');
-      themeIcon.innerHTML = 'light_mode';
-      // themeIcon.sytle.display = 'white';
-      logoImage.src = "./assets/images/logo.png"
-      console.log("theme in dark", theme)
-    
-    } else{
-      localStorage.setItem("theme", "dark");
-      console.log("theme else where", theme)
-    }
-
-  });
-
-
-//   const deleteTheme = ()=>{
-    
-//     localStorage.removeItem("theme");
-// }
-// themeButton.addEventListener("click",()=>{
-//   deleteTheme();
-// })
-
-
-</script>
+      //     localStorage.removeItem("theme");
+      // }
+      // themeButton.addEventListener("click",()=>{
+      //   deleteTheme();
+      // })
+    </script>
+       <script src="../Js/index.js"></script>
+    <script src="../Js/contactForm.js"></script>
+ 
   </body>
 </html>

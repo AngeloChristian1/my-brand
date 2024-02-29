@@ -1,6 +1,5 @@
+
 function sendMail(){
-  
-  
     let params = {
       name: document.getElementById("contact-form-name").value,
       number: document.getElementById("contact-form-phone").value,
@@ -24,13 +23,6 @@ function sendMail(){
     ).catch((err)=> console.log(err))
   }
   
-  const todayDate = new Date();
-  const today = todayDate.getDate();
-  const month = todayDate.getMonth();
-  const year = todayDate.getFullYear();
-  const hours = todayDate.getHours();
-  const minutes = todayDate.getMinutes();
-  const seconds = todayDate.getSeconds();
   
   const handleFormSubmit = () => {
     let params = {
@@ -55,31 +47,6 @@ function sendMail(){
       document.getElementById("contact-form-email").value = "";
       document.getElementById("contact-form-phone").value = "";
       document.getElementById("contact-form-message").value = "";
-  }
-  
-  const contactForm = document.getElementById('contact-form');
-  const contactName = document.getElementById("contact-form-name");
-  const contactEmail = document.getElementById("contact-form-email");
-  const contactPhone = document.getElementById("contact-form-phone");
-  const contactMessage = document.getElementById("contact-form-message");
-  const errorContainer = document.getElementById("error-container");
-  const errorElement = document.getElementById("error-text");
-  const successContainer = document.getElementById("success-container");
-  const successElement = document.getElementById("success-text");
-  const emailError = document.getElementById("contact-form-email-error");
-  const nameError = document.getElementById("contact-form-name-error");
-  const messageError = document.getElementById("contact-form-message-error");
-  const phoneError = document.getElementById("contact-form-phone-error");
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const phonePattern = /^[0-9]{10}$/;
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-  const namePattern = /^[a-zA-Z]+$/;
-
-  const timeDelay = (container, element)=>{
-    setTimeout(()=>{
-      container.style.display = "none";
-      element.innerText = "";
-    }, 3000)
   }
   
   contactForm.addEventListener('submit', (e)=>{
@@ -174,6 +141,11 @@ function sendMail(){
       contactPhone.style.border = 'none';
       contactEmail.style.border = 'none';
       contactName.style.border = 'none';
+
+      // handleFormSubmit();
+      // sendMail();
+      sendToBackend();
+
       successElement.innerText = "Form submitted";
       successContainer.style.display = "flex";
       
@@ -181,8 +153,6 @@ function sendMail(){
         successContainer.style.display = "none";
         successElement.innerText = "";
       }, 2000);
-      handleFormSubmit();
-      // sendMail();
     }
   
     if (messages.length > 0){
@@ -190,6 +160,29 @@ function sendMail(){
       errorElement.innerText = messages.join(', ')
       errorContainer.style.display = "flex"
     }
-    // sendMail();
+
   })
  
+  const sendToBackend = () => {
+    let params = {
+      name: document.getElementById("contact-form-name").value,
+      phone: document.getElementById("contact-form-phone").value,
+      email: document.getElementById("contact-form-email").value,
+      message: document.getElementById("contact-form-message").value
+    }
+    fetch('http://localhost:8080/messages/add', {
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+

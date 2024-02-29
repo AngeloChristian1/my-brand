@@ -1,24 +1,4 @@
-const loginForm = document.getElementById("login-form");
-const loginFormEmail = document.getElementById("login-form-email");
-const loginFormPassword = document.getElementById("login-form-password");
-const loginFormSubmit = document.getElementById("login-form-submit");
-const loginFormEmailError = document.getElementById("login-form-email-error");
-const loginFormPasswordError = document.getElementById("login-form-password-error");
-const errorContainer = document.getElementById("error-container");
-const errorElement = document.getElementById("error-text");
-const successContainer = document.getElementById("success-container");
-const successElement = document.getElementById("success-text");
-const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const phonePattern = /^[0-9]{10}$/;
-const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-const showButton = document.getElementById("visibility")
 
-const timeDelay = (container, element)=>{
-    setTimeout(()=>{
-      container.style.display = "none";
-      element.innerText = "";
-    }, 3000)
-  }
 showButton.addEventListener('click',()=>{
   if (showButton.innerHTML=== "visibility"){
     showButton.innerHTML="visibility_off"
@@ -111,8 +91,63 @@ const handleLogin = ()=>{
     }
     
     if (!errors.length){
-      handleLogin();
+      // handleLogin();
+      submitLogin()
     }
   
   })
   
+
+  showButton.addEventListener('click',()=>{
+    if (showButton.innerHTML=== "visibility"){
+      showButton.innerHTML="visibility_off"
+      signupFormPassword.type ="password"
+    }
+    else{
+      showButton.innerHTML="visibility"
+      signupFormPassword.type ="text"
+    }
+    
+  })
+
+     
+  const submitLogin = () => {
+    let params = {
+       email : loginFormEmail.value,
+       password : loginFormPassword.value
+      }
+    fetch('http://localhost:8080/auth/login',{
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      if (data.status === "success" || data.status === "successful") {
+        localStorage.setItem("loggedUser", JSON.stringify(data?.data));
+        localStorage.setItem("useToken", JSON.stringify(data?.sessionToken));
+        (successContainer.style.display = "flex"),
+          (successElement.innerHTML = "User Loggin successful");
+        timeDelay(successContainer, successElement);
+        setTimeout(() => {
+          if (data.data.role === "admin") {
+            window.location.href = "../dashboard/dashboard.html";
+          } else if (data.data.role === "user") {
+            window.location.href = "../blog/blog-homepage.html";
+          } else {
+            errorElement.innerText = data.message;
+            errorContainer.style.display = "flex";
+            timeDelay(errorContainer, errorElement);
+          }
+        }, 3000);
+      } else {
+      }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
