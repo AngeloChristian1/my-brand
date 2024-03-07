@@ -26,14 +26,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
     <div class="dashboard-container">
-        <div class="error-container" id="error-container">
-            <span class="material-symbols-outlined" id="error-icon"> error </span>
-            <p id="error-text" class="error-text"></p>
-          </div>
-          <div class=" success-container" id="success-container">
-            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
-            <p id="success-text" class="success-text"></p>
-          </div>
+      <div class="error-container" id="error-container">
+        <span class="material-symbols-outlined" id="error-icon"> error </span>
+        <p id="error-text" class="error-text"></p>
+      </div>
+      <div class="success-container" id="success-container">
+        <span class="material-symbols-outlined" id="error-icon">
+          check_circle
+        </span>
+        <p id="success-text" class="success-text"></p>
+      </div>
       <aside class="dashboard-sidebar" id="dashboard-sidebar">
         <a href="../index.html" class="dashboard-image-logo">
           <img src="../assets/images/logo.png" alt="logo" />
@@ -93,7 +95,8 @@
         </div>
         <button
           class="rounded-text grey-text category-tag dashboard-link dashboard-logout"
-          id="logout-button">
+          id="logout-button"
+        >
           <p>Logout</p>
           <img src="../assets//images//dashboard-icons/logout.svg" alt="" />
         </button>
@@ -151,28 +154,28 @@
               <img src="../assets/images/dashboard-icons/articles.svg" alt="" />
               <div>
                 <p class="title white-text">Total Articles</p>
-                <p class="title grey-text big-text">20</p>
+                <p class="title grey-text big-text" id="totalArticles">20</p>
               </div>
             </div>
             <div class="dashboard-tag">
               <img src="../assets/images/dashboard-icons/messages.svg" alt="" />
               <div>
                 <p class="title white-text">Total Messages</p>
-                <p class="title grey-text big-text">13</p>
+                <p class="title grey-text big-text" id="totalMessages">13</p>
               </div>
             </div>
             <div class="dashboard-tag">
               <img src="../assets/images/dashboard-icons/users.svg" alt="" />
               <div>
                 <p class="title white-text">Total Users</p>
-                <p class="title grey-text big-text">54</p>
+                <p class="title grey-text big-text" id="totalUsers">54</p>
               </div>
             </div>
             <div class="dashboard-tag">
               <img src="../assets/images/dashboard-icons/heart.svg" alt="" />
               <div>
                 <p class="title white-text">Total Likes</p>
-                <p class="title grey-text big-text">20</p>
+                <p class="title grey-text big-text" id="totalLikes">20</p>
               </div>
             </div>
           </div>
@@ -224,7 +227,10 @@
                   >+ Add New</a
                 >
               </div>
-              <div class="dashboard-blog-container-map" id="dashboard-blog-container-map">
+              <div
+                class="dashboard-blog-container-map"
+                id="dashboard-blog-container-map"
+              >
                 <div class="dashboard-blog-container-card">
                   <img
                     src="../assets//images//deepmind.webp"
@@ -336,14 +342,14 @@
         </div>
       </div>
     </div>
+    <script src="../Js/dashboard.js"></script>
     <script src="../Js/alert.js"></script>
     <script>
       const logoutButton = document.getElementById("logout-button");
-      const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-      console.log("loggedUser", loggedUser);
+
 
       if (!loggedUser || loggedUser.role != "admin") {
-        window.location.href =  "../index.html";
+        window.location.href = "../index.html";
       } else {
         // (successContainer.style.display = "flex"),
         //   (successElement.innerHTML = `Welcome, ${
@@ -353,77 +359,156 @@
       }
 
       logoutButton.addEventListener("click", () => {
-        localStorage.removeItem("loggedUser")
-        successContainer.style.display = "flex",
-        successElement.innerHTML = "Logged out successfully"
-        timeDelay(successContainer, successElement)
+        localStorage.removeItem("loggedUser");
+        (successContainer.style.display = "flex"),
+          (successElement.innerHTML = "Logged out successfully");
+        timeDelay(successContainer, successElement);
         window.location.href = "../index.html";
       });
     </script>
 
     <script>
-                let allBlogs = JSON.parse(localStorage.getItem("articles"));
-                let blogContainer = document.getElementById('dashboard-blog-container-map')
+      const displayBlogs = document.getElementById("totalArticles")
+      const displayMessages = document.getElementById("totalMessages")
+      const displayUsers = document.getElementById("totalUsers")
+      const displayLikes = document.getElementById("totalLikes")
+      let allBlogs = JSON.parse(localStorage.getItem("articles"));
+      let blogContainer = document.getElementById(
+        "dashboard-blog-container-map"
+      );
 
-                blogContainer.innerHTML =""
-                allBlogs.map((blog, index) =>{
-                  if (index < 3){
-                    const card = document.createElement('a');
-                    card.classList.add("dashboard-blog-container-card");
-                    card.href = `./dashboard-single-blog.html?index=${index}`;
+      const setBlogLength =(length)=>{
+        displayBlogs.innerText= length;
+      }
+      const setMessageLength =(length)=>{
+        displayMessages.innerText= length || 0;
+      }
+      const setUserLength =(length)=>{
+        displayUsers.innerText= length || 0;
+      }
+      const setLikeLength =(length)=>{
+        displayLikes.innerText= length || 0;
+      }
 
-                    const img = document.createElement("img");
-                    img.src = blog.poster;
-                    img.alt = "Blog Image";
-                    img.classList.add("blog-card-image");
-                    card.appendChild(img);
+      const showBlogs = (blogs) => {
+        blogContainer.innerHTML = "";
+        blogs.reverse().map((blog, index) => {
+          if (index < 3) {
+            const card = document.createElement("a");
+            card.classList.add("dashboard-blog-container-card");
+            card.href = `./dashboard-single-blog.html?index=${blog._id}`;
 
-                    const details = document.createElement("div");
-                    details.classList.add("blog-card-details", 'blog-card-details');
+            const img = document.createElement("img");
+            img.src = blog.poster;
+            img.style.objectFit = "cover";
+            img.alt = "Blog Image";
+            img.classList.add("blog-card-image");
+            card.appendChild(img);
 
-                    const title = document.createElement("p");
-                    title.classList.add("small-text", "title", "blog-title");
-                    title.innerText = blog.title;
-                    details.appendChild(title);
+            const details = document.createElement("div");
+            details.classList.add("blog-card-details", "blog-card-details");
+            details.style.display = "flex";
+            details.style.width = "100%";
+            details.style.flexDirection = "column";
 
-                    const viewsLikesComments = document.createElement("div");
-                    details.classList.add("views-likes-comments");
+            const title = document.createElement("p");
+            title.classList.add(
+              "small-text",
+              "title",
+              "blog-title",
+              "white-text"
+            );
+            title.innerText = blog.title;
+            details.appendChild(title);
 
-                    viewsLikesComments.innerHTML = `
+            const viewsLikesComments = document.createElement("div");
+            details.classList.add("views-likes-comments");
+
+            viewsLikesComments.innerHTML = `
                     <div class="views-likes-comments">
                       <div class="like">
                         <img
                           src="../assets//images//dashboard-icons/eye.svg"
                           alt=""
                         />
-                        <p class="light-text smaller-text">${blog.views.length} views</p>
+                        <p class="light-text smaller-text">${"10"} views</p>
                       </div>
                       <div class="like">
                         <img
                           src="../assets//images//dashboard-icons/heart.svg"
                           alt=""
                         />
-                        <p class="light-text smaller-text">${blog.likes.length} likes</p>
+                        <p class="light-text smaller-text">${"10"} likes</p>
                       </div>
                       <div class="like">
                         <img
                           src="../assets//images//dashboard-icons/comment.svg"
                           alt=""
                         />
-                        <p class="light-text smaller-text">${blog.comments.length} comments</p>
+                        <p class="light-text smaller-text">${"10"} comments</p>
                       </div>
                     </div>
-                    `
-                    details.appendChild(viewsLikesComments)
-                    card.appendChild(details)
-                    // card.appendChild(details)
+                    `;
+            details.appendChild(viewsLikesComments);
+            card.appendChild(details);
+            // card.appendChild(details)
 
-                    blogContainer.appendChild(card)
-                  }
-                })
+            blogContainer.appendChild(card);
+          }
+        });
+      };
+console.log("myHeader", myHeaders)
+      fetch(`http://localhost:8080/blogs`)
+        .then((response) => response.json())
+        .then((data) => {
+          APIBlogs = data; // Assign the fetched data to the variable
+          
+          setBlogLength(data.length)
+          showBlogs(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+
+        // set messages
+        fetch(`http://localhost:8080/messages`, {
+          method:"GET",
+          headers:myHeaders
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          setMessageLength(data.length)
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+
+        // set users
+        fetch(`http://localhost:8080/users`, {
+          method:"GET",
+          headers: myHeaders
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("users", data);
+          setUserLength(data.length)
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+
+        // set messages
+        fetch(`http://localhost:8080/likes`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("likes", data);
+          setLikeLength(data.length)
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
 
     </script>
-          <script src="../Js/theme.js"></script>
-
+    <script src="../Js/theme.js"></script>
   </body>
 </html>

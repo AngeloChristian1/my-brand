@@ -462,7 +462,7 @@
         .then((response) => response.json())
         .then((data) => {
           APIBlogs = data; // Assign the fetched data to the variable
-          console.log("data", data);
+          console.log("data in fetch", data);
           showBlogs(data);
         })
         .catch((error) => {

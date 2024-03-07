@@ -85,7 +85,6 @@ const handleSignup = () => {
     }
   })
   
-   
   const submitSignup = () => {
     let params = {
         name: signupFormName.value,

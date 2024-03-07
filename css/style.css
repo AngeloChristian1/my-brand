@@ -1205,7 +1205,7 @@ align-self: center;
   top: 45%;
   right: var(--p-1);
   color: var(--grey);
-  background-color: var(--darkest);
+  background-color: transparent;
   padding: var(--p-2);
   border-radius: var(--rounded-10);
   cursor: pointer;

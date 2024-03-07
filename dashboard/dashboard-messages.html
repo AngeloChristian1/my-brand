@@ -146,8 +146,6 @@
         <!-- protect dashboard from unauthorised access -->
         <script>
             const logoutButton = document.getElementById("logout-button");
-            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-            console.log("loggedUser", loggedUser);
       
             if (!loggedUser || loggedUser.role != "admin") {
               window.location.href =  "../index.html";
@@ -164,6 +162,90 @@
             });
           </script>
           <script src="../Js/theme.js"></script>
+          <script>
+
+let allMessages = JSON.parse(localStorage.getItem('messages')) || [];
+// let allMessagesArray = JSON.parse(allMessages);
+let messageRow = document.getElementById('message-row');
+
+console.log("All messages",allMessages)
+
+// Function to populate messages in the table
+
+function onViewClick(messageIndex) {
+    let url = `./dashboard-single-message.html?index=${messageIndex}`;
+    window.location.href = url;
+}
+function populateMessagesTable(messages) {
+    let tableBody = document.getElementById('messages-table-body') ;
+    tableBody.innerHTML = '';
+
+    messages.map((message, index )=> {
+        let row = document.createElement('tr');
+
+        // Create table cells for each property in the message object
+        Object.values(message).forEach(value => {
+           
+            let cell = document.createElement('td');
+            cell.innerHTML = `<p class="small-text one-liner">${value}</p>`;
+            row.appendChild(cell);
+        });
+
+        // Create View and Reply links
+        // let viewLinkCell = document.createElement('td');
+        // viewLinkCell.innerHTML = `<a href="./dashboard-single-message.html" class="small-text rounded-text text-blue title category-tag">View</a>`;
+        // row.appendChild(viewLinkCell);
+
+        let viewLinkCell = document.createElement('td');
+        let viewLink = document.createElement('button');
+        // viewLink.href = `./dashboard-single-message.html?index=1`; // Prevent default link behavior
+        viewLink.textContent = 'View';
+        viewLink.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
+        // Add click event listener to "View" link
+        viewLink.addEventListener('click', () => onViewClick(index));
+        viewLinkCell.appendChild(viewLink);
+        row.appendChild(viewLinkCell);
+
+        let replyCell = document.createElement('td');
+        replyCell.innerHTML = `<a href="mailto:${message.email} class="text-yellow"> <button class="small-text rounded-text text-yellow title category-tag">Reply</button></a>`;
+        row.appendChild(replyCell);
+
+        // Append row to the table body
+        tableBody.appendChild(row);
+    });
+}
+
+fetch(`http://localhost:8080/messages`)
+.then((response) => response.json())
+.then((data) => {
+  APIBlogs = data; // Assign the fetched data to the variable
+  console.log(data[0])
+  populateMessagesTable(data);
+})
+.catch((error) => {
+  console.error("Error fetching data:", error);
+});
+   
+
+// Call the function to populate the table initially
+
+
+
+
+
+const deleteAllmessages = ()=>{
+    
+    // localStorage.removeItem("messages");
+    // alert('All messages deleted')
+}
+
+// Blogs Integration
+
+let allBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
+console.log("All blogs",allBlogs)
+
+let blogRow = document.getElementById('blog-row');
+          </script>
 
   </body>
 </html>

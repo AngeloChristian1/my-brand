@@ -202,11 +202,10 @@
     </div>
     </div>
     </div>
+    <script src="../Js/dashboard.js"></script>
     <script>
         let allUsers = JSON.parse(localStorage.getItem('users'))
         let usersContainer = document.getElementById('dashboard-user-container-map')
-        console.log("allUsers", allUsers)
-
         usersContainer.innerHTML = ""
             allUsers.forEach(user => {
             let userCard = document.createElement("div");
