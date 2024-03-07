@@ -230,7 +230,7 @@
     </div>
     </div>
     </div>
-    <!-- <script src="../Js/dashboard.js"></script> -->
+    <script src="../Js/dashboard.js"></script>
     <script>
         let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
         let messageRow = document.getElementById('dashboard-blog-row');
@@ -238,11 +238,11 @@
         totalArticles.innerText = allArticles.length
         console.log("All articles",allArticles)
 
-        const populateBlogTable = ()=>{
+        const populateBlogTable = (articles)=>{
             let tableBody = document.getElementById('dashboard-blog-table-body');
             tableBody.innerHTML='';
 
-            allArticles.map((article,index)=>{
+            articles.map((article,index)=>{
                 let row = document.createElement('tr')
                 row.classList.add('dashboard-blog-row')
 
@@ -277,7 +277,7 @@
                 let viewSize =document.createElement('p')
                 viewIcon.src="../assets/images/dashboard-icons/eye.svg"
                 viewSize.classList.add('smaller-text', 'light-text')
-                viewSize.innerText=article.views.length + '-views' || '12 views'
+                viewSize.innerText="10" + '-views' || '12 views'
                 view.appendChild(viewIcon)
                 view.appendChild(viewSize)
                 view.classList.add('like')
@@ -291,7 +291,7 @@
                 let likeSize =document.createElement('p')
                 likeIcon.src="../assets/images/dashboard-icons/heart.svg"
                 likeSize.classList.add('smaller-text', 'light-text')
-                likeSize.innerText=article.likes.length + '-likes' || '12 likes'
+                likeSize.innerText="10" + '-likes' || '12 likes'
 
                 like.appendChild(likeIcon)
                 like.appendChild(likeSize)
@@ -306,7 +306,7 @@
                 let commentsSize =document.createElement('p')
                 commentsIcon.src="../assets/images/dashboard-icons/comment.svg"
                 commentsSize.classList.add('smaller-text', 'light-text')
-                commentsSize.innerText=`${article.comments.length}-comments` || '12 views'
+                commentsSize.innerText=`${"10"}-comments` || '12 views'
 
                 comments.appendChild(commentsIcon)
                 comments.appendChild(commentsSize)
@@ -318,8 +318,9 @@
                 // date
                 let dateTD = document.createElement('td');
                 let date = document.createElement('p')
-                date.innerText=article.date 
+                date.innerText=article.createdAt.split("T")[0] 
                 date.classList.add('small-text')
+                date.style.fontSize = '12px'
 
                 dateTD.appendChild(date)
 
@@ -353,7 +354,18 @@
 
             })
         }
-            populateBlogTable()
+
+        fetch(`http://localhost:8080/blogs`)
+        .then((response) => response.json())
+        .then((data) => {
+          APIBlogs = data; // Assign the fetched data to the variable
+          console.log(data[0])
+          populateBlogTable(data)
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+            
     </script>
 
         <!-- protect dashboard from unauthorised access -->

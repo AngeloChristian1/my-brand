@@ -129,7 +129,7 @@ const handleLogin = ()=>{
 
       if (data.status === "success" || data.status === "successful") {
         localStorage.setItem("loggedUser", JSON.stringify(data?.data));
-        localStorage.setItem("useToken", JSON.stringify(data?.sessionToken));
+        localStorage.setItem("tokens", JSON.stringify(data?.tokens));
         (successContainer.style.display = "flex"),
           (successElement.innerHTML = "User Loggin successful");
         timeDelay(successContainer, successElement);
