@@ -311,10 +311,8 @@
                 comments.appendChild(commentsIcon)
                 comments.appendChild(commentsSize)
                 comments.classList.add('like')
-
                 commentsTD.appendChild(comments)
 
-                
                 // date
                 let dateTD = document.createElement('td');
                 let date = document.createElement('p')
@@ -330,7 +328,7 @@
                 viewButton.textContent = 'View';
                 viewButton.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
                 // Add click event listener to "View" link
-                viewButton.addEventListener('click', () => window.location.href=`./dashboard-single-blog.html?index=${index}`);
+                viewButton.addEventListener('click', () => window.location.href=`./dashboard-single-blog.html?index=${article._id}`);
                 viewButtonTD.appendChild(viewButton);
                
 

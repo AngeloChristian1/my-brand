@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
     <title>My Brand</title>
+    <script src="../Js/dashboard.js"></script>
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
@@ -166,41 +167,39 @@ messageDetailsDiv.innerHTML = `
 
     let currentUrl = window.location.href
     console.log("Current URL",currentUrl)
-    let indexUrl = parseInt(currentUrl.split('index=')[1])
+    let indexUrl = currentUrl.split('index=')[1]
     console.log("Index URL",indexUrl)
 
     
     let singleMessage = allMessages[indexUrl]
 
-    // let singleMessage = currentUrl.split('index=')[1]
-    console.log("This message", singleMessage)
-
-    messageContainer.innerHTML = `
+    const populatedMessage = (message)=>{
+        messageContainer.innerHTML = `
     <div class="message-information-container">
 
 <div class="message-information-section message-information-left">
     <div class="text-container">
         <p class="title white-text"> Sender Name</p>
-        <p class="grey-text" >${singleMessage.name}</p>
+        <p class="grey-text" >${message.name}</p>
     </div>
     <div class="text-container">
         <p class="title white-text"> Sender Email</p>
-        <p class="grey-text">${singleMessage.email}</p>
+        <p class="grey-text">${message.email}</p>
     </div>
     <div class="text-container">
         <p class="title white-text"> Sender Phone Number</p>
-        <p class="grey-text">${singleMessage.number}</p>
+        <p class="grey-text">${message.phone}</p>
     </div>
  
 </div>                            
 <div class="message-information-section message-information-right">
     <div class="text-container">
         <p class="title white-text"> Date sent</p>
-        <p class="grey-text">${singleMessage.date}</p>
+        <p class="grey-text">${message.createdAt.split("T")[0]}</p>
     </div>
     <div class="text-container">
         <p class="title white-text"> Time Sent sent</p>
-        <p class="grey-text">${singleMessage.time}</p>
+        <p class="grey-text">${message.createdAt.split("T")[1].split(".")[0]}</p>
     </div>
 </div>                    
 </div> 
@@ -208,17 +207,34 @@ messageDetailsDiv.innerHTML = `
 <div class="message-container">
 <div class="text-container">
     <p class="title white-text"> Message</p>
-    <p class="grey-text rounded-text category-tag">${singleMessage.message}</p>
+    <p class="grey-text rounded-text category-tag">${message.message}</p>
 </div>
 </div>
 <div id="message-details">
 
 </div>
 
-<a href="mailto:${singleMessage.email}" ><button class="button button-dark text-yellow">Reply</button></a>
+<a href="mailto:${message.email}" ><button class="button button-dark text-yellow">Reply</button></a>
     `
+    }
+
+    
+
+fetch(`http://localhost:8080/messages/${indexUrl}`, {
+headers:myHeaders,
+method:"GET"
+})
+.then((response) => response.json())
+.then((data) => {
+  console.log("data here",data)
+  populatedMessage(data.data);
+})
+.catch((error) => {
+  console.error("Error fetching data:", error);
+});
+   
 </script>
-<script src="../Js/dashboard.js"></script>
+
     <!-- protect dashboard from unauthorised access -->
     <script>
         const logoutButton = document.getElementById("logout-button");

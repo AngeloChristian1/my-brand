@@ -349,7 +349,7 @@
 
 
       if (!loggedUser || loggedUser.role != "admin") {
-        window.location.href = "../index.html";
+        window.location.href = "../blog/blog-homepage.html";
       } else {
         // (successContainer.style.display = "flex"),
         //   (successElement.innerHTML = `Welcome, ${
@@ -457,7 +457,7 @@
           }
         });
       };
-console.log("myHeader", myHeaders)
+
       fetch(`http://localhost:8080/blogs`)
         .then((response) => response.json())
         .then((data) => {

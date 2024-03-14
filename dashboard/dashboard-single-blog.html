@@ -194,7 +194,7 @@
         const successElement = document.getElementById("success-text");
         const previewContainer = document.querySelector('.dashboard-image-preview')
         let imageUrl =null
-
+        let selectedImage = undefined
         const todayDate = new Date();
         const today = todayDate.getDate();
         const month = todayDate.getMonth();
@@ -208,7 +208,7 @@
 
 function handleImageUpload(event) {
   const selectedFile = event.target.files[0];
-
+  selectedImage = event.target.files[0]
   if (selectedFile) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -216,16 +216,17 @@ function handleImageUpload(event) {
       // Use this dataURL to display the image wherever needed
       displayImage(dataURL);
       imageUrl=dataURL
-      
     };
 
     reader.readAsDataURL(selectedFile);
   }
-  
 }
 function displayImage(dataURL) {
   const imagePreview = document.getElementById("image-preview");
   imagePreview.style.display="block"
+  // imagePreview.style.width="60%"
+  // imagePreview.style.height="40%"
+  imagePreview.style.objectFit = "cover"
   imagePreview.src = dataURL;
 }
 
@@ -286,7 +287,6 @@ const handleBlogSubmit = () => {
     successContainer.style.display = "none";
     successElement.innerText = "";
     }, 2000);
-
 }
         blogForm.addEventListener("submit",(e)=>{
             let errors = [];
@@ -350,7 +350,18 @@ const handleBlogSubmit = () => {
                 blogContentError.style.display = 'none';
                 blogContent.style.border = '1px solid green';
               // handleBlogUpdate()
-              handleBlogSubmit()
+
+              
+    const formData  = new FormData()
+     formData.append("image", selectedImage)
+    formData.append("title", blogTitle.value)
+    formData.append("subtitle", blogSubTitle.value)
+    formData.append("category", blogCategory.value)
+    formData.append("content", blogContent.value)
+    formData.append("timeToRead", blogTime.value)
+    console.log("formData before submit", formData)
+                submitBlog(formData)
+              // handleBlogSubmit()
             }
               
 
@@ -362,15 +373,18 @@ const handleBlogSubmit = () => {
 
     </script>
     <script> 
+
     let allArticles = JSON.parse(localStorage.getItem('articles')) || [];
     console.log("All Articles",allArticles)
     let currentUrl = window.location.href
-    let indexUrl = parseInt(currentUrl.split('index=')[1])
+    let indexUrl = currentUrl.split('index=')[1]
     console.log("Index URL",indexUrl)
 
     let singleArticle = allArticles[indexUrl]
     //  blogPoster.value = singleArticle.poster;
-     displayImage(singleArticle.poster)
+
+    const showBlogContent = (singleArticle)=>{
+           displayImage(singleArticle.poster)
      const imagePreview = document.getElementById("image-preview");
   imagePreview.style.display="block"
   imagePreview.src = singleArticle.poster;
@@ -378,7 +392,36 @@ const handleBlogSubmit = () => {
      blogSubTitle.value = singleArticle.subtitle
      blogCategory.value = singleArticle.category
      blogContent.value = singleArticle.content
-     blogTime.value = singleArticle.time
+     blogTime.value = singleArticle.timeToRead
+    }
+
+    const submitBlog = (myFormData) => {
+    console.log("---myformdata",myFormData)
+for (let [key, value] of myFormData.entries()) {
+  console.log(key, value);
+}
+
+  let boundary = myFormData.toString().slice(myFormData.toString().indexOf('=') + 1);
+  let headers = new Headers();
+  // headers.append("Content-Type", `multipart/form-data; boundary=${boundary}`);
+headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
+
+  console.log("===============================params=",selectedImage)
+    fetch(`http://localhost:8080/blogs/update/${indexUrl}`, {
+        method: 'PATCH',
+        body: myFormData,
+        headers: myHeaders
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // successContainer.style.display = "flex",
+        // successElement.innerHTML = "User Registered successfully"      
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
 
      const handleBlogUpdate =()=>{
 
@@ -410,8 +453,8 @@ const handleBlogSubmit = () => {
       };
 
               // function delete blog
-              deleteButton.addEventListener('click',()=>{
-          handleDeleteBlog()
+          deleteButton.addEventListener('click',()=>{
+            deleteBlog()
         } )
         const handleDeleteBlog = ()=>{
           // alert(indexUrl)
@@ -430,10 +473,48 @@ const handleBlogSubmit = () => {
           }, 2000);
           
         }
+        
+      fetch(`http://localhost:8080/blogs/${indexUrl}`)
+  .then(response => response.json())
+  .then(data => {
+    APIBlogs = data; // Assign the fetched data to the variable
+    showBlogContent(data.data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+
+  const deleteBlog = () => {
+    let headers = new Headers();
+headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
+headers.append("Content-Type", "application/json")
+
+    fetch(`http://localhost:8080/blogs/delete/${indexUrl}`,{
+        method: 'DELETE',
+        headers: myHeaders
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("userData",data);
+      successContainer.style.display = "flex"
+      successElement.innerHTML = data.message
+        
+        setTimeout(()=>{
+          successContainer.style.display = "none";
+          successElement.innerText = "";
+          window.location.href = "./dashboard-articles.html";
+  }, 1500)
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
     </script>
 
     <script>
-        CKEDITOR.replace('blog-form-content');
+        // CKEDITOR.replace('blog-form-content');
     </script>
 
         <!-- protect dashboard from unauthorised access -->
