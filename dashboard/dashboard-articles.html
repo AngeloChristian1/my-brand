@@ -125,9 +125,9 @@
                                 <th class="small-text text-white">Poster</th>
                                 <th class="small-text text-white">Title</th>
                                 <th class="small-text text-white">Category</th>
-                                <th class="small-text text-white">Views</th>
-                                <th class="small-text text-white ">Comments</th>
+                                <!-- <th class="small-text text-white">Views</th> -->
                                 <th class="small-text text-white ">Likes</th>
+                                <th class="small-text text-white ">Comments</th>
                                 <th class="small-text text-white ">Created At</th>
                                 <th class="small-text text-white "></th>
                                 <th class="small-text text-white "></th>
@@ -284,14 +284,26 @@
 
                 viewTD.appendChild(view)
 
+                  let allLikes = undefined
+  
                 // likes
                 let likeTD = document.createElement('td');
                 let like = document.createElement('div')
                 let likeIcon = document.createElement('img')
                 let likeSize =document.createElement('p')
                 likeIcon.src="../assets/images/dashboard-icons/heart.svg"
+  
+
+                fetch(`http://localhost:8080/likes/blogs/${article._id}`)
+                .then(response => response.json())
+                .then(data => {
                 likeSize.classList.add('smaller-text', 'light-text')
-                likeSize.innerText="10" + '-likes' || '12 likes'
+                likeSize.innerText=data.data?.length + ' likes' || '0 likes'
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+
 
                 like.appendChild(likeIcon)
                 like.appendChild(likeSize)
@@ -306,7 +318,16 @@
                 let commentsSize =document.createElement('p')
                 commentsIcon.src="../assets/images/dashboard-icons/comment.svg"
                 commentsSize.classList.add('smaller-text', 'light-text')
-                commentsSize.innerText=`${"10"}-comments` || '12 views'
+
+
+                fetch(`http://localhost:8080/comments/blogs/${article._id}`)
+                .then(response => response.json())
+                .then(data => {
+                commentsSize.innerText=data.data?.length + ' comments' || '0 comments'
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
 
                 comments.appendChild(commentsIcon)
                 comments.appendChild(commentsSize)
@@ -341,7 +362,7 @@
                 row.appendChild(posterTD,titleTD,categoryTD)
                 row.appendChild(titleTD)
                 row.appendChild(categoryTD)
-                row.appendChild(viewTD)
+                // row.appendChild(viewTD)
                 row.appendChild(likeTD)
                 row.appendChild(commentsTD)
                 row.appendChild(dateTD)
@@ -369,7 +390,7 @@
         <!-- protect dashboard from unauthorised access -->
         <script>
             const logoutButton = document.getElementById("logout-button");
-            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+            // const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
             console.log("loggedUser", loggedUser);
       
             if (!loggedUser || loggedUser.role != "admin") {
