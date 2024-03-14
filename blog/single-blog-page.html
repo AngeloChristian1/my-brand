@@ -89,10 +89,10 @@
       console.log("LoggedUser", loggedUser)
 
       const navigate = () => {
-        if (loggedUser.role == "admin") {
+        if (loggedUser?.role == "admin") {
         window.location.href = "../dashboard/dashboard.html";
         }
-        else if (loggedUser.role == "user") {
+        else if (loggedUser?.role == "user") {
         window.location.href = "../user-dashboard/user-dashboard-profile.html";
 
         }
@@ -111,16 +111,16 @@
       if (loggedUser) {
         blogButton.style.display = "none";
         profileIcon.style.display = "flex";
-        profileIcon.title = loggedUser.name + ", " + loggedUser.role;
+        profileIcon.title = loggedUser?.name + ", " + loggedUser?.role;
 
         profileIcon.innerHTML = `
         <div class="letter" onClick="openIcon()">
-        <h3 class="grey-text">${loggedUser.name
+        <h3 class="grey-text">${loggedUser?.name
           .split("")[0]
           .toUpperCase()}</h3>
         <div class="info user-setting-info">
           <div class="user-close-container">
-          <p class="white-text">${loggedUser.name } <span style=textDecoration:"capitalize"></span></p>
+          <p class="white-text">${loggedUser?.name } <span style=textDecoration:"capitalize"></span></p>
           <button onClick="closeIcon()" class="button">X</button>
             </div>
           
@@ -340,7 +340,7 @@
       let editBlogButton = document.getElementById("blog-edit-button")
 
 
-      if(loggedUser.role == "admin"){
+      if(loggedUser?.role == "admin"){
       editBlogButton.style.display = "flex"
       editBlogButton.href = `../dashboard/dashboard-single-blog.html?index=${indexUrl}`
 
@@ -391,9 +391,9 @@
 
          <div class="blog-home-card-info">
       <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-      <p class="grey-text">${blog.editor}</p>
+      <p class="grey-text">${blog.editor || "Angelo Christian"}</p>
       <p class="grey-text">&#x2022;</p>
-      <p class="grey-text">${blog.date}</p>
+      <p class="grey-text">${blog.createdAt.split("T")[0]}</p>
     </div>
 
     <div class="blog-comment-section">
@@ -441,7 +441,7 @@ heart.addEventListener("click", ()=>{handleLikes()})
 
 const handleLikes = () => {
     let params = {
-       userId : loggedUser._id,
+       userId : loggedUser?._id,
        blogId : indexUrl,
        isLiked: true
       }
@@ -475,7 +475,7 @@ const handleLikes = () => {
 // heart.addEventListener('click', handleLikeBlog);
 
 function initializeLikeButton(data, heart) {
-  const userLiked = data.some((like) => like.userId === loggedUser._id);
+  const userLiked = data.some((like) => like.userId === loggedUser?._id);
 
   if (userLiked) {
     heart.src = "../assets/images/favorite.svg";
@@ -487,7 +487,7 @@ function initializeLikeButton(data, heart) {
 }
 
 function handleLikeBlog(data) {
-  const likeExists = data.find((like) => like.userId === loggedUser._id);
+  const likeExists = data.find((like) => like.userId === loggedUser?._id);
 
   if (likeExists) {
     // User unlikes the post
@@ -535,7 +535,7 @@ const commentContainer = document.getElementById('comment-container')
       })
       const handleAddComment =()=>{
         let params = {
-          postedBy:loggedUser.name,
+          postedBy:loggedUser?.name,
           date: `${today}/${month}/${year}`,
           time: `${hours}:${minutes}:${seconds}`,
           content:blogComment.value,

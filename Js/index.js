@@ -81,7 +81,7 @@ const timeDelay = (container, element)=>{
   }, 3000)
 }
 
-const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+const loggedUser = JSON.parse(localStorage.getItem("loggedUser")) || null;
 // console.log("loggedUser", loggedUser);
 const tokens = JSON.parse(localStorage.getItem("tokens"));
       console.log("tokens in index", tokens);

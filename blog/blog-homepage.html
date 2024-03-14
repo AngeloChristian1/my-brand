@@ -470,9 +470,9 @@
           // Add avatar, author, date
           info.innerHTML = `
     <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-    <p class="grey-text">${blog.editor}</p> 
+    <p class="grey-text">${blog.editor || "Angelo Christian"}</p> 
     <p class="grey-text">&#x2022;</p>
-    <p class="grey-text">${blog.date}</p>
+    <p class="grey-text">${blog.createdAt.split("T")[0]}</p>
   `;
 
           details.appendChild(info);
