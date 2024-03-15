@@ -401,16 +401,16 @@ for (let [key, value] of myFormData.entries()) {
   console.log(key, value);
 }
 
-  let boundary = myFormData.toString().slice(myFormData.toString().indexOf('=') + 1);
-  let headers = new Headers();
-  // headers.append("Content-Type", `multipart/form-data; boundary=${boundary}`);
+  // let boundary = myFormData.toString().slice(myFormData.toString().indexOf('=') + 1);
+  // let headers = new Headers();
+  // // headers.append("Content-Type", `multipart/form-data; boundary=${boundary}`);
 headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
 
   console.log("===============================params=",selectedImage)
     fetch(`http://localhost:8080/blogs/update/${indexUrl}`, {
         method: 'PATCH',
         body: myFormData,
-        headers: myHeaders
+        // headers: myHeaders
     })
     .then(response => response.json())
     .then(data => {

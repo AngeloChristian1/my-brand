@@ -9,9 +9,10 @@
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
     <title>My Brand</title>
-    <script src="../Js/dashboard.js"></script>
   </head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="../Js/dashboard.js"></script>
+  
   <body>
     <div class="dashboard-container">
         
@@ -361,8 +362,8 @@ fetch(`http://localhost:8080/users`, {
           localStorage.removeItem("loggedUser")
           successContainer.style.display = "flex",
           successElement.innerHTML = "Logged out successfully"
-          dateJoinedDelay(successContainer, successElement)
-          window.location.href = "../index.html";
+        //   dateJoinedDelay(successContainer, successElement)
+          window.location.href = "../blog/blog-homepage.html";
         });
       </script>
           <script src="../Js/theme.js"></script>

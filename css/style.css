@@ -1122,6 +1122,7 @@ textarea {
   height: 40px;
   border-radius: var(--rounded-full);
   background-color: var(--white);
+  object-fit: cover;
 }
 .blog-home-card {
   overflow: hidden;
@@ -1568,6 +1569,7 @@ textarea {
   gap: var(--p-2);
   margin-top: var(--p-2);
   margin-bottom: var(--p-2);
+  justify-content: space-between;
 }
 .dashboard-blog-container-card .blog-card-image {
   width: 70px;
@@ -1961,6 +1963,18 @@ textarea {
 .bg-grey {
   background-color: var(--grey);
   color: var(--dark);
+}
+
+input[type="file"] {
+  position: relative;
+  width: 150px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border: 1px solid var(--grey);
+  text-align: center;
+  background-color: var(--white);
+  cursor: pointer;
 }
 
 .delete-account-section {

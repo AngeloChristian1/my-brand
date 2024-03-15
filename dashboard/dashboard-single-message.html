@@ -169,9 +169,15 @@ messageDetailsDiv.innerHTML = `
     console.log("Current URL",currentUrl)
     let indexUrl = currentUrl.split('index=')[1]
     console.log("Index URL",indexUrl)
-
-    
+    const apiUrl = `http://localhost:8080/messages/${indexUrl}`    
     let singleMessage = allMessages[indexUrl]
+    const deleteMessage = ()=>{
+    handleDeleteMessage()
+    // successContainer.style.display = "flex"
+    // successContainer.innerText = "Delete successfull"
+    window.location.href = "./dashboard-messages.html"
+   }
+   
 
     const populatedMessage = (message)=>{
         messageContainer.innerHTML = `
@@ -180,26 +186,26 @@ messageDetailsDiv.innerHTML = `
 <div class="message-information-section message-information-left">
     <div class="text-container">
         <p class="title white-text"> Sender Name</p>
-        <p class="grey-text" >${message.name}</p>
+        <p class="grey-text" >${message?.name}</p>
     </div>
     <div class="text-container">
         <p class="title white-text"> Sender Email</p>
-        <p class="grey-text">${message.email}</p>
+        <p class="grey-text">${message?.email}</p>
     </div>
     <div class="text-container">
         <p class="title white-text"> Sender Phone Number</p>
-        <p class="grey-text">${message.phone}</p>
+        <p class="grey-text">${message?.phone}</p>
     </div>
  
 </div>                            
 <div class="message-information-section message-information-right">
     <div class="text-container">
         <p class="title white-text"> Date sent</p>
-        <p class="grey-text">${message.createdAt.split("T")[0]}</p>
+        <p class="grey-text">${message?.createdAt?.split("T")[0]}</p>
     </div>
     <div class="text-container">
         <p class="title white-text"> Time Sent sent</p>
-        <p class="grey-text">${message.createdAt.split("T")[1].split(".")[0]}</p>
+        <p class="grey-text">${message?.createdAt?.split("T")[1]}</p>
     </div>
 </div>                    
 </div> 
@@ -207,18 +213,17 @@ messageDetailsDiv.innerHTML = `
 <div class="message-container">
 <div class="text-container">
     <p class="title white-text"> Message</p>
-    <p class="grey-text rounded-text category-tag">${message.message}</p>
+    <p class="grey-text rounded-text category-tag">${message?.message}</p>
 </div>
 </div>
 <div id="message-details">
 
 </div>
 
-<a href="mailto:${message.email}" ><button class="button button-dark text-yellow">Reply</button></a>
+<a href="mailto:${message?.email}"><button class="button button-dark text-yellow">Reply</button></a>
+<button onClick="deleteMessage()" class="button button-dark text-red" id="deleteButton">Delete</button>
     `
     }
-
-    
 
 fetch(`http://localhost:8080/messages/${indexUrl}`, {
 headers:myHeaders,
@@ -233,6 +238,19 @@ method:"GET"
   console.error("Error fetching data:", error);
 });
    
+   const handleDeleteMessage = ()=>{
+    fetch(`http://localhost:8080/messages/delete/${indexUrl}`, {
+    headers:myHeaders,
+    method:"DELETE"
+    })
+    .then((response) => response.json())
+    .then((data) => {
+    console.log("data here",data)
+})
+.catch((error) => {
+  console.error("Error deleting data:", error);
+});
+   }
 </script>
 
     <!-- protect dashboard from unauthorised access -->

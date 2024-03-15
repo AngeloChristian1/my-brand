@@ -18,6 +18,11 @@
   <script src="../Js/dashboard.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
+    <script>
+      if (!loggedUser || loggedUser.role != "user") {
+        window.location.href = "../blog/blog-homepage.html";
+      } 
+    </script>
     <div class="dashboard-container">
         
         <div class="error-container" id="error-container">
@@ -46,7 +51,7 @@
                 />
                 <p>Dashboard</p>
               </a>
-              <a
+              <!-- <a
                 href="./dashboard-articles.html"
                 class="rounded-text grey-text category-tag dashboard-link"
               >
@@ -59,7 +64,7 @@
               >
                 <img src="../assets//images//dashboard-icons/messages.svg" alt="" />
                 <p>My comments</p>
-              </a>
+              </a> -->
               <a
               id="active-dashboard-link"
                 href="./user-dashboard-profile.html"

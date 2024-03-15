@@ -22,10 +22,16 @@
       type="image/x-icon"
     />
     <title>My dashboard</title>
-    <script src="../Js/dashboard.js"></script>
+    
   </head>
+  <script src="../Js/dashboard.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <body>
+    <script>
+      if (!loggedUser || loggedUser.role != "user") {
+        window.location.href = "../blog/blog-homepage.html";
+      } 
+    </script>
     <div class="dashboard-container">
       <div class="error-container" id="error-container">
         <span class="material-symbols-outlined" id="error-icon"> error </span>
@@ -55,7 +61,7 @@
             />
             <p>Dashboard</p>
           </a>
-          <a
+          <!-- <a
             href="./dashboard-articles.html"
             class="rounded-text grey-text category-tag dashboard-link"
           >
@@ -68,7 +74,7 @@
           >
             <img src="../assets//images//dashboard-icons/messages.svg" alt="" />
             <p>My comments</p>
-          </a>
+          </a> -->
           <a
             href="./user-dashboard-profile.html"
             class="rounded-text grey-text category-tag dashboard-link"
@@ -106,35 +112,36 @@
             </div>
           </div>
 
-          <a href="./user-dashboard-profile.html" class="dashboard-user-info">
+          <div class="dashboard-user-info">
             <img
-              src="../assets/images/my-avatar.svg"
+              src="../assets/images/profile-default.png"
               alt="avatar"
               class="avatar"
-              id="user-profile"
             />
             <div>
-              <p class="white-text small-text title" id="user-name">
-                User Name
-              </p>
-              <p class="grey-text small-text" id="user-role">User Role</p>
+              <p class="white-text small-text title">User Name</p>
+              <p class="grey-text small-text">Role</p>
             </div>
-          </a>
+          </div>
         </div>
 
         <script>
           const dashboardBurger = document.getElementById("dashboard-burger");
           const burgerClose = document.getElementById("burger-close");
           const dashboardSidebar = document.getElementById("dashboard-sidebar");
-          const userProfile = document.getElementById("user-profile");
-          const userName = document.getElementById("user-name");
-          const userRole = document.getElementById("user-role");
 
-          userName.innerText = loggedUser.name;
-          userRole.innerText = loggedUser.role;
-          userRole.style.textTransform = "capitalize";
+           const  userDetails = document.querySelector(".dashboard-user-info")
+          userDetails.innerHTML = `
+          <img
+          src= ${loggedUser.profile || "../assets/images/profile-default.png"} alt="Profile Picture" 
+          class="avatar"
+          />
+          <div>
+          <p class="white-text small-text title">${loggedUser.name}</p>
+          <p class="grey-text small-text">${loggedUser.role}</p>
+          </div>`
 
-          dashboardBurger.addEventListener("click", () => {
+              dashboardBurger.addEventListener("click", () => {
             dashboardSidebar.style.transform = "translateX(0%)";
           });
 
@@ -149,25 +156,19 @@
         </script>
         <div class="dashboard-content">
           <div class="dashboard-tags-container">
-            <div class="dashboard-tag">
-              <img src="../assets/images/dashboard-icons/articles.svg" alt="" />
-              <div>
-                <p class="title white-text">Total Articles</p>
-                <p class="title grey-text big-text" id="totalArticles">20</p>
-              </div>
-            </div>
+
             <div class="dashboard-tag">
               <img src="../assets/images/dashboard-icons/messages.svg" alt="" />
               <div>
-                <p class="title white-text">Total Messages</p>
-                <p class="title grey-text big-text" id="totalMessages">13</p>
+                <p class="title white-text">Comments Made</p>
+                <p class="title grey-text big-text" id="totalComments">13</p>
               </div>
             </div>
 
             <div class="dashboard-tag">
               <img src="../assets/images/dashboard-icons/heart.svg" alt="" />
               <div>
-                <p class="title white-text">Total Likes</p>
+                <p class="title white-text">Blogs Liked</p>
                 <p class="title grey-text big-text" id="totalLikes">20</p>
               </div>
             </div>
@@ -175,7 +176,6 @@
           <div class="dashboard-data-container">
             <div class="dashboard-graph">
               <p class="title margin-vertical white-text">Favourite Articles</p>
-              <!-- http://localhost:8080/likes/users/65df7302f287be068b46ed3b -->
               <div class="liked-blogs-container">
                 <div class="liked-blogs-card">
                   <img
@@ -220,20 +220,27 @@
               </div>
               <script>
                 const apiUrl =
-                  " http://localhost:8080/likes/users/65df7302f287be068b46ed3b";
+                  `http://localhost:8080/likes/users/${loggedUser._id}`;
+                  const setLikes = (Likes)=>{
+              const showLikes = document.getElementById("totalLikes")
+                showLikes.innerText= `${Likes.length}`
+              }
 
                 const displayContent = (blogs) => {
+
                   let likedContainer = document.querySelector(
                     ".liked-blogs-container"
                   );
+
+                  blogs.map((blog, index) => {
+              
                   const card = document.createElement("div");
                   card.classList.add("liked-blogs-card");
                   // card.style.backgroundColor="red"
                   likedContainer.innerHTML = "";
 
-                  blogs.map((blog, index) => {
                     fetch(
-                      `http://localhost:8080/blogs/65e19ced07daefd2edb01d58`
+                      `http://localhost:8080/blogs/${blog.blogId}`
                     )
                       .then((response) => response.json())
                       .then((data) => {
@@ -247,19 +254,23 @@
 
                     function innerDisplay(value) {
                       card.innerHTML = `
-                    <img src=${value.poster} class="overaly-poster" alt="">
+                    <img src=${value?.poster} class="overaly-poster" alt="">
                   <div class="liked-blogs-card-details">
                     <div class="liked-title">
-                      <p class="title blog-title">${value.title}</p>
+                      <p class="title blog-title">${value?.title}</p>
                     </div>
                     <div class="liked-at">
                       <img class="liked-heart" src="../assets/images/dashboard-icons/heart.svg" alt="">
                       <p class="smaller-text grey-text">Liked At: ${
-                        blog.createdAt.split("T")[0]
+                        blog?.createdAt.split("T")[0]
                       }</p>
                     </div>
                   </div>
                     `;
+
+                    card.addEventListener('click', ()=>{
+                      window.location.href = `../blog/single-blog-page.html?index=${value._id}`
+                    })
                       likedContainer.appendChild(card);
                     }
                   });
@@ -269,6 +280,7 @@
                   .then((data) => {
                     // console.log("data in fetch", data);
                     displayContent(data.data);
+                    setLikes(data.data)
                   })
                   .catch((error) => {
                     console.error("Error fetching data:", error);
@@ -331,19 +343,24 @@
               </div>
             </div>
             <script>
-              const commentsUrl = `http://localhost:8080/comments/users/65e05874cf3ae7f4a1d49565`;
+              const commentsUrl = `http://localhost:8080/comments/users/${loggedUser.id}`;
+              
+              const setComments = (comments)=>{
+              const showComments = document.getElementById("totalComments")
+                showComments.innerText= `${comments.length}`
+              }
 
               const displayComments = (comments) => {
                 let commentsContainer = document.querySelector(
                   ".my-comments-container"
                 );
-                const card = document.createElement("div");
+                comments.map((comment, index) => {
+                  const card = document.createElement("div");
                 card.classList.add("my-comments-card-content", 'dashboard-blog-container-card' );
                 // commentsContainer.style.backgroundColor = "red";
                 commentsContainer.innerHTML = "";
-
-                comments.map((comment, index) => {
-                  fetch(`http://localhost:8080/blogs/65e19ced07daefd2edb01d58`)
+           
+                  fetch(`http://localhost:8080/blogs/${comment.blogId}`)
                     .then((response) => response.json())
                     .then((data) => {
                       APIBlogs = data; // Assign the fetched data to the variable
@@ -357,7 +374,7 @@
                   function innerDisplay(value) {
                     card.innerHTML = `
                       <img
-                    src="../assets//images//deepmind.webp"
+                    src=${value.poster}
                     alt="image"
                     class="blog-card-image comment-image"
                   />
@@ -366,23 +383,21 @@
                       ${comment?.content}
                     </p>
                     <div class="my-comments-card-details">
-                     
-                        <p class="title smaller-text grey-text"> ChatGPT : A Developer's Best Friend or Worst Enemy?</p>
-                        <p class="light-text smaller-text grey-text">Comment At:${comment.createdAt.split("T")[0]}</p>
-                      
+                        <p class="title smaller-text grey-text">${value.title}</p>
                     </div>
                   </div>
                   `;
                     commentsContainer.appendChild(card);
                   }
                 });
-              };
-              fetch(`http://localhost:8080/comments/users/65e05874cf3ae7f4a1d49565`)
+              }; 
+              fetch(`http://localhost:8080/comments/users/${loggedUser._id}`)
                 .then((response) => response.json())
                 .then((data) => {
                   APIBlogs = data; // Assign the fetched data to the variable
-                  console.log("comment data in fetch", data);
+                  // console.log("comment data in fetch", data);
                   displayComments(data.data);
+                  setComments(data.data)
                 })
                 .catch((error) => {
                   console.error("Error fetching data:", error);

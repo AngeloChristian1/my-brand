@@ -350,20 +350,14 @@
 
       if (!loggedUser || loggedUser.role != "admin") {
         window.location.href = "../blog/blog-homepage.html";
-      } else {
-        // (successContainer.style.display = "flex"),
-        //   (successElement.innerHTML = `Welcome, ${
-        //     loggedUser.name.split(" ")[0]
-        //   }`);
-        // timeDelay(successContainer, successElement);
-      }
+      } 
 
       logoutButton.addEventListener("click", () => {
         localStorage.removeItem("loggedUser");
         (successContainer.style.display = "flex"),
           (successElement.innerHTML = "Logged out successfully");
         timeDelay(successContainer, successElement);
-        window.location.href = "../index.html";
+        window.location.href = "../blog/blog-homepage.html";
       });
     </script>
 

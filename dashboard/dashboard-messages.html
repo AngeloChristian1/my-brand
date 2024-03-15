@@ -209,14 +209,14 @@ function populateMessagesTable(messages) {
         let dateTD = document.createElement('td');
         let date = document.createElement('p');
         date.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
-        date.innerText = message?._createdAt
+        date.innerText = message?.createdAt?.split("T")[0]?.split("-")?.join("/")
 
         dateTD.appendChild(date);
 
         let timeTD = document.createElement('td');
         let time = document.createElement('p');
         time.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
-        time.innerText = message.createdAt
+        time.innerText = message.createdAt?.split("T")[1]?.split(".")[0]
 
         timeTD.appendChild(time);
 
