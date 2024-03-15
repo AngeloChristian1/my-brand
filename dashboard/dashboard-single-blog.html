@@ -292,15 +292,15 @@ const handleBlogSubmit = () => {
             let errors = [];
             e.preventDefault()
 
-            if (blogPoster.value === '' || blogPoster.value == null){
-                errors.push('Picture is required')
-                blogPosterError.style.opacity = '1';
-                blogPosterError.style.display = 'block';
-                blogPosterError.innerHTML = 'Picture is required';
-                blogPoster.style.border = '1px solid red';
-            }
+            // if (blogPoster.value === '' || blogPoster.value == null){
+            //     errors.push('Picture is required')
+            //     blogPosterError.style.opacity = '1';
+            //     blogPosterError.style.display = 'block';
+            //     blogPosterError.innerHTML = 'Picture is required';
+            //     blogPoster.style.border = '1px solid red';
+            // }
           
-           else if(blogTitle.value ==="" || blogTitle.value === null){
+           if(blogTitle.value ==="" || blogTitle.value === null){
                 blogPosterError.style.display = 'none';
                 blogPoster.style.border = '1px solid green';
                 errors.push('Title is required')
@@ -402,7 +402,7 @@ for (let [key, value] of myFormData.entries()) {
 }
 
   // let boundary = myFormData.toString().slice(myFormData.toString().indexOf('=') + 1);
-  // let headers = new Headers();
+  let headers = new Headers();
   // // headers.append("Content-Type", `multipart/form-data; boundary=${boundary}`);
 headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
 
@@ -410,13 +410,19 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
     fetch(`http://localhost:8080/blogs/update/${indexUrl}`, {
         method: 'PATCH',
         body: myFormData,
-        // headers: myHeaders
+        headers: myHeaders
     })
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        // successContainer.style.display = "flex",
-        // successElement.innerHTML = "User Registered successfully"      
+        if(data.status== 'success'){
+        successContainer.style.display = "flex",
+        successElement.innerHTML = data.message    
+        setTimeout(()=>{
+          window.location.href='../blog/blog-homepage.html'
+        }, 1000)  
+        
+        }      
     })
     .catch(error => {
         console.error('Error:', error);

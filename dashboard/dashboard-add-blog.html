@@ -389,9 +389,17 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        // successContainer.style.display = "flex",
-        // successElement.innerHTML = "User Registered successfully"      
+        console.log(data)
+        
+        if(data.status== 'success'){
+        successContainer.style.display = "flex",
+        successElement.innerHTML = data.message    
+        setTimeout(()=>{
+          window.location.href='../blog/blog-homepage.html'
+        }, 1000)  
+        
+        }
+
     })
     .catch(error => {
         console.error('Error:', error);
@@ -404,7 +412,7 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
             const logoutButton = document.getElementById("logout-button");
       
             if (!loggedUser || loggedUser.role != "admin") {
-              window.location.href = "../index.html";
+              window.location.href = "../blog/blog-homepage.html";
             } else {
             
             }
@@ -413,8 +421,8 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
               localStorage.removeItem("loggedUser")
               successContainer.style.display = "flex",
               successElement.innerHTML = "Logged out successfully"
-              timeDelay(successContainer, successElement)
-              window.location.href = "../index.html";
+              // timeDelay(successContainer, successElement)
+              window.location.href = "../blog/blog-homepage.html";
             });
           </script>
           <script src="../Js/theme.js"></script>
