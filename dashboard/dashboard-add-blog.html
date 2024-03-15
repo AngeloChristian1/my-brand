@@ -98,7 +98,7 @@
                     <a class="title text-yellow rounded-text category-tag small-text cursor-pointer">Preview</a>
 
                 </div>
-                <form action="" class="dashboard-input-information-form" id="dashboard-input-information-form">
+                <form action="" method="POST"  class="dashboard-input-information-form" id="dashboard-input-information-form" enctype = "multipart/form-data">
                     <div class="input-form">
                         <p class="white-text title small-text">Add Image</p>
                         <input type="file" name="poster" id="blog-form-poster" placeholder="Enter Your Image"/>
@@ -180,6 +180,8 @@
         const successElement = document.getElementById("success-text");
         const previewContainer = document.querySelector('.dashboard-image-preview')
         let imageUrl =null
+        let blobUrl =null
+        let selectedImage = undefined
 
         const todayDate = new Date();
         const today = todayDate.getDate();
@@ -189,30 +191,43 @@
         const minutes = todayDate.getMinutes();
         const seconds = todayDate.getSeconds();
 
+        let myFormdata = new FormData();
+
         // getting image posters from input field
         blogPoster.addEventListener("change", handleImageUpload);
 
 function handleImageUpload(event) {
   const selectedFile = event.target.files[0];
+  selectedImage = event.target.files[0]
+
+myFormdata.append("image", selectedFile)
+myFormdata.append("title", "selectedFile")
+// myFormdata.get('title')
 
   if (selectedFile) {
     const reader = new FileReader();
+     blobURL = URL.createObjectURL(selectedFile);
+
     reader.onload = function (e) {
       const dataURL = e.target.result;
       // Use this dataURL to display the image wherever needed
       displayImage(dataURL);
       imageUrl=dataURL
-      
     };
-
     reader.readAsDataURL(selectedFile);
   }
   
 }
+
 function displayImage(dataURL) {
   const imagePreview = document.getElementById("image-preview");
   imagePreview.style.display="block"
+  imagePreview.style.width="60%"
+  imagePreview.style.height="40%"
   imagePreview.src = dataURL;
+  imagePreview.onload = function () {
+      URL.revokeObjectURL(blobUrl);
+    };
 }
 
 console.log('imageUrl',imageUrl,"end")
@@ -327,18 +342,15 @@ const handleBlogSubmit = () => {
                 // handleBlogSubmit();
                 // sendMail();
 
-    // const formData  = new FormData(form)
-    //  formData.append("poster",{
-    //   uri: imageUrl,
-    //   type: "image/jpg/png",
-    //   name: new Date() + "_picture",
-    // })
-    // formData.append("title", blogTitle.value)
-    // formData.append("category", blogCategory.value)
-    // formData.append("content", blogContent)
-    // formData.append("timeToRead", blogTime.value)
-    // console.log("formData", formData)
-                submitBlog()
+    const formData  = new FormData()
+     formData.append("image", selectedImage)
+    formData.append("title", blogTitle.value)
+    formData.append("subtitle", blogSubTitle.value)
+    formData.append("category", blogCategory.value)
+    formData.append("content", blogContent.value)
+    formData.append("timeToRead", blogTime.value)
+    console.log("formData before submit", formData)
+                submitBlog(formData)
             }
               
 
@@ -348,40 +360,38 @@ const handleBlogSubmit = () => {
     errorContainer.style.display = "flex"
   }})
 
+  const submitBlog = (myFormData) => {
+    console.log("---myformdata",myFormData)
+for (let [key, value] of myFormData.entries()) {
+  console.log(key, value);
+}
 
-  const submitBlog = () => {
-    const formData  = new FormData(blogForm)
     let params = {
-    poster: imageUrl,
+    image: selectedImage,
     title: blogTitle.value,
     subtitle: blogSubTitle.value,
     category: blogCategory.value,
     content: blogContent.value,
-    timeToRead: blogTime.value,
-    date: `${today}/${month}/${year}`,
-    time: `${hours}:${minutes}:${seconds}`,
-    editor:"Gatete Angelo Christian",  
+    timeToRead: blogTime.value, 
       }
+
+  let boundary = myFormData.toString().slice(myFormData.toString().indexOf('=') + 1);
+  let headers = new Headers();
+  // headers.append("Content-Type", `multipart/form-data; boundary=${boundary}`);
+headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
+
+  console.log("================================",myFormData)
+  // console.log("===============================params=",selectedImage)
     fetch('http://localhost:8080/blogs/add', {
         method: 'POST',
-        body: formData,
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: "application/json",
-            Authorization: `Bearer ${authToken}`,
-            // Cookie: USER-AUTH=sessionToken
-        }
+        body: myFormData,
+        headers: myHeaders
     })
     .then(response => response.json())
     .then(data => {
         console.log(data);
         // successContainer.style.display = "flex",
-        // successElement.innerHTML = "User Registered successfully"
-      // timeDelay(successContainer, successElement)
-      setTimeout(()=>{
-        // window.location.href = "../blog/LoginPage.html"; 
-      }, 4000)
-      
+        // successElement.innerHTML = "User Registered successfully"      
     })
     .catch(error => {
         console.error('Error:', error);
@@ -390,11 +400,6 @@ const handleBlogSubmit = () => {
         
     </script>
 
-    <!-- <script>
-        CKEDITOR.replace('blog-form-content');
-    </script> -->
-
-        <!-- protect dashboard from unauthorised access -->
         <script>
             const logoutButton = document.getElementById("logout-button");
       

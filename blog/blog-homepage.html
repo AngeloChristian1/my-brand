@@ -23,6 +23,8 @@
       type="image/x-icon"
     />
     <title>Blog</title>
+    <script src="../Js/index.js"></script>
+    <script src="../Js/contactForm.js"></script>
   </head>
   <body>
     <div class="main-container">
@@ -97,9 +99,6 @@
           <script>
             const blogButton = document.querySelector(".blog-button");
             const profileIcon = document.querySelector(".user-name-profile");
-
-            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-
             const handleLogout = () => {
               localStorage.removeItem("loggedUser");
               (successContainer.style.display = "flex"),
@@ -110,28 +109,48 @@
             console.log("LoggedUser", loggedUser)
 
             const navigate = () => {
-              window.location.href = "../dashboard/dashboard.html";
               if (loggedUser.role == "admin") {
+              window.location.href = "../dashboard/dashboard.html";
+              }
+              else if (loggedUser.role == "user") {
+              window.location.href = "../user-dashboard/user-dashboard-profile.html";
+
               }
             };
 
+
+            const openIcon = ()=>{
+              profileInfo.style.display = "block"
+              profileInfo.style.opacity = 1
+            }
+
+            const closeIcon = ()=>{
+              profileInfo.style.display = "none"
+              profileInfo.style.opacity = 0
+            }
             if (loggedUser) {
               blogButton.style.display = "none";
               profileIcon.style.display = "flex";
               profileIcon.title = loggedUser.name + ", " + loggedUser.role;
 
               profileIcon.innerHTML = `
-              <div class="letter" onClick="navigate()">
+              <div class="letter" onClick="openIcon()">
               <h3 class="grey-text">${loggedUser.name
                 .split("")[0]
                 .toUpperCase()}</h3>
-              <div class="info">
-                <p class="white-text">${loggedUser.name}</p>
-                <p>${loggedUser.role}</p>
+              <div class="info user-setting-info">
+                <div class="user-close-container">
+                <p class="white-text">${loggedUser.name } <span style=textDecoration:"capitalize"></span></p>
+                <button onClick="closeIcon()" class="button">X</button>
+                  </div>
+                
+                <button onClick="navigate()" class="rounded-text grey-text category-tag dashboard-link">
+                  <p>My Dashboard</p>
+                  <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
+              </button>
                 <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
                   <p>Logout</p>
                   <img src="../assets//images//dashboard-icons/logout.svg" alt="">
-      
               </button>
               </div>
             </div>
@@ -140,6 +159,10 @@
               blogButton.style.display = "flex";
               profileIcon.style.display = "none";
             }
+
+            const profileInfo = document.querySelector(".user-setting-info");
+
+            
           </script>
         </div>
         <div class="mobile-nav">
@@ -190,7 +213,7 @@
         <div class="subscribe-section blog-subscribe-section">
           <div class="subscribe-email-input">
             <input type="email" name="email" placeholder="Enter Your email" />
-            <div class="button">Subscribe</div>
+            <button class="button">Subscribe</button>
           </div>
         </div>
       </div>
@@ -447,9 +470,9 @@
           // Add avatar, author, date
           info.innerHTML = `
     <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-    <p class="grey-text">${blog.editor}</p> 
+    <p class="grey-text">${blog.editor || "Angelo Christian"}</p> 
     <p class="grey-text">&#x2022;</p>
-    <p class="grey-text">${blog.date}</p>
+    <p class="grey-text">${blog.createdAt.split("T")[0]}</p>
   `;
 
           details.appendChild(info);
@@ -463,7 +486,7 @@
         .then((data) => {
           APIBlogs = data; // Assign the fetched data to the variable
           console.log("data in fetch", data);
-          showBlogs(data);
+          showBlogs(data.reverse());
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -521,9 +544,6 @@
       // themeButton.addEventListener("click",()=>{
       //   deleteTheme();
       // })
-    </script>
-       <script src="../Js/index.js"></script>
-    <script src="../Js/contactForm.js"></script>
- 
+    </script> 
   </body>
 </html>

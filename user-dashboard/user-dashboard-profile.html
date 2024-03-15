@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />   
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="shortcut icon" href="../assets/images/logo-color.svg" type="image/x-icon">
+    <title>My Brand</title>
+
+  </head>
+  <script src="../Js/theme.js"></script>
+  <script src="../Js/dashboard.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    <script>
+      if (!loggedUser || loggedUser.role != "user") {
+        window.location.href = "../blog/blog-homepage.html";
+      } 
+    </script>
+    <div class="dashboard-container">
+        
+        <div class="error-container" id="error-container">
+            <span class="material-symbols-outlined" id="error-icon"> error </span>
+            <p id="error-text" class="error-text"></p>
+          </div>
+          
+          <div class=" success-container" id="success-container">
+            <span class="material-symbols-outlined" id="error-icon"> check_circle </span>
+            <p id="success-text" class="success-text"></p>
+          </div>
+          <aside class="dashboard-sidebar" id="dashboard-sidebar">
+            <a href="../index.html" class="dashboard-image-logo">
+              <img src="../assets/images/logo.png" alt="logo" />
+            </a>
+    
+            <div class="dashboard-links-container">
+              <button class="button burger-close" id="burger-close">X</button>
+              <a
+                href="./user-dashboard.html"
+                class="rounded-text grey-text category-tag dashboard-link"
+              >
+                <img
+                  src="../assets//images//dashboard-icons/dashboard.svg"
+                  alt=""
+                />
+                <p>Dashboard</p>
+              </a>
+              <!-- <a
+                href="./dashboard-articles.html"
+                class="rounded-text grey-text category-tag dashboard-link"
+              >
+                <img src="../assets//images//dashboard-icons/articles.svg" alt="" />
+                <p>Blogs liked</p>
+              </a>
+              <a
+                href="./dashboard-messages.html"
+                class="rounded-text grey-text category-tag dashboard-link"
+              >
+                <img src="../assets//images//dashboard-icons/messages.svg" alt="" />
+                <p>My comments</p>
+              </a> -->
+              <a
+              id="active-dashboard-link"
+                href="./user-dashboard-profile.html"
+                class="rounded-text grey-text category-tag dashboard-link"
+              >
+                <img src="../assets//images//dashboard-icons/users.svg" alt="" />
+                <p>My Account</p>
+              </a>
+             
+            </div>
+            <button
+              class="rounded-text grey-text category-tag dashboard-link dashboard-logout"
+              id="logout-button"
+            >
+              <p>Logout</p>
+              <img src="../assets//images//dashboard-icons/logout.svg" alt="" />
+            </button>
+          </aside>
+
+    <div class="dashboard-content-container">
+      <div class="confirmation-container-overlay">
+        <div class="confirmation-box">
+          <div class="confirmation-text">
+            <p>Are You sure You want to delete Your Account</p>
+            <p>It can not be undone</p>
+          </div>
+          <div class="confirmation-button">
+            <button class="button cancel-button">Cancel</button>
+            <button class="button action-button">Delete</button>
+          </div>
+        </div>
+      </div>
+         <div class="dashboard-header">
+            <div class="input-for search-form">
+                <input type="search" name="email" id="email" placeholder="Enter Your Email"/>
+                <span class="material-symbols-outlined">
+                    search
+                    </span>
+              </div>
+
+        </div>
+        <div class="dashboard-content dashboard-profile">
+            <div class=" dashboard-profile-container">
+                <div class="dashboard-profile-information">
+                    <form class="profile-section-left" id="update-form">
+
+                        <div class="input-form">
+                          <p class="white-text title small-text">Add Image</p>
+                          <input type="file" name="poster" id="blog-form-poster" placeholder="Enter Your Profile Image"/>
+                          <p class="small-text red-text error" id="blog-form-poster-error"></p>
+                      </div>
+                      <div class="dashboard-image-preview">
+                          <img src="" alt="blog-poster" id="image-preview">
+                      </div>
+                        <div class="input-form">
+                          <p class="white-text grey-text">Name</p>
+                          <input
+                            type="text"
+                            name="name"
+                            id="update-form-name"
+                            placeholder="Enter Your Name"
+                          />
+                          <p class="small-text red-text error" id="update-form-name-error"></p>
+                        </div>
+                        <div class="input-form">
+                          <p class="white-text grey-text">Email</p>
+                          <input
+                            type="text"
+                            name="email"
+                            id="update-form-email"
+                            placeholder="Enter Your Email"
+                          />
+                          <p class="small-text red-text error" id="update-form-email-error"></p>
+              
+                        </div>
+                        <div class="input-form">
+                          <p class="white-text grey-text">Phone Number</p>
+                          <input
+                            type="text"
+                            name="phone"
+                            id="update-form-phone"
+                            placeholder="Enter Your Name"
+                          />
+                          <p class="small-text red-text error" id="update-form-phone-error"></p>
+              
+                        </div>
+                          <button class="button button-dark text-yellow" id="update-form-submit">Change Profile</button>
+                    </form>
+                    <div class="profile-section-right">
+                        <div class="delete-account-section">
+                            Delete account
+                            <button class="delete-button" id="delete-button">
+                                Delete
+                            </button>
+                        </div>
+                        <p class="text-white text-center title">Change Password</p>
+                        <form action="" class="change-password-form" id="change-password-form">
+                          <div class="input-form">
+                            <p class="white-text grey-text">Old Password</p>
+                            <input type="password" name="old-password" id="old-password" placeholder="Enter Old Password"/>
+                            <span class="material-symbols-rounded visibility" id="visibility">
+                              visibility
+                              </span>
+                        <p class="small-text red-text error" id="old-password-error"></p> 
+                          </div>
+                          <div class="input-form">
+                            <p class="white-text grey-text">New Password</p>
+                            <input type="password" name="new-password" aria-autocomplete="none" id="new-password" placeholder="Enter Your New Password"/>
+                            <span class="material-symbols-rounded visibility" id="visibility">
+                              visibility
+                              </span>
+                        <p class="small-text red-text error" aria-autocomplete="none" id="new-password-error"></p>
+                          </div>
+
+                              <button type="submit" class="button" id="change-password-button"> Change Password</button>
+                        </form>
+                        <script>
+
+                          const updateForm = document.getElementById("update-form")
+                          const updateFormName = document.getElementById("update-form-name");
+                          const updateFormEmail = document.getElementById("update-form-email");
+                          const updateFormPhone = document.getElementById("update-form-phone");
+                          const updateFormSubmit = document.getElementById("update-form-submit");
+                          const updateFormNameError = document.getElementById("update-form-name-error");
+                          const updateFormEmailError = document.getElementById("update-form-email-error");
+                          const updateFormPhoneError = document.getElementById("update-form-phone-error");
+                          const newPassword = document.getElementById("new-password");
+                          const oldPassword = document.getElementById("old-password");
+                          const changePasswordButton = document.getElementById("change-password-button");
+                          const changePasswordForm = document.getElementById("change-password-form");
+                          const oldPasswordError = document.getElementById("old-password-error");
+                          const newPasswordError = document.getElementById("new-password-error");
+
+                          const errorContainer = document.getElementById("error-container");
+                          const errorElement = document.getElementById("error-text");
+                          const successContainer = document.getElementById("success-container");
+                          const successElement = document.getElementById("success-text");
+                          const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                          const phonePattern = /^[0-9]{10}$/;
+                          const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+                          const namePattern = /^[a-zA-Z]+$/;
+
+                          const previewContainer = document.querySelector('.dashboard-image-preview')
+                          let blogPoster = document.getElementById("blog-form-poster");
+                          const blogPosterError = document.getElementById("blog-form-poster-error")
+                          let selectedImage = undefined
+
+                          const timeDelay = (container, element)=>{
+                          setTimeout(()=>{
+                            container.style.display = "none";
+                            element.innerText = "";
+                          }, 3000)
+                        }
+                        const showUserData = (data)=>{
+                          const imagePreview = document.getElementById("image-preview");
+                          imagePreview.style.display="block"
+                          imagePreview.src = loggedUser?.profile;
+                          updateFormName.value = loggedUser.name
+                          updateFormEmail.value = loggedUser.email
+                          updateFormPhone.value = loggedUser.phone
+                          // blogPoster.value = loggedUser?.profile || "picture"
+                          displayImage(loggedUser.profile)
+                          imagePreview.style.display="block"
+                          imagePreview.src = loggedUser?.profile;
+                        }
+                        showUserData(loggedUser)
+                        blogPoster.addEventListener("change", handleImageUpload);
+
+
+                          function handleImageUpload(event) {
+                            const selectedFile = event.target.files[0];
+                            selectedImage = event.target.files[0]
+
+                            if (selectedFile) {
+                              const reader = new FileReader();
+                              // blobURL = URL.createObjectURL(selectedFile);
+
+                              reader.onload = function (e) {
+                                const dataURL = e.target.result;
+                                // Use this dataURL to display the image wherever needed
+                                displayImage(dataURL);
+                                imageUrl=dataURL
+                                
+                              };
+
+                              reader.readAsDataURL(selectedFile);
+                            }
+                            
+                          }
+
+                          function displayImage(dataURL) {
+                            const imagePreview = document.getElementById("image-preview");
+                            imagePreview.style.display="block"
+                            imagePreview.style.width="60%"
+                            imagePreview.style.height="40%"
+                            imagePreview.src = dataURL;
+                            // imagePreview.onload = function () {
+                            //     URL.revokeObjectURL(blobUrl);
+                            //   };
+                          }
+                                                  </script>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </div>
+
+        <!-- protect dashboard from unauthorised access -->
+        <script>
+            const logoutButton = document.getElementById("logout-button");  
+            if (!loggedUser || loggedUser == null) {
+              window.location.href =  "../blog/blog-homepage.html";
+            } 
+      
+            logoutButton.addEventListener("click", () => {
+              localStorage.removeItem("loggedUser")
+              successContainer.style.display = "flex",
+              successElement.innerHTML = "Logged out successfully"
+              timeDelay(successContainer, successElement)
+              window.history.back()
+            });
+          </script>
+          <script>
+          const deleteButton = document.querySelector("#delete-button")
+          const confirmContainer = document.querySelector(".confirmation-container-overlay")
+          const cancelButton = document.querySelector(".cancel-button")
+          const actionButton = document.querySelector(".action-button")
+
+          confirmContainer.addEventListener("double-click", () => {
+            confirmContainer.style.display = "none"
+          })
+
+          deleteButton.addEventListener("click", () => {
+            confirmContainer.style.display = "flex"
+            confirmContainer.style.scale = "1"
+          })
+
+          cancelButton.addEventListener("click", () => {
+            confirmContainer.style.display = "none"
+          })
+
+        actionButton.addEventListener("click", ()=>{
+          handleDeleteAccount()
+          confirmContainer.style.display = "none"
+        })
+          </script>
+
+          <script>
+
+              
+  updateForm.addEventListener("submit", (e) => {
+    let errors = [];
+    e.preventDefault();
+    
+    if (updateFormName.value ==="" || updateFormName.value === null) {
+      errors.push("Please enter a valid name");
+      updateFormNameError.innerText = "Please enter a valid name";
+  
+    }else{
+      updateFormNameError.innerText = "";
+      errorElement.innerText = ""
+      errorContainer.style.display = "none"
+    }
+    if (updateFormEmail.value ==="" || !emailPattern.test(updateFormEmail.value)) {
+      errors.push("Please enter a valid email");
+      updateFormEmailError.innerText = "Please enter a valid email";
+    }
+    else{
+      updateFormEmailError.innerText = "";
+      errorElement.innerText = ""
+      errorContainer.style.display = "none"
+    }
+    if (updateFormPhone.value ==="" || !phonePattern.test(updateFormPhone.value)) {
+      errors.push("Please enter a valid phone number");
+      updateFormPhoneError.innerText = "Please enter a valid phone number";
+    }
+    else{
+      updateFormPhoneError.innerText = "";
+      errorElement.innerText = ""
+      errorContainer.style.display = "none"
+    }
+    
+    if (errors.length > 0){
+      e.preventDefault();
+      errorElement.innerText = errors.join(', ')
+      errorContainer.style.display = "flex"
+      timeDelay(errorContainer, errorElement)
+    }
+    if (!errors.length){
+
+    const formData  = new FormData()
+     formData.append("poster", selectedImage)
+    formData.append("email", updateFormEmail.value)
+    formData.append("name", updateFormName.value)
+    formData.append("phone", updateFormPhone.value)
+    console.log("formData before submit", formData)
+    handleUpdateProfile(formData)
+    }
+  })
+  
+   const handleUpdateProfile = (formData) => {
+// for (let [key, value] of formData.entries()) {
+//   console.log(key, value);
+// }
+    let headers = new Headers();
+headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
+
+    let params = {
+       email : updateFormEmail.value,
+       name : updateFormName.value,
+       phone : updateFormPhone.value,
+      }
+
+    fetch(`http://localhost:8080/users/update/${loggedUser._id}`,{
+        method: 'PATCH',
+        body: formData,
+        headers: headers
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("userData",data);
+      successContainer.style.display = "flex"
+      successElement.innerHTML = data.message
+      localStorage.setItem("loggedUser", JSON.stringify(data?.data));
+        // (successContainer.style.display = "flex"),
+        //   (successElement.innerHTML = "User Updated successful");
+        timeDelay(successContainer, successElement);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+  
+changePasswordForm.addEventListener("submit", (e)=>{
+  let errors = [];
+    e.preventDefault();
+
+  if (oldPassword.value ==="" ) {
+      errors.push("Please enter a valid password");
+      oldPasswordError.innerText = "Please enter a valid password";
+    }
+   else if (oldPassword.value.length < 6) {
+      errors.push("Password must be at least 6 characters");
+      oldPasswordError.innerText = "Password must be at least 6 characters";
+    }
+    else{
+      oldPasswordError.innerText = "";
+      errorElement.innerText = ""
+      errorContainer.style.display = "none"
+    }
+  
+  if (newPassword.value ==="" ) {
+      errors.push("Please enter a valid password");
+      newPasswordError.innerText = "Please enter a valid password";
+    }
+   else if (newPassword.value.length < 6) {
+      errors.push("Password must be at least 6 characters");
+      newPasswordError.innerText = "Password must be at least 6 characters";
+    }
+   else if (newPassword === oldPassword) {
+      errors.push("New password can't be same as old password");
+      newPasswordError.innerText = "New password can't be same as old password";
+    }
+    else{
+      newPasswordError.innerText = "";
+      errorElement.innerText = ""
+      errorContainer.style.display = "none"
+      oldPasswordError.innerText = "";
+    }
+  
+    if (errors.length > 0){
+      e.preventDefault();
+      errorElement.innerText = errors.join(', ')
+      errorContainer.style.display = "flex"
+      timeDelay(errorContainer, errorElement)
+    }
+    if (!errors.length){
+      e.preventDefault();
+    handleChangePassword()
+    }
+})
+   const handleChangePassword = () => {
+    let headers = new Headers();
+headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
+headers.append("Content-Type", "application/json")
+    let params = {
+       oldPassword : oldPassword.value,
+       newPassword : newPassword.value,
+      }
+      console.log("my Params",JSON.stringify(params))
+    fetch(`http://localhost:8080/users/changePassword/${loggedUser._id}`,{
+        method: 'PATCH',
+        body: JSON.stringify(params),
+        headers: headers
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("userData",data);
+      successContainer.style.display = "flex"
+      successElement.innerHTML = data.message
+        // (successContainer.style.display = "flex"),
+        //   (successElement.innerHTML = "User Updated successful");
+        timeDelay(successContainer, successElement);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+   const handleDeleteAccount = () => {
+    let headers = new Headers();
+headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
+headers.append("Content-Type", "application/json")
+
+    fetch(`http://localhost:8080/users/delete/${loggedUser._id}`,{
+        method: 'DELETE',
+        headers: headers
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("userData",data);
+      successContainer.style.display = "flex"
+      successElement.innerHTML = data.message
+        // (successContainer.style.display = "flex"),
+        //   (successElement.innerHTML = "User Updated successful");
+        timeDelay(successContainer, successElement);
+        localStorage.removeItem("loggedUser");
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+          </script>
+
+  </body>
+</html>

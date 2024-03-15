@@ -15,6 +15,7 @@
     <title>Blog</title>
   </head> 
   <body>
+
     <div class="main-container" >
       <div class="error-container" id="error-container">
         <span class="material-symbols-outlined" id="error-icon"> error </span>
@@ -68,49 +69,79 @@
                 <div class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
                   <p>Logout</p>
                   <img src="../assets//images//dashboard-icons/logout.svg" alt="">
-      
               </div>
               </div>
             </div>
           </div>  
-          <script>
-            const blogButton = document.querySelector('.blog-button')
-            const profileIcon = document.querySelector('.user-name-profile')
+    <script src="../Js/index.js"></script>
+    <script src="../Js/contactForm.js"></script>
 
-            const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-            console.log("loggedUser", loggedUser);
+    <script>
+      const blogButton = document.querySelector(".blog-button");
+      const profileIcon = document.querySelector(".user-name-profile");
+      const handleLogout = () => {
+        localStorage.removeItem("loggedUser");
+        (successContainer.style.display = "flex"),
+          (successElement.innerHTML = "Logged out successfully");
+        timeDelay(successContainer, successElement);
+        window.location.reload();
+      };
+      console.log("LoggedUser", loggedUser)
 
-            const handleLogout = ()=>{
-              localStorage.removeItem("loggedUser")
-              successContainer.style.display = "flex",
-              successElement.innerHTML = "Logged out successfully"
-              timeDelay(successContainer, successElement)
-              window.location.reload();
-            }
-            
-            if(loggedUser.isLoggedIn){
-              blogButton.style.display = "none"
-              profileIcon.style.display="flex"
+      const navigate = () => {
+        if (loggedUser?.role == "admin") {
+        window.location.href = "../dashboard/dashboard.html";
+        }
+        else if (loggedUser?.role == "user") {
+        window.location.href = "../user-dashboard/user-dashboard-profile.html";
 
-              profileIcon.innerHTML = `
-              <div class="letter">
-              <h3 class="grey-text">${loggedUser.name.split('')[[0]]}</h3>
-              <div class="info">
-                <p class="white-text">${loggedUser.name}</p>
-                <p>${loggedUser.role}</p>
-                <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
-                  <p>Logout</p>
-                  <img src="../assets//images//dashboard-icons/logout.svg" alt="">
-      
-              </button>
-              </div>
+        }
+      };
+
+
+      const openIcon = ()=>{
+        profileInfo.style.display = "block"
+        profileInfo.style.opacity = 1
+      }
+
+      const closeIcon = ()=>{
+        profileInfo.style.display = "none"
+        profileInfo.style.opacity = 0
+      }
+      if (loggedUser) {
+        blogButton.style.display = "none";
+        profileIcon.style.display = "flex";
+        profileIcon.title = loggedUser?.name + ", " + loggedUser?.role;
+
+        profileIcon.innerHTML = `
+        <div class="letter" onClick="openIcon()">
+        <h3 class="grey-text">${loggedUser?.name
+          .split("")[0]
+          .toUpperCase()}</h3>
+        <div class="info user-setting-info">
+          <div class="user-close-container">
+          <p class="white-text">${loggedUser?.name } <span style=textDecoration:"capitalize"></span></p>
+          <button onClick="closeIcon()" class="button">X</button>
             </div>
-              `
-            }else{
-              blogButton.style.display = "flex"
-              profileIcon.style.display="none" 
-            }
-          </script>  
+          
+          <button onClick="navigate()" class="rounded-text grey-text category-tag dashboard-link">
+            <p>My Dashboard</p>
+            <img src="../assets//images//dashboard-icons/dashboard.svg" alt="">
+        </button>
+          <button onClick="handleLogout()" class="rounded-text grey-text category-tag dashboard-link dashboard-logout">
+            <p>Logout</p>
+            <img src="../assets//images//dashboard-icons/logout.svg" alt="">
+        </button>
+        </div>
+      </div>
+        `;
+      } else {
+        blogButton.style.display = "flex";
+        profileIcon.style.display = "none";
+      }
+      const profileInfo = document.querySelector(".user-setting-info");
+      
+    </script> 
         </div>
         <div class="mobile-nav">
           <div class="menu-bar">
@@ -141,24 +172,14 @@
       <!-- homepage -->
 
       <div class="skills-section single-blog-page" id="blog-home">
-        <!-- <div class="rounded-text white-text category-tag"><p>Artificial Intelligent</p></div>
-<div><h3 class="big-text">ChatGPT : A Developer's Best Friend or Worst Enemy?</h3></div>
-<div><p class="grey-text text-center join-text">Explore the pros and cons of ChatGPT as a tool for developers, and whether its AI-powered capabilities are a boon or a bane in the world of programming and software development..</p></div>
-<div class="blog-dates">
-    <div class="date blog-dates-details">
-        <span class="material-symbols-outlined">
-            calendar_today
-            </span>
-            <p>20 January 2024</p>
-    </div>
-    <div class="date blog-dates-details">
-        <span class="material-symbols-outlined">
-            timer
-            </span>
-            <p>20 Minute Read</p>
-    </div>
-</div> -->
+
       </div>
+      <a class="button blog-edit-button" id="blog-edit-button">
+        <span class="material-symbols-outlined">
+          edit
+          </span>
+        <p>Edit</p>
+      </a>
 <div class="blog-page-section" id="blog-page-section">
 <div class="single-blog-content" id="single-blog-content">
     <img src="../assets/images/deepmind.webp" alt="" class="blog-image">
@@ -309,21 +330,25 @@
         <div class="small-text grey-text copyright"><p>&copy; 2024 . All rights reserved Angelo Christian</p></div>
       </div>
     </div>
+ 
     <script>
       const blogHeader = document.getElementById("blog-home")
       const blogContent = document.getElementById('single-blog-content')
       let currentUrl = window.location.href
       let allBlogs = JSON.parse(localStorage.getItem("articles"))
       let indexUrl = currentUrl.split('index=')[1]
+      let editBlogButton = document.getElementById("blog-edit-button")
+
+
+      if(loggedUser?.role == "admin"){
+      editBlogButton.style.display = "flex"
+      editBlogButton.href = `../dashboard/dashboard-single-blog.html?index=${indexUrl}`
+
+        // editBlogButton.addEventListener("click",()=>{
+        //   // window.location.replace(`/single-blog-page.html?index=${indexUrl}`)
+        // })
+      }
       const apiUrl = `http://localhost:8080/blogs/${indexUrl}`;
-      const todayDate = new Date();
-        const today = todayDate.getDate()
-        const month = todayDate.getMonth();
-        const year = todayDate.getFullYear();
-        const hours = todayDate.getHours();
-        const minutes = todayDate.getMinutes();
-        const seconds = todayDate.getSeconds();
-      console.log('allBlogs', allBlogs)
 
       let blog = allBlogs[1]
       const showBlogs =(blog)=>{
@@ -340,13 +365,13 @@
         <span class="material-symbols-outlined">
             calendar_today
             </span>
-            <p>${blog.date}</p>
+            <p>${(blog.createdAt.split("T")[0]).split("-").join("/")}</p>
     </div>
     <div class="date blog-dates-details">
         <span class="material-symbols-outlined">
             timer
             </span>
-            <p>20 Minute Read</p>
+            <p>${blog.timeToRead } Minutes</p>
     </div>
 </div>
       `
@@ -366,9 +391,9 @@
 
          <div class="blog-home-card-info">
       <img src="../assets/images/my-avatar.svg" alt="" class="avatar">
-      <p class="grey-text">${blog.editor}</p>
+      <p class="grey-text">${blog.editor || "Angelo Christian"}</p>
       <p class="grey-text">&#x2022;</p>
-      <p class="grey-text">${blog.date}</p>
+      <p class="grey-text">${blog.createdAt.split("T")[0]}</p>
     </div>
 
     <div class="blog-comment-section">
@@ -386,20 +411,71 @@
 `;
 
 const likesContainer = document.querySelector('.blog-likes-section');
-likesContainer.innerHTML = `
+  
+  fetch(`http://localhost:8080/likes/blogs/${indexUrl}`)
+  .then(response => response.json())
+  .then(data => {
+    setLikeData(data.data)
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+  
+  function setLikeData(data){
+    likesContainer.innerHTML = `
 <!-- <img src="../assets/images/favorite-outline.svg"/> -->
-      <img src="../assets/images/favorite.svg" id='heart-icon' alt="liked"/>
-      <p class="rounded-text category-tag white-text title">${storageLikes.length} people liked this post</p>
+
+  <img src="../assets/images/favorite.svg" id='heart-icon'  alt="liked"/>
+
+      <p class="rounded-text category-tag white-text title">${data?.length} people liked this post</p>
 
 `;
+
+let heartButton = document.getElementById('heart-icon');
 let heart = document.getElementById('heart-icon');
-initializeLikeButton();
 
-// Add event listener to the heart icon
-heart.addEventListener('click', handleLikeBlog);
+initializeLikeButton(data, heart);
 
-function initializeLikeButton() {
-  const userLiked = storageLikes.some((like) => like.likedBy === loggedUser.name);
+heart.addEventListener("click", ()=>{handleLikes()})
+}
+
+const handleLikes = () => {
+    let params = {
+       userId : loggedUser?._id,
+       blogId : indexUrl,
+       isLiked: true
+      }
+  
+    fetch('http://localhost:8080/likes/add',{
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {
+          "Authorization": `Bearer ${tokens.bearerToken}`,
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+      successContainer.style.display = "flex",
+        successElement.innerHTML = data.message
+        timeDelay(successContainer, successElement)
+        setTimeout(()=>{
+           window.location.reload();
+        }, 2000)
+        return(data)
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+
+
+
+// // Add event listener to the heart icon
+// heart.addEventListener('click', handleLikeBlog);
+
+function initializeLikeButton(data, heart) {
+  const userLiked = data.some((like) => like.userId === loggedUser?._id);
 
   if (userLiked) {
     heart.src = "../assets/images/favorite.svg";
@@ -410,35 +486,29 @@ function initializeLikeButton() {
   }
 }
 
-function handleLikeBlog() {
-  const likeExists = storageLikes.find((like) => like.likedBy === loggedUser.name);
+function handleLikeBlog(data) {
+  const likeExists = data.find((like) => like.userId === loggedUser?._id);
 
   if (likeExists) {
     // User unlikes the post
     heart.src = "../assets/images/favorite-outline.svg";
     heart.alt = 'not-liked';
-    // Remove from the list of storage likes
-    storageLikes = storageLikes.filter((like) => like.likedBy !== loggedUser.name);
+
+    handleLikes()
   
   } else {
-    // User likes the post
-    storageLikes.push({
-      likedBy: loggedUser.name,
-      date: `${today}/${month}/${year}`,
-      time: `${hours}:${minutes}:${seconds}`,
-      status: true,
-    });
+    handleLikes()
     heart.src = "../assets/images/favorite.svg";
     heart.alt = 'liked';
     
   }
-  allBlogs[indexUrl].likes = storageLikes
-  console.log("this blog index url", allBlogs[indexUrl])
+  // allBlogs[indexUrl].likes = storageLikes
+  // console.log("this blog index url", allBlogs[indexUrl])
   // Update the like count (you can display it wherever needed)
-  const likeCount = storageLikes.length;
-  console.log(`Total likes: ${likeCount}`);
+  // const likeCount = storageLikes.length;
+  // console.log(`Total likes: ${likeCount}`);
 
-  localStorage.setItem('articles', JSON.stringify(allBlogs))
+  // localStorage.setItem('articles', JSON.stringify(allBlogs))
   successContainer.style.display = "flex",
         successElement.innerHTML = "Liked updated"
         timeDelay(successContainer, successElement)
@@ -459,19 +529,20 @@ const commentContainer = document.getElementById('comment-container')
           errorElement.innerHTML = "Please input comment"
           timeDelay(errorContainer, errorElement)
         } else{
-          handleAddComment()
+          // handleAddComment()
+          submitComment()
         }
       })
       const handleAddComment =()=>{
         let params = {
-          postedBy:loggedUser.name,
+          postedBy:loggedUser?.name,
           date: `${today}/${month}/${year}`,
           time: `${hours}:${minutes}:${seconds}`,
           content:blogComment.value,
         }
 
         blog.comments.push(params)
-        console.log("this blog index url", allBlogs[indexUrl])
+        // console.log("this blog index url", allBlogs[indexUrl])
 
         localStorage.setItem('articles', JSON.stringify(allBlogs))
         successContainer.style.display = "flex",
@@ -482,7 +553,20 @@ const commentContainer = document.getElementById('comment-container')
         }, 2000)
        
       }
-      if(storageComments.length == 0){
+// fetch comments from
+      fetch(`http://localhost:8080/comments/blogs/${indexUrl}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log("-------------comment data",data);
+      populateComments(data.data)
+    })
+    .catch(error => {
+        console.error('Comment Error:', error);
+    });
+
+    const populateComments = (storageComments)=>{
+
+      if(storageComments?.length == 0){
         
         commentContainer.innerHTML = `
         <div class="upper-text">
@@ -492,27 +576,79 @@ const commentContainer = document.getElementById('comment-container')
    <p class="small-text grey-text comment-text">Be the first to comment</p>
   `
       }
-      storageComments.map((comment, index)=>{
-  const commentCard = document.createElement('div')
+      storageComments?.map((comment, index)=>{
+
+        fetch(`http://localhost:8080/users/${comment.userId}`, {
+          headers: {
+          "Authorization":`Bearer ${tokens.bearerToken}`,
+            'Content-Type': 'application/json',
+        },
+    method:"GET"
+})
+.then((response) => response.json())
+.then((data) => {
+ 
+  populateUserData(data.data);
+})
+.catch((error) => {
+  console.error("Error fetching data:", error);
+});
+const populateUserData =(userData)=>{
+    const commentCard = document.createElement('div')
   commentCard.classList.add('single-comment-card')
   commentCard.innerHTML=`
   <div class="upper-text">
-      <p class="white-text title small-text">${comment.postedBy}</p>
-      <p class="grey-text small-text"> &#x2022; ${comment.date}</p>
+      <p class="white-text title small-text">${userData?.name || "user"}</p>
+      <p class="grey-text small-text"> &#x2022; ${comment.createdAt.split("T")[0]}</p>
    </div>
    <p class="small-text grey-text comment-text">${comment.content}</p>
   `
 
   commentContainer.appendChild(commentCard)
+}
+
 
 })
+    }
+      const submitComment = () => {
+    let params = {
+       blogId : indexUrl,
+       content: blogComment.value
       }
+    fetch('http://localhost:8080/comments/add',{
+        method: 'POST',
+        body: JSON.stringify(params),
+        headers: {
+          "Authorization":`Bearer ${tokens.bearerToken}`,
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+   
+      const successContainer = document.getElementById("success-container");
+    const successElement = document.getElementById("success-text");
+
+      successContainer.style.display = "flex",
+        successElement.innerHTML = "Comment Added successfully"
+        // timeDelay(successContainer, successElement)
+        setTimeout(()=>{
+          successContainer.style.display = "none";
+          successElement.innerText = "";
+           window.location.reload();
+        }, 2000)
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+
+}
 
       fetch(apiUrl)
   .then(response => response.json())
   .then(data => {
     APIBlogs = data; // Assign the fetched data to the variable
-    console.log("data", data);
     showBlogs(data.data);
   })
   .catch(error => {
@@ -545,7 +681,6 @@ const commentContainer = document.getElementById('comment-container')
           root.style.setProperty('--dark-white', '#19181e');
           root.style.setProperty('--grey', '#23202a');
           themeIcon.innerHTML = 'dark_mode';
-          console.log("theme in light", theme)
           logoImage.src = "./assets/images/logo-color.svg"
 
         } else if (theme === "light") {
@@ -559,12 +694,9 @@ const commentContainer = document.getElementById('comment-container')
           root.style.setProperty('--dark-white', '#e6e4e4');
           themeIcon.innerHTML = 'light_mode';
           // themeIcon.sytle.display = 'white';
-          logoImage.src = "./assets/images/logo.png"
-          console.log("theme in dark", theme)
-        
+          logoImage.src = "./assets/images/logo.png"        
         } else{
           localStorage.setItem("theme", "dark");
-          console.log("theme else where", theme)
         }
 
       });
@@ -580,7 +712,6 @@ const commentContainer = document.getElementById('comment-container')
 
     
     </script>
-    <script src="../Js/alert.js"></script>
-    <script src="../Js/contactForm.js"></script>
+    <!-- <script src="../Js/alert.js"></script> -->
   </body>
 </html>

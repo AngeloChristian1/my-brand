@@ -349,21 +349,15 @@
 
 
       if (!loggedUser || loggedUser.role != "admin") {
-        window.location.href = "../index.html";
-      } else {
-        // (successContainer.style.display = "flex"),
-        //   (successElement.innerHTML = `Welcome, ${
-        //     loggedUser.name.split(" ")[0]
-        //   }`);
-        // timeDelay(successContainer, successElement);
-      }
+        window.location.href = "../blog/blog-homepage.html";
+      } 
 
       logoutButton.addEventListener("click", () => {
         localStorage.removeItem("loggedUser");
         (successContainer.style.display = "flex"),
           (successElement.innerHTML = "Logged out successfully");
         timeDelay(successContainer, successElement);
-        window.location.href = "../index.html";
+        window.location.href = "../blog/blog-homepage.html";
       });
     </script>
 
@@ -457,7 +451,7 @@
           }
         });
       };
-console.log("myHeader", myHeaders)
+
       fetch(`http://localhost:8080/blogs`)
         .then((response) => response.json())
         .then((data) => {

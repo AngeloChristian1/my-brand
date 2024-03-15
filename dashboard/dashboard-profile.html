@@ -72,13 +72,13 @@
                     search
                     </span>
               </div>
-            <div class="dashboard-user-info">
+            <!-- <div class="dashboard-user-info">
                 <img src="../assets/images/my-avatar.svg" alt="avatar" class="avatar">
                 <div>
                     <p class="white-text small-text title">Angelo Christian</p>
                     <p class="grey-text small-text">Admin</p>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="dashboard-content dashboard-profile">
             <div class=" dashboard-profile-container">
@@ -91,10 +91,18 @@
                     <div class="profile-section-left">
                         <div class="input-form">
                             <p class="white-text title small-text">Name: </p>
-                            <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                            <input type="text" name="name" id="user-name" placeholder="My Name" value="Gatete Ishema Angelo Christian"/>
                           </div>
                         <div class="input-form">
-                            <p class="white-text title small-text">Name: </p>
+                            <p class="white-text title small-text">Email: </p>
+                            <input type="text" name="email" id="user-email" placeholder="My Email" value="ishgatetechristian@gmail.com"/>
+                          </div>
+                        <div class="input-form">
+                            <p class="white-text title small-text">Phone Number: </p>
+                            <input type="text" name="number" id="user-phone" placeholder="My Email" value="0788998899"/>
+                          </div>
+                        <div class="input-form">
+                            <p class="white-text title small-text">Desrciption: </p>
                             <label for="message"></label>
                             <textarea name="message" id='message' rows="3" aria-valuemin="fff">The name is Gatete Ishema Angelo Chrsitian, Call me Chris I'm a web developer from Kigali, Rwanda. I specialize in designing and developing web experiences I work with organizations and individuals to create beautiful, responsive, and scalable web products tailor-made for them. Think we can make something great together?</textarea>
                           </div>
@@ -103,14 +111,14 @@
                     </div>
                     <div class="profile-section-right">
                         <p class="text-white text-center title">Change Password</p>
-                        <form action="">
+                        <form action="" class="change-password-form">
                             <div class="input-form">
-                                <p class="white-text title small-text">Name: </p>
-                                <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                                <p class="white-text title small-text">Old Password: </p>
+                                <input type="text" name="title" id="title" placeholder="Old Password" />
                               </div>
                               <div class="input-form">
-                                <p class="white-text title small-text">Name: </p>
-                                <input type="text" name="title" id="title" placeholder="Enter The Title" value="Gatete Ishema Angelo Christian"/>
+                                <p class="white-text title small-text">New Password: </p>
+                                <input type="text" name="title" id="title" placeholder="New Password" />
                               </div>
 
                               <button type="submit" class="button"> Change Password</button>

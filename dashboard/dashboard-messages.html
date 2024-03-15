@@ -178,48 +178,121 @@ function onViewClick(messageIndex) {
 }
 function populateMessagesTable(messages) {
     let tableBody = document.getElementById('messages-table-body') ;
-    tableBody.innerHTML = '';
+    // tableBody.innerHTML = '';
 
     messages.map((message, index )=> {
+        if(message?._id){        
         let row = document.createElement('tr');
+        row.classList.add("dashboard-blog-row")
+
+        let nameTD = document.createElement('td');
+        let name = document.createElement('p');
+        name.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
+        name.innerText = message.name
+
+        nameTD.appendChild(name);     
+
+        let emailTD = document.createElement('td');
+        let email = document.createElement('p');
+        email.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
+        email.innerText = message.email
+
+        emailTD.appendChild(email);
+
+        let phoneTD = document.createElement('td');
+        let phone = document.createElement('p');
+        phone.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
+        phone.innerText = message.phone
+
+        phoneTD.appendChild(phone);
+
+        let dateTD = document.createElement('td');
+        let date = document.createElement('p');
+        date.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
+        date.innerText = message?.createdAt?.split("T")[0]?.split("-")?.join("/")
+
+        dateTD.appendChild(date);
+
+        let timeTD = document.createElement('td');
+        let time = document.createElement('p');
+        time.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
+        time.innerText = message.createdAt?.split("T")[1]?.split(".")[0]
+
+        timeTD.appendChild(time);
+
+        let myMessageTD = document.createElement('td');
+        let myMessage = document.createElement('p');
+        myMessage.classList.add('dashboard-blog-title' ,'small-text', "one-liner")
+        myMessage.innerText = message.message
+
+        myMessageTD.appendChild(myMessage);
+
+        let viewButtonTD =document.createElement('td')
+        let viewButton = document.createElement('a');
+        viewButton.textContent = 'View';
+        viewButton.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
+        viewButton.href = `./dashboard-single-message.html?index=${message._id}`
+        // Add click event listener to "View" link
+        viewButton.addEventListener('click', () => window.location.href=`./dashboard-single-message.html.html?index=${message._id}`);
+        viewButtonTD.appendChild(viewButton);
+               
+
+        let replyCell = document.createElement('td');
+        replyCell.innerHTML = `<a href="mailto:${message.email} class="text-yellow"> <button class="small-text rounded-text text-yellow title category-tag">Reply</button></a>`;
+        row.appendChild(replyCell);
+
+
+        row.appendChild(nameTD)
+        row.appendChild(emailTD)
+        row.appendChild(phoneTD)
+        row.appendChild(dateTD)
+        row.appendChild(timeTD)
+        row.appendChild(myMessageTD)
+        row.appendChild(viewButton)
+                row.appendChild(replyCell)
+
+        tableBody.appendChild(row)
 
         // Create table cells for each property in the message object
-        Object.values(message).forEach(value => {
+        // Object.values(message).forEach(value => {
            
-            let cell = document.createElement('td');
-            cell.innerHTML = `<p class="small-text one-liner">${value}</p>`;
-            row.appendChild(cell);
-        });
+        //     let cell = document.createElement('td');
+        //     cell.innerHTML = `<p class="small-text one-liner">${value}</p>`;
+        //     row.appendChild(cell);
+        // });
 
         // Create View and Reply links
         // let viewLinkCell = document.createElement('td');
         // viewLinkCell.innerHTML = `<a href="./dashboard-single-message.html" class="small-text rounded-text text-blue title category-tag">View</a>`;
         // row.appendChild(viewLinkCell);
 
-        let viewLinkCell = document.createElement('td');
-        let viewLink = document.createElement('button');
-        // viewLink.href = `./dashboard-single-message.html?index=1`; // Prevent default link behavior
-        viewLink.textContent = 'View';
-        viewLink.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
-        // Add click event listener to "View" link
-        viewLink.addEventListener('click', () => onViewClick(index));
-        viewLinkCell.appendChild(viewLink);
-        row.appendChild(viewLinkCell);
+        // let viewLinkCell = document.createElement('td');
+        // let viewLink = document.createElement('button');
+        // // viewLink.href = `./dashboard-single-message.html?index=1`; // Prevent default link behavior
+        // viewLink.textContent = 'View';
+        // viewLink.classList.add('small-text', 'rounded-text', 'text-blue', 'title', 'category-tag');
+        // // Add click event listener to "View" link
+        // viewLink.addEventListener('click', () => onViewClick(index));
+        // viewLinkCell.appendChild(viewLink);
+        // row.appendChild(viewLinkCell);
 
-        let replyCell = document.createElement('td');
-        replyCell.innerHTML = `<a href="mailto:${message.email} class="text-yellow"> <button class="small-text rounded-text text-yellow title category-tag">Reply</button></a>`;
-        row.appendChild(replyCell);
+        // let replyCell = document.createElement('td');
+        // replyCell.innerHTML = `<a href="mailto:${message.email} class="text-yellow"> <button class="small-text rounded-text text-yellow title category-tag">Reply</button></a>`;
+        // row.appendChild(replyCell);
 
-        // Append row to the table body
-        tableBody.appendChild(row);
+        // // Append row to the table body
+        // tableBody.appendChild(row);
+        }
     });
 }
 
-fetch(`http://localhost:8080/messages`)
+fetch(`http://localhost:8080/messages`, {
+    headers:myHeaders,
+    method:"GET"
+})
 .then((response) => response.json())
 .then((data) => {
-  APIBlogs = data; // Assign the fetched data to the variable
-  console.log(data[0])
+  console.log(data)
   populateMessagesTable(data);
 })
 .catch((error) => {
