@@ -116,7 +116,7 @@ const handleLogin = ()=>{
        email : loginFormEmail.value,
        password : loginFormPassword.value
       }
-    fetch('http://localhost:8080/auth/login',{
+    fetch('https://backend-my-brand.onrender.com/auth/login',{
         method: 'POST',
         body: JSON.stringify(params),
         headers: {

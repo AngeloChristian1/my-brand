@@ -6,9 +6,9 @@ console.log("tokens", tokens);
 let myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${tokens.bearerToken}`);
 
-let myUrl = `http://localhost:8080/`;
+let myUrl = `https://backend-my-brand.onrender.com/`;
 // create request object
-let request = new Request(`http://localhost:8080/`, {
+let request = new Request(`https://backend-my-brand.onrender.com/`, {
   method: "GET",
   headers: myHeaders,
 });

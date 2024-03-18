@@ -170,7 +170,7 @@ function sendMail(){
       email: document.getElementById("contact-form-email").value,
       message: document.getElementById("contact-form-message").value
     }
-    fetch('http://localhost:8080/messages/add', {
+    fetch('https://backend-my-brand.onrender.com/messages/add', {
         method: 'POST',
         body: JSON.stringify(params),
         headers: {

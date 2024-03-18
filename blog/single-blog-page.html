@@ -348,7 +348,7 @@
         //   // window.location.replace(`/single-blog-page.html?index=${indexUrl}`)
         // })
       }
-      const apiUrl = `http://localhost:8080/blogs/${indexUrl}`;
+      const apiUrl = `https://backend-my-brand.onrender.com/blogs/${indexUrl}`;
 
       let blog = allBlogs[1]
       const showBlogs =(blog)=>{
@@ -412,7 +412,7 @@
 
 const likesContainer = document.querySelector('.blog-likes-section');
   
-  fetch(`http://localhost:8080/likes/blogs/${indexUrl}`)
+  fetch(`https://backend-my-brand.onrender.com/likes/blogs/${indexUrl}`)
   .then(response => response.json())
   .then(data => {
     setLikeData(data.data)
@@ -446,7 +446,7 @@ const handleLikes = () => {
        isLiked: true
       }
   
-    fetch('http://localhost:8080/likes/add',{
+    fetch('https://backend-my-brand.onrender.com/likes/add',{
         method: 'POST',
         body: JSON.stringify(params),
         headers: {
@@ -505,7 +505,7 @@ function handleLikeBlog(data) {
   // allBlogs[indexUrl].likes = storageLikes
   // console.log("this blog index url", allBlogs[indexUrl])
   // Update the like count (you can display it wherever needed)
-  // const likeCount = storageLikes.length;
+  // const likeCount = storageLikes?.length;
   // console.log(`Total likes: ${likeCount}`);
 
   // localStorage.setItem('articles', JSON.stringify(allBlogs))
@@ -554,7 +554,7 @@ const commentContainer = document.getElementById('comment-container')
        
       }
 // fetch comments from
-      fetch(`http://localhost:8080/comments/blogs/${indexUrl}`)
+      fetch(`https://backend-my-brand.onrender.com/comments/blogs/${indexUrl}`)
     .then(response => response.json())
     .then(data => {
       console.log("-------------comment data",data);
@@ -578,7 +578,7 @@ const commentContainer = document.getElementById('comment-container')
       }
       storageComments?.map((comment, index)=>{
 
-        fetch(`http://localhost:8080/users/${comment.userId}`, {
+        fetch(`https://backend-my-brand.onrender.com/users/${comment.userId}`, {
           headers: {
           "Authorization":`Bearer ${tokens.bearerToken}`,
             'Content-Type': 'application/json',
@@ -615,7 +615,7 @@ const populateUserData =(userData)=>{
        blogId : indexUrl,
        content: blogComment.value
       }
-    fetch('http://localhost:8080/comments/add',{
+    fetch('https://backend-my-brand.onrender.com/comments/add',{
         method: 'POST',
         body: JSON.stringify(params),
         headers: {

@@ -84,7 +84,7 @@
             <div class=" dashboard-profile-container">
                 <div class="dashboard-change-profile">
                     <img src="../assets/images/my-avatar.svg" width="100px" alt="">
-                    <input type="file" >
+                    <input type="file" placeholder="image-file">
                    </div>
 
                 <div class="dashboard-profile-information">
@@ -143,9 +143,9 @@
       
             logoutButton.addEventListener("click", () => {
               localStorage.removeItem("loggedUser")
-              successContainer.style.display = "flex",
-              successElement.innerHTML = "Logged out successfully"
-              timeDelay(successContainer, successElement)
+              // successContainer.style.display = "flex",
+              // successElement.innerHTML = "Logged out successfully"
+              // timeDelay(successContainer, successElement)
               window.location.href = "../index.html";
             });
           </script>

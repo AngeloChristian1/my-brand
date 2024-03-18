@@ -354,9 +354,9 @@
 
       logoutButton.addEventListener("click", () => {
         localStorage.removeItem("loggedUser");
-        (successContainer.style.display = "flex"),
-          (successElement.innerHTML = "Logged out successfully");
-        timeDelay(successContainer, successElement);
+        // (successContainer.style.display = "flex"),
+        //   (successElement.innerHTML = "Logged out successfully");
+        // timeDelay(successContainer, successElement);
         window.location.href = "../blog/blog-homepage.html";
       });
     </script>
@@ -452,7 +452,7 @@
         });
       };
 
-      fetch(`http://localhost:8080/blogs`)
+      fetch(`https://backend-my-brand.onrender.com/blogs`)
         .then((response) => response.json())
         .then((data) => {
           APIBlogs = data; // Assign the fetched data to the variable
@@ -465,7 +465,7 @@
         });
 
         // set messages
-        fetch(`http://localhost:8080/messages`, {
+        fetch(`https://backend-my-brand.onrender.com/messages`, {
           method:"GET",
           headers:myHeaders
         })
@@ -478,7 +478,7 @@
         });
 
         // set users
-        fetch(`http://localhost:8080/users`, {
+        fetch(`https://backend-my-brand.onrender.com/users`, {
           method:"GET",
           headers: myHeaders
         })
@@ -492,7 +492,7 @@
         });
 
         // set messages
-        fetch(`http://localhost:8080/likes`)
+        fetch(`https://backend-my-brand.onrender.com/likes`)
         .then((response) => response.json())
         .then((data) => {
           console.log("likes", data);

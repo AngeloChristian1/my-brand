@@ -294,7 +294,7 @@
                 likeIcon.src="../assets/images/dashboard-icons/heart.svg"
   
 
-                fetch(`http://localhost:8080/likes/blogs/${article._id}`)
+                fetch(`https://backend-my-brand.onrender.com/likes/blogs/${article._id}`)
                 .then(response => response.json())
                 .then(data => {
                 likeSize.classList.add('smaller-text', 'light-text')
@@ -320,7 +320,7 @@
                 commentsSize.classList.add('smaller-text', 'light-text')
 
 
-                fetch(`http://localhost:8080/comments/blogs/${article._id}`)
+                fetch(`https://backend-my-brand.onrender.com/comments/blogs/${article._id}`)
                 .then(response => response.json())
                 .then(data => {
                 commentsSize.innerText=data.data?.length + ' comments' || '0 comments'
@@ -374,7 +374,7 @@
             })
         }
 
-        fetch(`http://localhost:8080/blogs`)
+        fetch(`https://backend-my-brand.onrender.com/blogs`)
         .then((response) => response.json())
         .then((data) => {
           APIBlogs = data; // Assign the fetched data to the variable
@@ -401,9 +401,9 @@
       
             logoutButton.addEventListener("click", () => {
               localStorage.removeItem("loggedUser")
-              successContainer.style.display = "flex",
-              successElement.innerHTML = "Logged out successfully"
-              timeDelay(successContainer, successElement)
+            //   successContainer.style.display = "flex",
+            //   successElement.innerHTML = "Logged out successfully"
+            //   timeDelay(successContainer, successElement)
               window.location.href = "../index.html";
             });
           </script>

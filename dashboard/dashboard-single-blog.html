@@ -128,7 +128,7 @@
 
                       <div class="input-form">
                         <p class="hite-text title small-text">Category</p>
-                          <select name="categories" id="blog-form-category">
+                          <select name="categories" id="blog-form-category" title="select category">
                             <option value="">Choose Category</option>
                             <option value="web-development">Web Development</option>
                             <option value="artificial-intelligence">Artificial Intelligence</option>
@@ -407,7 +407,7 @@ for (let [key, value] of myFormData.entries()) {
 headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
 
   console.log("===============================params=",selectedImage)
-    fetch(`http://localhost:8080/blogs/update/${indexUrl}`, {
+    fetch(`https://backend-my-brand.onrender.com/blogs/update/${indexUrl}`, {
         method: 'PATCH',
         body: myFormData,
         headers: myHeaders
@@ -480,7 +480,7 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
           
         }
         
-      fetch(`http://localhost:8080/blogs/${indexUrl}`)
+      fetch(`https://backend-my-brand.onrender.com/blogs/${indexUrl}`)
   .then(response => response.json())
   .then(data => {
     APIBlogs = data; // Assign the fetched data to the variable
@@ -496,7 +496,7 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
 headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
 headers.append("Content-Type", "application/json")
 
-    fetch(`http://localhost:8080/blogs/delete/${indexUrl}`,{
+    fetch(`https://backend-my-brand.onrender.com/blogs/delete/${indexUrl}`,{
         method: 'DELETE',
         headers: myHeaders
     })
@@ -535,9 +535,9 @@ headers.append("Content-Type", "application/json")
       
             logoutButton.addEventListener("click", () => {
               localStorage.removeItem("loggedUser")
-              successContainer.style.display = "flex",
-              successElement.innerHTML = "Logged out successfully"
-              timeDelay(successContainer, successElement)
+              // successContainer.style.display = "flex",
+              // successElement.innerHTML = "Logged out successfully"
+              // timeDelay(successContainer, successElement)
               window.location.href = "../index.html";
             });
           </script>

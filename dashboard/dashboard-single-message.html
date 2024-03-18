@@ -169,7 +169,7 @@ messageDetailsDiv.innerHTML = `
     console.log("Current URL",currentUrl)
     let indexUrl = currentUrl.split('index=')[1]
     console.log("Index URL",indexUrl)
-    const apiUrl = `http://localhost:8080/messages/${indexUrl}`    
+    const apiUrl = `https://backend-my-brand.onrender.com/messages/${indexUrl}`    
     let singleMessage = allMessages[indexUrl]
     const deleteMessage = ()=>{
     handleDeleteMessage()
@@ -225,7 +225,7 @@ messageDetailsDiv.innerHTML = `
     `
     }
 
-fetch(`http://localhost:8080/messages/${indexUrl}`, {
+fetch(`https://backend-my-brand.onrender.com/messages/${indexUrl}`, {
 headers:myHeaders,
 method:"GET"
 })
@@ -239,7 +239,7 @@ method:"GET"
 });
    
    const handleDeleteMessage = ()=>{
-    fetch(`http://localhost:8080/messages/delete/${indexUrl}`, {
+    fetch(`https://backend-my-brand.onrender.com/messages/delete/${indexUrl}`, {
     headers:myHeaders,
     method:"DELETE"
     })
@@ -265,9 +265,9 @@ method:"GET"
   
         logoutButton.addEventListener("click", () => {
           localStorage.removeItem("loggedUser")
-          successContainer.style.display = "flex",
-          successElement.innerHTML = "Logged out successfully"
-          timeDelay(successContainer, successElement)
+        //   successContainer.style.display = "flex",
+        //   successElement.innerHTML = "Logged out successfully"
+        //   timeDelay(successContainer, successElement)
           window.location.href = "../index.html";
         });
       </script>

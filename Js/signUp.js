@@ -93,7 +93,7 @@ const handleSignup = () => {
         password: signupFormPassword.value,
         role: "user",   
       }
-    fetch('http://localhost:8080/auth/register', {
+    fetch('https://backend-my-brand.onrender.com/auth/register', {
         method: 'POST',
         body: JSON.stringify(params),
         headers: {

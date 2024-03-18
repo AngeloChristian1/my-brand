@@ -382,7 +382,7 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
 
   console.log("================================",myFormData)
   // console.log("===============================params=",selectedImage)
-    fetch('http://localhost:8080/blogs/add', {
+    fetch('https://backend-my-brand.onrender.com/blogs/add', {
         method: 'POST',
         body: myFormData,
         headers: myHeaders
@@ -419,8 +419,8 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`);
       
             logoutButton.addEventListener("click", () => {
               localStorage.removeItem("loggedUser")
-              successContainer.style.display = "flex",
-              successElement.innerHTML = "Logged out successfully"
+              // successContainer.style.display = "flex",
+              // successElement.innerHTML = "Logged out successfully"
               // timeDelay(successContainer, successElement)
               window.location.href = "../blog/blog-homepage.html";
             });

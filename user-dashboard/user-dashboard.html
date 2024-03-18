@@ -220,7 +220,7 @@
               </div>
               <script>
                 const apiUrl =
-                  `http://localhost:8080/likes/users/${loggedUser._id}`;
+                  `https://backend-my-brand.onrender.com/likes/users/${loggedUser._id}`;
                   const setLikes = (Likes)=>{
               const showLikes = document.getElementById("totalLikes")
                 showLikes.innerText= `${Likes.length}`
@@ -240,7 +240,7 @@
                   likedContainer.innerHTML = "";
 
                     fetch(
-                      `http://localhost:8080/blogs/${blog.blogId}`
+                      `https://backend-my-brand.onrender.com/blogs/${blog.blogId}`
                     )
                       .then((response) => response.json())
                       .then((data) => {
@@ -343,7 +343,7 @@
               </div>
             </div>
             <script>
-              const commentsUrl = `http://localhost:8080/comments/users/${loggedUser.id}`;
+              const commentsUrl = `https://backend-my-brand.onrender.com/comments/users/${loggedUser.id}`;
               
               const setComments = (comments)=>{
               const showComments = document.getElementById("totalComments")
@@ -360,7 +360,7 @@
                 // commentsContainer.style.backgroundColor = "red";
                 commentsContainer.innerHTML = "";
            
-                  fetch(`http://localhost:8080/blogs/${comment.blogId}`)
+                  fetch(`https://backend-my-brand.onrender.com/blogs/${comment.blogId}`)
                     .then((response) => response.json())
                     .then((data) => {
                       APIBlogs = data; // Assign the fetched data to the variable
@@ -391,7 +391,7 @@
                   }
                 });
               }; 
-              fetch(`http://localhost:8080/comments/users/${loggedUser._id}`)
+              fetch(`https://backend-my-brand.onrender.com/comments/users/${loggedUser._id}`)
                 .then((response) => response.json())
                 .then((data) => {
                   APIBlogs = data; // Assign the fetched data to the variable

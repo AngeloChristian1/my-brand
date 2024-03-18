@@ -176,7 +176,7 @@
                             <span class="material-symbols-rounded visibility" id="visibility">
                               visibility
                               </span>
-                        <p class="small-text red-text error" aria-autocomplete="none" id="new-password-error"></p>
+                        <p class="small-text red-text error" id="new-password-error"></p>
                           </div>
 
                               <button type="submit" class="button" id="change-password-button"> Change Password</button>
@@ -379,7 +379,7 @@ headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
        phone : updateFormPhone.value,
       }
 
-    fetch(`http://localhost:8080/users/update/${loggedUser._id}`,{
+    fetch(`https://backend-my-brand.onrender.com/users/update/${loggedUser._id}`,{
         method: 'PATCH',
         body: formData,
         headers: headers
@@ -456,7 +456,7 @@ headers.append("Content-Type", "application/json")
        newPassword : newPassword.value,
       }
       console.log("my Params",JSON.stringify(params))
-    fetch(`http://localhost:8080/users/changePassword/${loggedUser._id}`,{
+    fetch(`https://backend-my-brand.onrender.com/users/changePassword/${loggedUser._id}`,{
         method: 'PATCH',
         body: JSON.stringify(params),
         headers: headers
@@ -479,7 +479,7 @@ headers.append("Content-Type", "application/json")
 headers.append("Authorization", `Bearer ${tokens.bearerToken}`)
 headers.append("Content-Type", "application/json")
 
-    fetch(`http://localhost:8080/users/delete/${loggedUser._id}`,{
+    fetch(`https://backend-my-brand.onrender.com/users/delete/${loggedUser._id}`,{
         method: 'DELETE',
         headers: headers
     })
